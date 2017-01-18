@@ -1,0 +1,26 @@
+{
+  "name": "ucm",
+  "version": "0.0.1",
+  "description": "A USA client manage platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./build/dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shoufu/Node-UCM.git"
+  },
+  "author": "GYMing, Kilims, Kaibin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shoufu/Node-UCM/issues"
+  },
+  "homepage": "https://github.com/Shoufu/Node-UCM#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "less": "^2.7.2",
+    "pug": "^2.0.0-beta6",
+    "webpack": "^1.14.0"
+  }
+}
