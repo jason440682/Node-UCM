@@ -1,0 +1,37 @@
+.title {
+  margin: 30px auto;
+  text-align: center;
+  font-size: 20px;
+}
+.section {
+  border-top: 1px solid gray;
+  padding: 25px 0 10px;
+}
+.section textarea {
+  height: 150px;
+}
+.country input {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.country [name="city"] {
+  width: 63%;
+}
+.country [name="state"] {
+  margin-left: 4%;
+  width: 33%;
+}
+.country [name="zip-code"] {
+  margin-right: 4%;
+  width: 23%;
+}
+.country select[name="country"] {
+  display: inline-block;
+  width: 73%;
+  margin-bottom: 15px;
+}
+.submit {
+  display: block;
+  margin: 20px auto 50px;
+  width: 150px;
+}
