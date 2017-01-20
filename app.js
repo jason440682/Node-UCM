@@ -3,6 +3,7 @@ var path = require('path');
 var http = require('http');
 
 var users = require('./routes/users/users');
+var signup = require('./routes/signup/signup');
 
 var app = express();
 
@@ -19,7 +20,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/', users);
+app.use('/', users,signup);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
