@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
         lang: require('./lang/en/accounts')
     };
 
-    if (req.lang && req.lang == 'zh') {
+    if (req.lang && req.lang == 'zh-cn') {
         data.language = 'zh-cn';
         data.lang = require('./lang/zh-cn/accounts');
     } else {

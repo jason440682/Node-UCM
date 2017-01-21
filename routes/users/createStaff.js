@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
         title: 'Create Staff User'
     };
 
-    if (req.lang && req.lang == 'zh') {
+    if (req.lang && req.lang == 'zh-cn') {
         data.language = 'zh-cn';
         data.lang = require('./lang/zh-cn/createStaff');
     } else {
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
         data.lang = require('./lang/en/createStaff');
     }
 
-    res.render('client/create', data);
+    res.render('users/create', data);
 });
 
 router.post('/', function (req, res, next) {
