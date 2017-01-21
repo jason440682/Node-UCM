@@ -16,7 +16,7 @@ module.exports = {
     tips:{
         text:'忘记密码？'
     },
-    singup:{
+    signup:{
         text:'注册'
     }
 };
