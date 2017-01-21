@@ -4,10 +4,16 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
     var data = {
         key: 'signup',
-        title: 'Sign UP',
-        language: 'en',
-        lang: require('./lang/en/register')
+        title: 'Sign UP'
     };
+
+    if (req.lang && req.lang == 'zh-cn') {
+        data.language = 'zh-cn';
+        data.lang = require('./lang/zh-cn/signup');
+    } else {
+        data.language = 'en';
+        data.lang = require('./lang/en/signup');
+    }
 
     res.render('users/signup', data);
 });
