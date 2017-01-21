@@ -1,0 +1,26 @@
+extends public/layout
+
+block content
+    form.form-horizontal(method="post", role="form")
+        h1.title= lang.title
+        div.section
+            div.form-group
+                div.col-sm-3
+                label.col-sm-2(for="username")= lang.username.text
+                div.col-sm-4
+                    input.form-control#username(type="text", name="username", placeholder= lang.username.placeholder)
+
+            div.form-group
+                div.col-sm-3
+                label.col-sm-2(for="password")= lang.password.text
+                div.col-sm-4
+                    input.form-control#password(type="password", name="username", placeholder= lang.password.placeholder)
+
+            div.form-group
+                div.col-sm-3
+                div.col-sm-2
+                div.col-sm-4
+                    a= lang.tips.text
+
+            button.btn.btn-primary.submit(type="submit")= lang.submit_btn.text
+            a.submit= lang.signup.text
