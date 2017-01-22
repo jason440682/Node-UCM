@@ -6,8 +6,10 @@ var router = express.Router();
 
 var create = require('./users/createStaff');
 var accounts = require('./client/accounts');
+var createaccount = require('./client/createaccount'); 
 
 router.use('/create', create);
 router.use('/accounts', accounts);
+router.use('/createaccount',createaccount);
 
 module.exports = router;
