@@ -7,9 +7,11 @@ var router = express.Router();
 var create = require('./users/createStaff');
 var accounts = require('./client/accounts');
 var createaccount = require('./client/createaccount'); 
+var notification = require('./client/notification');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
 router.use('/createaccount',createaccount);
+router.use('/notification',notification);
 
 module.exports = router;
