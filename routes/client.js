@@ -11,6 +11,7 @@ var notification = require('./client/notification');
 var workbook = require('./client/workbook');
 var creatework = require('./client/creatework');
 var workcalendar = require('./client/workcalendar');
+var worktemplate = require('./client/worktemplate');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
@@ -19,5 +20,6 @@ router.use('/notification',notification);
 router.use('/workbook',workbook);
 router.use('/creatework',creatework);
 router.use('/workcalendar',workcalendar);
+router.use('/worktemplate',worktemplate);
 
 module.exports = router;
