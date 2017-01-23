@@ -1,0 +1,172 @@
+extends public/layout2
+
+block content
+    form.form-horizontal(method="post", role="form")
+        h1.title= lang.title
+            
+        div.section
+            div=lang.workid
+            div.form-group
+                label.col-sm-3(for="work")= lang.work.text
+                div.col-sm-6
+                    input.form-control#work(type="text", name="work", placeholder= lang.work.placeholder)
+
+            div.form-group
+                label.col-sm-3(for="status")= lang.status.text
+                div.col-sm-4
+                    select.form-control#status(name="status")
+                        for sta in lang.status.statuses
+                            option= sta
+
+            div.form-group
+                label.col-sm-3(for="assignee")= lang.assignee.text
+                div.col-sm-4
+                    select.form-control#assignee(name="assignee")
+                        for ass in lang.assignee.assignees
+                            option= ass
+
+            div.form-group
+                label.col-sm-3(for="date")= lang.date.text
+                div.col-sm-4
+                    input.form-control.Wdate#date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.date.placeholder)
+
+            div.form-group
+                div.col-sm-3
+                div.col-sm-4
+                    label.col-sm-4
+                        input#repeat(type="checkbox",name="repeat")
+                        =lang.date.repeat
+                    div.col-sm-8
+                        select.form-control#frequency(name="frequency")
+                            for fre in lang.date.frequency
+                                option= fre
+                div.col-sm-5
+                     label.col-sm-4(for="date")= lang.date.enddate
+                     div.col-sm-8
+                        input.form-control.Wdate#enddate(type="text", name="enddate", onClick='WdatePicker()',placeholder= lang.date.never)
+                
+                    
+            div.form-group
+                label.col-sm-3(for="time")= lang.time.text
+                div.col-sm-3
+                    input.form-control#time(type="text", name="question", placeholder= lang.time.placeholder)
+                label.col-sm-3(for="duration")= lang.time.duration
+                div.col-sm-3
+                    select.form-control#duration(name="duration")
+                        for dur in lang.time.durationtime
+                            option= dur
+
+            div.form-group
+                label.col-sm-3(for="location")= lang.location.text
+                div.col-sm-6
+                    input.form-control#location(type="text", name="location", placeholder= lang.location.placeholder)
+
+            div.form-group
+                label.col-sm-3(for="contact")= lang.contact.text
+                div.col-sm-6
+                    input.form-control#contact(type="text", name="contact", placeholder= lang.contact.placeholder)
+            
+            div.form-group
+                label.col-sm-3(for="description")= lang.description.text
+                div.col-sm-9
+                    textarea.form-control#description(type="text", name="contact", placeholder= lang.description.placeholder)
+        
+        div.section
+            div.form-group
+                label.col-sm-3(for="document")= lang.document.text
+                div.col-sm-6
+                    input.form-control#document(type="text", name="document", placeholder= lang.document.placeholder)
+                div.col-sm-2
+                    button.btn.btn-default.btn-info= lang.document.button
+            
+            div.form-group
+                div.col-sm-3
+                div.col-sm-9
+                    table.table-bordered.table-condensed.file-upload.col-sm-12
+                        thead
+                            tr
+                                th.col-sm-8= lang.document.thname
+                                th.col-sm-4= lang.document.thdate
+                        tbody
+
+
+        div.section
+            div.form-group
+                label.col-sm-3(for="billiable")= lang.billiable.text
+                label.col-sm-2
+                    input(type="radio",name="billiable",value="1" checked)
+                    =lang.billiable.yes  
+                label.col-sm-2
+                    input(type="radio",name="billiable",value="2" checked)
+                    =lang.billiable.no
+
+            div.form-group
+                label.col-sm-3(for="billingrate")=lang.billingrate.text
+                div.col-sm-3
+                    select.form-control#billingrate
+                        for rate in lang.billingrate.rates
+                            option= rate
+                
+            div.form-group
+                label.col-sm-3(for="invoicestatus")=lang.invoicestatus.text
+                div.col-sm-3
+                    select.form-control#invoicestatus
+                        for sta in lang.invoicestatus.statuses
+                            option= sta
+                label.col-sm-2=lang.invoicestatus.number
+                span=lang.invoicestatus.truenum
+            
+        div.section
+            div.form-group
+                label.col-sm-3=lang.autoreminder.text
+                label.col-sm-3
+                    input.col-sm-3(for="notifyclient",type="checkbox")
+                    =lang.autoreminder.notifyclient
+                label.col-sm-1=lang.autoreminder.reminder
+                div.col-sm-2
+                    select.form-control
+                        for ti in lang.autoreminder.time
+                            option= ti
+                div.col-sm-3
+                    label.col-sm-4
+                        input#wemail(type="checkbox",name="wemail")
+                        =lang.autoreminder.email
+                    label.col-sm-4
+                        input#wphone(type="checkbox",name="wphone")
+                        =lang.autoreminder.phone
+                    label.col-sm-4
+                        input#wsms(type="checkbox",name="wsms")
+                        =lang.autoreminder.sms
+            div.form-group
+                label.col-sm-3
+                label.col-sm-3
+                    input.col-sm-3(for="notifystaff",type="checkbox")
+                    =lang.autoreminder.notifystaff
+                label.col-sm-1=lang.autoreminder.reminder
+                div.col-sm-2
+                    select.form-control
+                        for ti in lang.autoreminder.time
+                            option= ti
+                div.col-sm-3
+                    label.col-sm-4
+                        input#wemail(type="checkbox",name="wemail")
+                        =lang.autoreminder.email
+                    label.col-sm-4
+                        input#wphone(type="checkbox",name="wphone")
+                        =lang.autoreminder.phone
+                    label.col-sm-4
+                        input#wsms(type="checkbox",name="wsms")
+                        =lang.autoreminder.sms
+            div.form-group
+                label.col-sm-3=lang.remindermes.text
+                div.col-sm-9
+                    textarea.form-control(placeholder=lang.remindermes.placeholder)
+              
+        div.section
+            div.form-group
+                div.col-sm-4
+                div.col-sm-2
+                    button.btn.btn-default.btn-info=lang.buttons.update
+                div.col-sm-2
+                    button.btn.btn-default.btn-info=lang.buttons.delete
+                

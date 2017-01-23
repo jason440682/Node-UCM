@@ -12,6 +12,7 @@ var workbook = require('./client/workbook');
 var creatework = require('./client/creatework');
 var workcalendar = require('./client/workcalendar');
 var worktemplate = require('./client/worktemplate');
+var modifywork = require('./client/modifywork');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
@@ -21,5 +22,6 @@ router.use('/workbook',workbook);
 router.use('/creatework',creatework);
 router.use('/workcalendar',workcalendar);
 router.use('/worktemplate',worktemplate);
+router.use('/modifywork',modifywork);
 
 module.exports = router;
