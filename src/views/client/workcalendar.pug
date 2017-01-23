@@ -1,0 +1,43 @@
+extends public/layout
+
+block content
+    div.section
+        div.form-group.clearfix
+            div.col-sm-2
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.col-sm-2
+                select.form-control#showmethod(name='showmethod')
+                    for staff in lang.showmethod
+                        option=staff
+            div.col-sm-2
+                select.form-control#searchname(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.col-sm-4.search
+                a(href='#')=lang.search.text
+            div.col-sm-2
+                button.btn.btn-default.btn-info=lang.create_newwork.text
+        div.table-style.col-sm-12
+            table.table.table-bordered.table-striped.table-condensed
+                thead
+                    th= lang.thead.time
+                    th= lang.thead.Sunday
+                    th= lang.thead.Monday
+                    th= lang.thead.Tuesday
+                    th= lang.thead.Wednesday
+                    th= lang.thead.Thursday
+                    th= lang.thead.Friday
+                    th= lang.thead.Saturday
+                tbody
+
+                    if lang.works.length>0
+                        each work in lang.works
+                            tr
+                                td= work.time
+                                td= work.Sunday
+                                td= work.Monday
+                                td= work.Tuesday
+                                td= work.Wednesday
+                                td= work.Thursday
+                                td= work.Friday
+                                td= work.Saturday

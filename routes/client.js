@@ -10,6 +10,7 @@ var createaccount = require('./client/createaccount');
 var notification = require('./client/notification');
 var workbook = require('./client/workbook');
 var creatework = require('./client/creatework');
+var workcalendar = require('./client/workcalendar');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
@@ -17,5 +18,6 @@ router.use('/createaccount',createaccount);
 router.use('/notification',notification);
 router.use('/workbook',workbook);
 router.use('/creatework',creatework);
+router.use('/workcalendar',workcalendar);
 
 module.exports = router;
