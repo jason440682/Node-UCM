@@ -26,9 +26,7 @@ module.exports = {
         text: 'Reports',
     },
 
-    names:{
-        name:['James Johnson','Payment Reminder','Payment Reminder2']
-    },
+    names:['James Johnson','Payment Reminder','Payment Reminder2'],
 
     searchplaceholder:'search notification',
 

@@ -1,0 +1,52 @@
+extends public/layout
+
+block content
+    div.section
+        div.form-group.clearfix
+            div.col-sm-2
+                input.form-control(type='text',placeholder='lang.searchplaceholder')
+            div.col-sm-2
+                select.form-control#searchname(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.col-sm-2
+                select.form-control#searchstaff(name='searchstaff')
+                    for staff in lang.staffs
+                        option=staff
+            div.col-sm-4.search
+                a(href='#')=lang.search.text
+            div.col-sm-2
+                button.btn.btn-default.btn-info=lang.create_notification.text
+        div.table-style.col-sm-12
+            table.table.table-bordered.table-striped.table-condensed
+                thead
+                    th= lang.thead.number
+                    th= lang.thead.work
+                    th= lang.thead.status
+                    th= lang.thead.assignee
+                    th= lang.thead.time
+                    th= lang.thead.duration
+                    th= lang.thead.location
+                    th= lang.thead.client
+                    th= lang.thead.note
+                    th= lang.thead.billable
+                    th= lang.thead.billingrate
+                    th= lang.thead.manage
+                tbody
+
+                    if lang.works.length>0
+                        each work in lang.works
+                            tr
+                                td= work.number
+                                td= work.work
+                                td= work.status
+                                td= work.assignee
+                                td= work.time
+                                td= work.duration
+                                td= work.location
+                                td= work.client
+                                td= work.note
+                                td= work.billable
+                                td= work.billingrate
+                                td
+                                    button.btn.btn-default.btn-info='Modify'

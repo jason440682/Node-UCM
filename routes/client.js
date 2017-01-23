@@ -8,10 +8,14 @@ var create = require('./users/createStaff');
 var accounts = require('./client/accounts');
 var createaccount = require('./client/createaccount'); 
 var notification = require('./client/notification');
+var workbook = require('./client/workbook');
+var creatework = require('./client/creatework');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
 router.use('/createaccount',createaccount);
 router.use('/notification',notification);
+router.use('/workbook',workbook);
+router.use('/creatework',creatework);
 
 module.exports = router;
