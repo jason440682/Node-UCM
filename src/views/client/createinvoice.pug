@@ -1,0 +1,55 @@
+extends public/layout
+
+block content
+    div.section
+        h2= lang.title
+        div.form-group.col-sm-12
+            div.col-sm-3
+                label.col-sm-3= lang.invoice_date.text
+                div.col-sm-9
+                    input.form-control.Wdate#invoice_date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date.text)
+            div.col-sm-3
+                label.col-sm-3(for='client')= lang.client.text
+                div.col-sm-9
+                    select.form-control
+                        for name in lang.client.names
+                            option=name
+        div.form-group
+            div.col-sm-12.font-weight=lang.invoice_date.text 
+            div.col-sm-12.font-weight=lang.bill_to.text
+            div.col-sm-12.font-weight=lang.bill_to.name
+            div.col-sm-12.font-weight=lang.bill_to.address
+       
+        div.table-style.col-sm-12
+            table.table.table-bordered.table-striped.table-condensed
+                thead
+                    th= lang.thead.work_number
+                    th= lang.thead.description
+                    th= lang.thead.time
+                    th= lang.thead.duration
+                    th= lang.thead.rate
+                    th= lang.thead.subtotal
+                    th= lang.thead.work_status
+                    th= lang.thead.edit
+                tbody
+
+                    if lang.invoices.length>0
+                        each invoice in lang.invoices
+                            tr
+                                td= invoice.work_number
+                                td= invoice.description
+                                td= invoice.time
+                                td= invoice.duration
+                                td= invoice.rate
+                                td= invoice.subtotal
+                                td= invoice.work_status
+                                td
+                                    button.btn.btn-default.btn-info= invoice.edit
+        
+        div
+            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.cancel
+            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.both
+            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.manual_edit
+            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.save
+            
+            

@@ -13,6 +13,8 @@ var creatework = require('./client/creatework');
 var workcalendar = require('./client/workcalendar');
 var worktemplate = require('./client/worktemplate');
 var modifywork = require('./client/modifywork');
+var billingpayment = require('./client/billingpayment');
+var createinvoice = require('./client/createinvoice');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
@@ -23,5 +25,7 @@ router.use('/creatework',creatework);
 router.use('/workcalendar',workcalendar);
 router.use('/worktemplate',worktemplate);
 router.use('/modifywork',modifywork);
+router.use('/billingpayment',billingpayment);
+router.use('/createinvoice',createinvoice);
 
 module.exports = router;
