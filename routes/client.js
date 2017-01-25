@@ -15,6 +15,11 @@ var worktemplate = require('./client/worktemplate');
 var modifywork = require('./client/modifywork');
 var billingpayment = require('./client/billingpayment');
 var createinvoice = require('./client/createinvoice');
+var invoices = require('./client/invoices');
+var payment = require('./client/payment');
+var modifyinvoice = require('./client/modifyinvoice');
+var newsletter = require('./client/newsletter');
+var createnewsletter = require('./client/createnewsletter');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
@@ -27,5 +32,10 @@ router.use('/worktemplate',worktemplate);
 router.use('/modifywork',modifywork);
 router.use('/billingpayment',billingpayment);
 router.use('/createinvoice',createinvoice);
+router.use('/invoices',invoices);
+router.use('/payment',payment);
+router.use('/modifyinvoice',modifyinvoice);
+router.use('/newsletter',newsletter);
+router.use('/createnewsletter',createnewsletter);
 
 module.exports = router;

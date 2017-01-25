@@ -11,7 +11,7 @@ module.exports = {
     },
 
     client_accounts: {
-        text: 'Clent Accounts',
+        text: 'Client Accounts',
     },
 
     work_book: {

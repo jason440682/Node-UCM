@@ -1,9 +1,10 @@
 extends public/layout
 
 block content
-    div.section
-        h2= lang.title
-        div.form-group.col-sm-12
+    div.section.clearfix
+        div.form-group
+            h2= lang.title
+        div.form-group
             div.col-sm-3
                 label.col-sm-3= lang.invoice_date.text
                 div.col-sm-9
@@ -14,13 +15,14 @@ block content
                     select.form-control
                         for name in lang.client.names
                             option=name
-        div.form-group
+                            
+        div.form-group.col-sm-12
             div.col-sm-12.font-weight=lang.invoice_date.text 
             div.col-sm-12.font-weight=lang.bill_to.text
             div.col-sm-12.font-weight=lang.bill_to.name
             div.col-sm-12.font-weight=lang.bill_to.address
        
-        div.table-style.col-sm-12
+        div.table-style.col-sm-12.form-group
             table.table.table-bordered.table-striped.table-condensed
                 thead
                     th= lang.thead.work_number
@@ -46,7 +48,7 @@ block content
                                 td
                                     button.btn.btn-default.btn-info= invoice.edit
         
-        div
+        div.margin-bottom
             button.btn.btn-default.btn-info.marginleft= lang.btn_groups.cancel
             button.btn.btn-default.btn-info.marginleft= lang.btn_groups.both
             button.btn.btn-default.btn-info.marginleft= lang.btn_groups.manual_edit
