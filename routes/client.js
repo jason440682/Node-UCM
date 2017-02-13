@@ -4,22 +4,24 @@
 var express = require('express');
 var router = express.Router();
 
-var create = require('./users/createStaff');
-var accounts = require('./client/accounts');
-var createaccount = require('./client/createaccount'); 
-var notification = require('./client/notification');
-var workbook = require('./client/workbook');
-var creatework = require('./client/creatework');
-var workcalendar = require('./client/workcalendar');
-var worktemplate = require('./client/worktemplate');
-var modifywork = require('./client/modifywork');
-var billingpayment = require('./client/billingpayment');
-var createinvoice = require('./client/createinvoice');
-var invoices = require('./client/invoices');
-var payment = require('./client/payment');
-var modifyinvoice = require('./client/modifyinvoice');
-var newsletter = require('./client/newsletter');
-var createnewsletter = require('./client/createnewsletter');
+var create = require('./client/user/createStaff');
+var accounts = require('./client/accounts/clientAccounts');
+var createaccount = require('./client/accounts/createAccount');
+var notification = require('./client/accounts/notification');
+var workbook = require('./client/workbook/workbook');
+var creatework = require('./client/workbook/createWork');
+var workcalendar = require('./client/workbook/workCalendar');
+var worktemplate = require('./client/workbook/workTemplate');
+var modifywork = require('./client/others/modifyWork');
+var billingpayment = require('./client/billingPayment/billingpayment');
+var createinvoice = require('./client/billingPayment/createinvoice');
+var invoices = require('./client/billingPayment/invoices');
+var payment = require('./client/billingPayment/payment');
+var modifyinvoice = require('./client/others/modifyInvoice');
+var newsletter = require('./client/marketing/newsletter');
+var createnewsletter = require('./client/marketing/createNewsletter');
+var documentManager = require('./client/accounts/docManager');
+var createStaff = require('./client/user/createStaff');
 
 router.use('/create', create);
 router.use('/accounts', accounts);
@@ -37,5 +39,7 @@ router.use('/payment',payment);
 router.use('/modifyinvoice',modifyinvoice);
 router.use('/newsletter',newsletter);
 router.use('/createnewsletter',createnewsletter);
+router.use('/docManager', documentManager);
+router.use('/createStaff', createStaff);
 
 module.exports = router;

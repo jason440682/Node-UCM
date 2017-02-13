@@ -22,6 +22,7 @@ module.exports = {
         text:'Forgot the password?'
     },
     signup:{
-        text:'Sign Up'
+        text:'Sign Up',
+        link:'/en/register'
     }
 };

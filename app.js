@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var http = require('http');
+var morgan = require('morgan');
 
 var utils = require('./utils/utils');
 var index = require('./routes/index');
@@ -10,6 +11,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, './src/views'));
 app.set('view engine', 'pug');
+
+app.use(morgan('dev'));
 
 // 设置静态资源的目录，比如 css js 等文件的路径
 app.use(express.static(path.join(__dirname, './src')));

@@ -20,6 +20,8 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
     // 这里写登录页面 POST 数据过来时要处理的逻辑
+    console.log('Post login!');
+    res.redirect('/en/client/accounts');
 });
 
 module.exports = router;

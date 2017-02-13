@@ -1,0 +1,41 @@
+extends ../public/layout
+
+block content
+    div.section
+        div.form-group.clearfix
+            div.col-sm-2
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.col-sm-2
+                select.form-control#searchmethod(name='searchmethod')
+                    for method in lang.searchmethod
+                        option=method
+            div.col-sm-2
+                select.form-control#searchname(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.col-sm-4.search
+                a(href='#')=lang.search.text
+            div.col-sm-2
+                button.btn.btn-default.btn-info=lang.create_invoice.text
+        div.table-style.col-sm-12
+            table.table.table-bordered.table-striped.table-condensed
+                thead
+                    th= lang.thead.type
+                    th= lang.thead.number
+                    th= lang.thead.description
+                    th= lang.thead.date
+                    th= lang.thead.total
+                    th= lang.thead.status
+                    th= lang.thead.manage
+                tbody
+
+                    if lang.invoices.length>0
+                        each invoice in lang.invoices
+                            tr
+                                td= invoice.type
+                                td= invoice.number
+                                td= invoice.description
+                                td= invoice.date
+                                td= invoice.total
+                                td= invoice.status
+                                td= invoice.manage

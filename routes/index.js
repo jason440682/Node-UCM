@@ -17,11 +17,6 @@ router.get('/en', function (req, res, next) {
     res.redirect('/en/login');
 });
 
-router.get('/cn', function (req, res, next) {
-    req.lang = 'zh-cn';
-    res.redirect('/cn/login');
-});
-
 router.use('/en/', function (req, res, next) {
     req.lang = 'en';
     next();

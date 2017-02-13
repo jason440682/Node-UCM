@@ -1,0 +1,35 @@
+extends ../public/layout
+
+block content
+    div.section
+        div.form-group.clearfix
+            div.col-sm-2
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.col-sm-7.search
+                a(href='#')=lang.search.text
+            div.col-sm-3
+                button.btn.btn-default.btn-info=lang.create_newsletter.text
+
+        div.table-style.col-sm-12
+            table.table.table-bordered.table-striped.table-condensed
+                thead
+                    th= lang.thead.number
+                    th= lang.thead.name
+                    th= lang.thead.description
+                    th= lang.thead.recipents
+                    th= lang.thead.send_time
+                    th= lang.thead.status
+                    th= lang.thead.manage
+                tbody
+
+                    if lang.newsletters.length>0
+                        each newsletter in lang.newsletters
+                            tr
+                                td= Newsletter.number
+                                td= Newsletter.name
+                                td= Newsletter.description
+                                td= Newsletter.recipents
+                                td= Newsletter.send_time
+                                td= Newsletter.status
+                                td
+                                    btn.btn-default.btn-info= Newsletter.manage

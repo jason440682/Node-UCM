@@ -1,15 +1,37 @@
-div.clearfix
-    div.col-sm-10
-        ul.nav.nav-pills
-            li.col-sm-3
-                a(href='#')=lang.client_accounts.text
-            li.col-sm-2
-                a(href='#')=lang.work_book.text
-            li.col-sm-2
-                a(href='#')=lang.billing_payment.text
-            li.col-sm-2
-                a(href='#')=lang.marketing.text
-            li.col-sm-2
-                a(href='#')=lang.reports.text
-    div.col-sm-2.right
-        span=lang.username.text
+nav.navbar.navbar-default.navbar-static-top(role="navigation")
+    div.container
+        div.navbar-header
+            button.navbar-toggle.collapsed(data-toggle="collapse", data-target="#nav-list")
+                span.sr-only Toggle Navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            div.visible-xs-inline
+                span.user.user-left.dropdown-toggle(data-toggle="dropdown") Username
+                ul.dropdown-menu(role="menu")
+                    li
+                        a(href="#") User Management
+                    li
+                        a(href="#") Plan and Billing
+                    li
+                        a(href="/") Log Out
+
+        div.collapse.navbar-collapse.col-sm-10#nav-list
+            ul.nav.navbar-nav
+                for navbar in nav.nav_list
+                    li.dropdown
+                        a.dropdown-toggle(href="#", data-toggle="dropdown")= navbar.title
+                        ul.dropdown-menu(role="menu")
+                            for data in navbar.list
+                                li
+                                    a(href=data.url)= data.title
+
+        div.nav.navbar-right.col-sm-1.hidden-xs.user-div
+            a.user.dropdown-toggle(href="#", data-toggle="dropdown") Username
+            ul.dropdown-menu(role="menu")
+                li
+                    a(href="#") User Management
+                li
+                    a(href="#") Plan and Billing
+                li
+                    a(href="/") Log Out
