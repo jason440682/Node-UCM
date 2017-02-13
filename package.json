@@ -2,7 +2,7 @@
   "name": "ucm",
   "version": "0.0.1",
   "description": "A USA client manage platform",
-  "main": "index.js",
+  "main": "./build/dev-server",
   "scripts": {
     "test": "node ./build/dev-server"
   },
@@ -17,5 +17,12 @@
     "less": "^2.7.2",
     "pug": "^2.0.0-beta6",
     "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.1",
+    "grunt-contrib-nodemon": "^0.5.4",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-nodemon": "^0.4.2"
   }
 }
