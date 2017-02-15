@@ -1,10 +1,10 @@
 extends ../public/layout
 
 block content
-    div.section
+    div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-2
-                input.form-control(type='text',placeholder='lang.searchplaceholder')
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
             div.col-sm-2
                 select.form-control#searchname(name='searchname')
                     for name in lang.names
@@ -13,11 +13,11 @@ block content
                 select.form-control#searchstaff(name='searchstaff')
                     for staff in lang.staffs
                         option=staff
-            div.col-sm-4.search
+            div.col-sm-3.search
                 a(href='#')=lang.search.text
-            div.col-sm-2
+            div.col-sm-3
                 button.btn.btn-default.btn-info=lang.create_notification.text
-        div.table-style.col-sm-12
+        div.table-responsive.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
                 thead
                     th= lang.thead.number
@@ -33,7 +33,6 @@ block content
                     th= lang.thead.billingrate
                     th= lang.thead.manage
                 tbody
-
                     if lang.works.length>0
                         each work in lang.works
                             tr
@@ -50,3 +49,48 @@ block content
                                 td= work.billingrate
                                 td
                                     button.btn.btn-default.btn-info='Modify'
+    div.visible-xs
+        div.search-bar.container
+            div.search-box.col-xs-12
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.search-box.col-xs-12
+                select.form-control#searchname-xs(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.col-xs-2
+                select.form-control#searchstaff-xs(name='searchstaff')
+                    for staff in lang.staffs
+                        option=staff
+            div.search.col-xs-6
+                a(href='#')=lang.search.text
+            div.search-btn.col-xs-3
+                button.btn.btn-default.btn-info.btn-xs=lang.create_notification.text
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            each work in lang.works
+                div.panel.panel-default
+                    div.panel-heading(role="tab", id=work.id)
+                        h4.panel-title
+                            a(role="button",
+                            data-toggle="collapse",
+                            data-parent="#accordion",
+                            href="#collapse-" + work.id,
+                            aria-expanded="false",
+                            aria-controls="collapse-" + work.id)
+                                span= lang.thead.number + ': ' + work.number
+                                span &nbsp&nbsp&nbsp&nbsp
+                                span= lang.thead.work + ': ' + work.work
+                    div.panel-collapse.collapse(
+                    id="collapse-" + work.id,
+                    role="tabpanel",
+                    aria-labelledby=work.id)
+                        div.panel-body
+                            p= lang.thead.status + ': ' + work.status
+                            p= lang.thead.assignee + ': ' + work.assignee
+                            p= lang.thead.time + ': ' + work.time
+                            p= lang.thead.duration + ': ' + work.duration
+                            p= lang.thead.location + ': ' + work.location
+                            p= lang.thead.client + ': ' + work.client
+                            p= lang.thead.note + ': ' + work.note
+                            p= lang.thead.billable + ': ' + work.billable
+                            p= lang.thead.billingrate + ': ' + work.billingrate
+                            button.btn.btn-default.btn-info='Update'

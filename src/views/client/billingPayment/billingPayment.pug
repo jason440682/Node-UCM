@@ -1,7 +1,7 @@
 extends ../public/layout
 
 block content
-    div.section
+    div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-2
                 input.form-control(type='text',placeholder=lang.searchplaceholder)
@@ -13,10 +13,10 @@ block content
                 select.form-control#searchname(name='searchname')
                     for name in lang.names
                         option=name
-            div.col-sm-4.search
+            div.col-sm-3.search
                 a(href='#')=lang.search.text
-            div.col-sm-2
-                button.btn.btn-default.btn-info=lang.create_invoice.text
+            div.col-sm-3
+                button.btn.btn-default.btn-info= lang.create_invoice.text
         div.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
                 thead
@@ -39,3 +39,43 @@ block content
                                 td= invoice.total
                                 td= invoice.status
                                 td= invoice.manage
+    div.visible-xs
+        div.search-bar.container
+            div.search-box.col-xs-12
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.search-box.col-xs-12
+                select.form-control#searchmethod-xs(name='searchmethod')
+                    for method in lang.searchmethod
+                        option=method
+            div.search-box.col-xs-12
+                select.form-control#searchname-xs(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.search.col-xs-6
+                a(href='#')=lang.search.text
+            div.search-btn.col-xs-3
+                button.btn.btn-default.btn-info.btn-xs=lang.create_invoice.text
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            each invoice in lang.invoices
+                div.panel.panel-default
+                    div.panel-heading(role="tab", id= invoice.id)
+                        h4.panel-title
+                            a(role="button",
+                            data-toggle="collapse",
+                            data-parent="#accordion",
+                            href="#collapse-" + invoice.id,
+                            aria-expanded="false",
+                            aria-controls="collapse-" + invoice.id)
+                                span= lang.thead.number + ': ' + invoice.number
+                                span &nbsp&nbsp&nbsp&nbsp
+                                span= lang.thead.type + ': ' + invoice.type
+                    div.panel-collapse.collapse(
+                    id="collapse-" + invoice.id,
+                    role="tabpanel",
+                    aria-labelledby=invoice.id)
+                        div.panel-body
+                            p= lang.thead.description + ': ' + invoice.description
+                            p= lang.thead.date + ': ' + invoice.date
+                            p= lang.thead.total + ': ' + invoice.total
+                            p= lang.thead.status + ': ' + invoice.status
+                            p= lang.thead.manage + ': ' + invoice.manage

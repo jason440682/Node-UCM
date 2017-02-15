@@ -1,16 +1,16 @@
 extends ../public/layout
 
 block content
-    div.section.clearfix
+    div.section.clearfix.hidden-xs
         div.form-group
             h2= lang.title
         div.form-group
-            div.col-sm-3
-                label.col-sm-3= lang.invoice_date.text
-                div.col-sm-9
+            div.col-sm-6
+                label.col-sm-5= lang.invoice_date.text
+                div.col-sm-7
                     input.form-control.Wdate#invoice_date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date.text)
-            div.col-sm-3
-                label.col-sm-3(for='client')= lang.client.text
+            div.col-sm-6
+                label.col-sm-3= lang.client.text
                 div.col-sm-9
                     select.form-control
                         for name in lang.client.names
@@ -54,5 +54,49 @@ block content
             button.btn.btn-default.btn-info.marginleft= lang.btn_groups.both
             button.btn.btn-default.btn-info.marginleft= lang.btn_groups.manual_edit
             button.btn.btn-default.btn-info.marginleft= lang.btn_groups.save
-            
+
+    div.visible-xs
+        div.search-bar.container
+            div.search-box.col-xs-12
+                input.form-control.Wdate#invoice_date-xs(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date.text)
+            div.search-box.col-xs-12
+                select.form-control#searchname-xs(name='searchname')
+                    for name in lang.client.names
+                        option=name
+            div.form-group.col-xs-12
+                div.col-xs-12.font-weight=lang.invoice_date.text
+                div.col-xs-12.font-weight=lang.bill_to.date
+                div.col-xs-12.font-weight=lang.bill_to.text
+                div.col-xs-12.font-weight=lang.bill_to.name
+                div.col-xs-12.font-weight=lang.bill_to.address
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            each invoice in lang.invoices
+                div.panel.panel-default
+                    div.panel-heading(role="tab", id=invoice.id)
+                        h4.panel-title
+                            a(role="button",
+                            data-toggle="collapse",
+                            data-parent="#accordion",
+                            href="#collapse-" + invoice.id,
+                            aria-expanded="false",
+                            aria-controls="collapse-" + invoice.id)
+                                span= lang.thead.work_number + ': ' + invoice.work_number
+                                span &nbsp&nbsp&nbsp&nbsp
+                                span= lang.thead.time + ': ' + invoice.time
+                    div.panel-collapse.collapse(
+                    id="collapse-" + invoice.id,
+                    role="tabpanel",
+                    aria-labelledby=invoice.id)
+                        div.panel-body
+                            p= lang.thead.description + ': ' + invoice.description
+                            p= lang.thead.duration + ': ' + invoice.duration
+                            p= lang.thead.rate + ': ' + invoice.rate
+                            p= lang.thead.subtotal + ': ' + invoice.subtotal
+                            p= lang.thead.work_status + ': ' + invoice.work_status
+                            button.btn.btn-default.btn-info= invoice.edit
+        div
+            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.cancel
+            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.both
+            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.manual_edit
+            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.save
             

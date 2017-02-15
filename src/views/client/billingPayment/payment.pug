@@ -1,7 +1,7 @@
 extends ../public/layout
 
 block content
-    div.section
+    div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-2
                 input.form-control(type='text',placeholder=lang.searchplaceholder)
@@ -35,3 +35,39 @@ block content
                                 td= payment.date
                                 td= payment.amount
                                 td= payment.detail
+    div.visible-xs
+        div.search-bar.container
+            div.search-box.col-xs-12
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.search-box.col-xs-12
+                select.form-control#searchmethod-xs(name='searchmethod')
+                    for method in lang.searchmethod
+                        option=method
+            div.search-box.col-xs-12
+                select.form-control#searchname-xs(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.search.col-xs-12
+                a(href='#')=lang.search.text
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            each payment in lang.payments
+                div.panel.panel-default
+                    div.panel-heading(role="tab", id=payment.id)
+                        h4.panel-title
+                            a(role="button",
+                            data-toggle="collapse",
+                            data-parent="#accordion",
+                            href="#collapse-" + payment.id,
+                            aria-expanded="false",
+                            aria-controls="collapse-" + payment.id)
+                                span= lang.thead.pay + ': ' + payment.pay
+                    div.panel-collapse.collapse(
+                    id="collapse-" + payment.id,
+                    role="tabpanel",
+                    aria-labelledby=payment.id)
+                        div.panel-body
+                            p= lang.thead.method + ': ' + payment.method
+                            p= lang.thead.note + ': ' + payment.note
+                            p= lang.thead.date + ': ' + payment.date
+                            p= lang.thead.amount + ': ' + payment.amount
+                            p= lang.thead.detail + ': ' + payment.detail

@@ -1,9 +1,9 @@
 module.exports = {
-   
+
     title: 'Marketing Newsletter/Group Notification',
-    
-    username:{
-        text:'username'
+
+    username: {
+        text: 'username'
     },
 
     client_accounts: {
@@ -26,60 +26,63 @@ module.exports = {
         text: 'Reports',
     },
 
-    
-    searchplaceholder:'search',
 
-    search:{
-        text:'Advanced Search'
+    searchplaceholder: 'search',
+
+    search: {
+        text: 'Advanced Search'
     },
-    create_newsletter:{
-        text:'Marketing Newsletter/Group Notification'
+    create_newsletter: {
+        text: 'Marketing Newsletter/Group Notification'
     },
-    thead:{
-        number:'Number',
-        name:'Name',
-        description:'Description',
-        recipents:'Recipents',
-        send_time:'Send Date/Time',
-        status:'Status',
-        manage:'Manage'
+    thead: {
+        number: 'Number',
+        name: 'Name',
+        description: 'Description',
+        recipents: 'Recipents',
+        send_time: 'Send Date/Time',
+        status: 'Status',
+        manage: 'Manage'
     },
-    newsletters:[
-         {
-            number:'Number',
-            name:'Name',
-            description:'Description',
-            recipents:'Recipents',
-            send_time:'Send Date/Time',
-            status:'Status',
-            manage:'Manage'
-        },
-       {
-            number:'Number',
-            name:'Name',
-            description:'Description',
-            recipents:'Recipents',
-            send_time:'Send Date/Time',
-            status:'Status',
-            manage:'Manage'
+    newsletters: [
+        {
+            id: '1',
+            number: 'Number',
+            name: 'Name',
+            description: 'Description',
+            recipents: 'Recipents',
+            send_time: 'Send Date/Time',
+            status: 'Status',
+            manage: 'Manage'
         },
         {
-            number:'Number',
-            name:'Name',
-            description:'Description',
-            recipents:'Recipents',
-            send_time:'Send Date/Time',
-            status:'Status',
-            manage:'Manage'
+            id: '2',
+            number: 'Number',
+            name: 'Name',
+            description: 'Description',
+            recipents: 'Recipents',
+            send_time: 'Send Date/Time',
+            status: 'Status',
+            manage: 'Manage'
+        },
+        {
+            id: '3',
+            number: 'Number',
+            name: 'Name',
+            description: 'Description',
+            recipents: 'Recipents',
+            send_time: 'Send Date/Time',
+            status: 'Status',
+            manage: 'Manage'
         }
     ],
-    footnavbar:{
-        help:'Help & Support',
-        manual:'Manual & Tutorial',
-        forum:'Forum',
-        privacy:'Privacy Policy',
-        service:'Terms of Service'
+    footnavbar: {
+        help: 'Help & Support',
+        manual: 'Manual & Tutorial',
+        forum: 'Forum',
+        privacy: 'Privacy Policy',
+        service: 'Terms of Service'
     }
-       
-   
+
+
 };

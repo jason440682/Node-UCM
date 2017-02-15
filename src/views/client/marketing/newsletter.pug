@@ -1,13 +1,13 @@
 extends ../public/layout
 
 block content
-    div.section
+    div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-2
                 input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.col-sm-7.search
+            div.col-sm-5.search
                 a(href='#')=lang.search.text
-            div.col-sm-3
+            div.col-sm-5
                 button.btn.btn-default.btn-info=lang.create_newsletter.text
 
         div.table-style.col-sm-12
@@ -25,11 +25,43 @@ block content
                     if lang.newsletters.length>0
                         each newsletter in lang.newsletters
                             tr
-                                td= Newsletter.number
-                                td= Newsletter.name
-                                td= Newsletter.description
-                                td= Newsletter.recipents
-                                td= Newsletter.send_time
-                                td= Newsletter.status
+                                td= newsletter.number
+                                td= newsletter.name
+                                td= newsletter.description
+                                td= newsletter.recipents
+                                td= newsletter.send_time
+                                td= newsletter.status
                                 td
-                                    btn.btn-default.btn-info= Newsletter.manage
+                                    btn.btn-default.btn-info= newsletter.manage
+    div.visible-xs
+        div.search-bar.container
+            div.search-box.col-xs-6
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.search.col-xs-6
+                a(href='#')=lang.search.text
+            div.search-btn.col-xs-12
+                button.btn.btn-default.btn-info.btn-xs=lang.create_newsletter.text
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            each newsletter in lang.newsletters
+                div.panel.panel-default
+                    div.panel-heading(role="tab", id=newsletter.id)
+                        h4.panel-title
+                            a(role="button",
+                            data-toggle="collapse",
+                            data-parent="#accordion",
+                            href="#collapse-" + newsletter.id,
+                            aria-expanded="false",
+                            aria-controls="collapse-" + newsletter.id)
+                                span= lang.thead.number + ': ' + newsletter.number
+                                span &nbsp&nbsp&nbsp&nbsp
+                                span= lang.thead.name + ': ' + newsletter.name
+                    div.panel-collapse.collapse(
+                    id="collapse-" + newsletter.id,
+                    role="tabpanel",
+                    aria-labelledby=newsletter.id)
+                        div.panel-body
+                            p= lang.thead.description + ': ' + newsletter.description
+                            p= lang.thead.recipents + ': ' + newsletter.recipents
+                            p= lang.thead.send_time + ': ' + newsletter.send_time
+                            p= lang.thead.status + ': ' + newsletter.status
+                            btn.btn-default.btn-info= newsletter.manage

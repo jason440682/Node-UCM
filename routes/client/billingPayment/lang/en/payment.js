@@ -1,9 +1,9 @@
 module.exports = {
-   
+
     title: 'Payment',
-    
-    username:{
-        text:'username'
+
+    username: {
+        text: 'username'
     },
 
     client_accounts: {
@@ -26,63 +26,66 @@ module.exports = {
         text: 'Reports',
     },
 
-    names:['James Johnson','Payment Reminder','Payment Reminder2'],
+    names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],
 
-    searchmethod:['List by client','List by date','List by name'],
-    
-    calendar:{
-        text:'Calendar'
+    searchmethod: ['List by client', 'List by date', 'List by name'],
+
+    calendar: {
+        text: 'Calendar'
     },
 
-    searchplaceholder:'search Payment',
+    searchplaceholder: 'search Payment',
 
-    search:{
-        text:'Advanced Search'
+    search: {
+        text: 'Advanced Search'
     },
     // create_invoice:{
     //     text:'Create Invoice'
     // },
-    thead:{
-        pay:'Pay for Invoice',
-        method:'Method',
-        note:'Note',
-        date:'Date',
-        amount:'Amount',
-        detail:'Detail'
+    thead: {
+        pay: 'Pay for Invoice',
+        method: 'Method',
+        note: 'Note',
+        date: 'Date',
+        amount: 'Amount',
+        detail: 'Detail'
     },
-    payments:[
-         {
-            pay:'Pay for Invoice',
-            method:'Method',
-            note:'Note',
-            date:'Date',
-            amount:'Amount',
-            detail:'View Detail'
-        },
-       {
-            pay:'Pay for Invoice',
-            method:'Method',
-            note:'Note',
-            date:'Date',
-            amount:'Amount',
-            detail:'View Detail'
+    payments: [
+        {
+            id: '1',
+            pay: 'Pay for Invoice',
+            method: 'Method',
+            note: 'Note',
+            date: 'Date',
+            amount: 'Amount',
+            detail: 'View Detail'
         },
         {
-            pay:'Pay for Invoice',
-            method:'Method',
-            note:'Note',
-            date:'Date',
-            amount:'Amount',
-            detail:'View Detail'
+            id: '2',
+            pay: 'Pay for Invoice',
+            method: 'Method',
+            note: 'Note',
+            date: 'Date',
+            amount: 'Amount',
+            detail: 'View Detail'
+        },
+        {
+            id: '3',
+            pay: 'Pay for Invoice',
+            method: 'Method',
+            note: 'Note',
+            date: 'Date',
+            amount: 'Amount',
+            detail: 'View Detail'
         }
     ],
-    footnavbar:{
-        help:'Help & Support',
-        manual:'Manual & Tutorial',
-        forum:'Forum',
-        privacy:'Privacy Policy',
-        service:'Terms of Service'
+    footnavbar: {
+        help: 'Help & Support',
+        manual: 'Manual & Tutorial',
+        forum: 'Forum',
+        privacy: 'Privacy Policy',
+        service: 'Terms of Service'
     }
-       
-   
+
+
 };

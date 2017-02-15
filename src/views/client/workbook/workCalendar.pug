@@ -1,7 +1,7 @@
 extends ../public/layout
 
 block content
-    div.section
+    div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-2
                 input.form-control(type='text',placeholder=lang.searchplaceholder)
@@ -41,3 +41,41 @@ block content
                                 td= work.Thursday
                                 td= work.Friday
                                 td= work.Saturday
+    div.visible-xs
+        div.search-bar.container
+            div.search-box.col-xs-12
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.search-box.col-xs-12
+                select.form-control#showmethod-xs(name='showmethod')
+                    for staff in lang.showmethod
+                        option=staff
+            div.search-box.col-xs-12
+                select.form-control#searchname-xs(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.search-btn.col-xs-12
+                button.btn.btn-default.btn-info=lang.create_newwork.text
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            each work in lang.works
+                div.panel.panel-default
+                    div.panel-heading(role="tab", id=work.id)
+                        h4.panel-title
+                            a(role="button",
+                            data-toggle="collapse",
+                            data-parent="#accordion",
+                            href="#collapse-" + work.id,
+                            aria-expanded="false",
+                            aria-controls="collapse-" + work.id)
+                                span= lang.thead.time + ': ' + work.time
+                    div.panel-collapse.collapse(
+                    id="collapse-" + work.id,
+                    role="tabpanel",
+                    aria-labelledby=work.id)
+                        div.panel-body
+                            p= lang.thead.Sunday + ': ' + work.Sunday
+                            p= lang.thead.Monday + ': ' + work.Monday
+                            p= lang.thead.Tuesday + ': ' + work.Tuesday
+                            p= lang.thead.Wednesday + ': ' + work.Wednesday
+                            p= lang.thead.Thursday + ': ' + work.Thursday
+                            p= lang.thead.Friday + ': ' + work.Friday
+                            p= lang.thead.Saturday + ': ' + work.Saturday

@@ -6,7 +6,8 @@ router.get('/',function(req,res,next){
         key:'billingpayment',
         title:'Invoices & Payment',
         language:'en',
-        lang: require('./lang/en/billingpayment')
+        lang: require('./lang/en/billingpayment'),
+        nav: require('../public/lang/en/navbar')
     };
 
     if(req.lang && req.lang == 'zh-cn'){

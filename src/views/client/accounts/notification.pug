@@ -1,7 +1,7 @@
 extends ../public/layout
 
 block content
-    div.section
+    div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-2
                 input.form-control(type='text',placeholder=lang.searchplaceholder)
@@ -24,7 +24,7 @@ block content
                     th= lang.thead.status
                     th= lang.thead.manage
                 tbody
-                    if lang.notifications.length>0
+                    if lang.notifications.length > 0
                         each notification in lang.notifications
                             tr
                                 td= notification.number
@@ -37,3 +37,41 @@ block content
                                     button.btn.btn-default.btn-info='Modify'
                                     button.btn.btn-default.btn-info='Resend'
                                     button.btn.btn-default.btn-info='Delete'
+    div.visible-xs
+        div.search-bar.container
+            div.search-box.col-xs-12
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.search-box.col-xs-12
+                select.form-control#searchname-xs(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.search.col-xs-6
+                a(href='#')=lang.search.text
+            div.search-btn.col-xs-3
+                button.btn.btn-default.btn-info.btn-xs=lang.create_notification.text
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            each notification in lang.notifications
+                div.panel.panel-default
+                    div.panel-heading(role="tab", id=notification.id)
+                        h4.panel-title
+                            a(role="button",
+                            data-toggle="collapse",
+                            data-parent="#accordion",
+                            href="#collapse-" + notification.id,
+                            aria-expanded="false",
+                            aria-controls="collapse-" + notification.id)
+                                span= lang.thead.number + ': ' + notification.number
+                                span &nbsp&nbsp&nbsp&nbsp
+                                span= lang.thead.name + ': ' + notification.name
+                    div.panel-collapse.collapse(
+                    id="collapse-" + notification.id,
+                    role="tabpanel",
+                    aria-labelledby=notification.id)
+                        div.panel-body
+                            p= lang.thead.description + ': ' + notification.description
+                            p= lang.thead.recipients + ': ' + notification.recipients
+                            p= lang.thead.sendtime + ': ' + notification.sendtime
+                            p= lang.thead.status + ': ' + notification.status
+                            button.btn.btn-default.btn-info='Modify'
+                            button.btn.btn-default.btn-info='Resend'
+                            button.btn.btn-default.btn-info='Delete'
