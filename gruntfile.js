@@ -32,7 +32,7 @@ module.exports = function(grunt){
                     debug:true,
                     delayTime:1, //等待多少毫秒时重新启动服务
                     env:{
-                        PORT:3000
+                        PORT:4000
                     },
                     cwd:__dirname  //目录为当前目录
                 }

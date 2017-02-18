@@ -1,10 +1,6 @@
-/**
- * Created by kg on 17/1/20.
- */
-
 module.exports = {
    
-    title: '客户账户',
+    title: '通知管理',
     
     username:{
         text:'用户名'
@@ -29,41 +25,43 @@ module.exports = {
     reports: {
         text: '报告',
     },
+
+    names:['James Johnson','Payment Reminder','Payment Reminder2'],
+
+    searchplaceholder:'通知',
+
     search:{
         text:'高级搜索'
     },
-    create_account:{
-        text:'创建新账户'
+    create_notification:{
+        text:'创建通知'
     },
     thead:{
-        number:'标号',
-        client:'客户',
-        assignstaff:'代理员工',
-        accountstatus:'账户状态',
-        contact:'联系人',
-        email:'邮箱',
-        phone:'电话',
+        number:'编号',
+        name:'名字',
+        description:'详情',
+        recipients:'接收者',
+        sendtime:'发送日期/时间',
+        status:'状态',
         manage:'管理'
     },
-    accounts:[
+    notifications:[
          {
             number:'Number',
-            client:'Client',
-            assignstaff:'Assign Staff',
-            accountstatus:'Account Status',
-            contact:'Contact',
-            email:'Email',
-            phone:'Phone',
+            name:'Name',
+            description:'Description',
+            recipients:'Recipients',
+            sendtime:'Send Date/Time',
+            status:'Status',
             manage:'Manage'
         },
        {
             number:'Number',
-            client:'Client',
-            assignstaff:'Assign Staff',
-            accountstatus:'Account Status',
-            contact:'Contact',
-            email:'Email',
-            phone:'Phone',
+            name:'Name',
+            description:'Description',
+            recipients:'Recipients',
+            sendtime:'Send Date/Time',
+            status:'Status',
             manage:'Manage'
         }
     ],

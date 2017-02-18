@@ -8,9 +8,9 @@ router.use('/',function(req,res,next){
         language:'en',
         lang:require('./lang/en/notification')
     }
-    if(req.lang & req.lang == 'zh-cn'){
+    if(req.lang && req.lang == 'zh-cn'){
         data.language = 'zh-cn';
-        data.lang = require('./zh-cn/lang/notification');
+        data.lang = require('./lang/zh-cn/notification');
     }
     res.render('client/notification',data);  
 });

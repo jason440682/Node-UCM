@@ -31,89 +31,107 @@ module.exports = {
     },
 
     auto_login: {
-        text: '',
-        yes: '',
-        no: ''
+        text: '使用双重认证登录',
+        yes: '是',
+        no: '否'
     },
 
     send_code: {
-        text: '',
-        mobile: '',
-        email: ''
+        text: '验证码发送至',
+        mobile: '手机',
+        email: '邮箱'
     },
 
     first_name: {
-        text: '',
-        placeholder: ''
+        text: '名字',
+        placeholder: '名字'
     },
 
     last_name: {
-        text: '',
-        placeholder: ''
+        text: '姓氏',
+        placeholder: '姓氏'
     },
 
     email_address: {
-        text: '',
-        placeholder: ''
+        text: '邮箱',
+        placeholder: '邮箱'
     },
 
     mobile_num: {
-        text: '',
-        placeholder: ''
+        text: '手机号',
+        placeholder: 'xxx-xxx-xxxx'
     },
 
     other_num: {
-        text: '',
-        placeholder: ''
+        text: '其他手机号',
+        placeholder: 'xxx-xxx-xxxx'
     },
 
     job_title: {
-        text: '',
-        placeholder: ''
+        text: '工作名',
+        placeholder: '工作名'
     },
 
     department: {
-        text: '',
-        departments: []
+        text: '部门/分组',
+        departments: [
+            'Billing Department 1',
+            'Billing Department 2',
+            'Billing Department 3',
+            'Billing Department 4',
+            'Billing Department 5'
+        ]
     },
 
     time_zone: {
-        text: '',
-        timeZones: []
+        text: '工作时区',
+        timeZones: [
+            'US Pacific Time 1',
+            'US Pacific Time 2',
+            'US Pacific Time 3',
+            'US Pacific Time 4',
+            'US Pacific Time 5'
+        ]
     },
 
     work_email: {
-        text: '',
-        placeholder: ''
+        text: '工作邮箱',
+        placeholder: '工作邮箱'
     },
 
     office_phone: {
-        text: '',
-        placeholder: ''
+        text: '办公室电话',
+        placeholder: '办公室电话'
     },
 
     office_address: {
-        text: '',
+        text: '办公室地址',
         placeholder: {
-            street: '',
-            city: '',
-            state: '',
-            zip_code: ''
+            street: '街',
+            city: '市',
+            state: '区',
+            zip_code: '邮政编码'
         },
-        country: []
+        country: [
+            'China 1',
+            'China 2',
+            'China 3',
+            'China 4',
+            'China 5'
+        ]
     },
 
     user_note: {
-        text: '',
-        placeholder: ''
+        text: '使用备注',
+        placeholder: 'Text'
     },
 
     photo: {
-        text: '',
-        placeholder: ''
+        text: '个人照片',
+        placeholder: '上传'
     },
 
     submit_btn: {
-        text: ''
+        text: '新增员工'
     }
 };

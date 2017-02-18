@@ -6,15 +6,15 @@ router.get('/',function(req,res,next){
         key:'createnewsletter',
         title:'Create Newsletter/Group Notification',
         language:'en',
-        lang:require('./lang/en/createnewsletter')
+        lang:require('./lang/en/creatework')
     }
 
     if(req.lang && req.lang=='zh-cn'){
         data.language = 'zh-cn';
-        data.lang = require('./zh-cn/createnewsletter');
+        data.lang = require('./lang/zh-cn/creatework');
     }
     
-    res.render('client/createnewsletter',data);
+    res.render('client/creatework',data);
 })
 
 router.post('/',function(req,res,next){

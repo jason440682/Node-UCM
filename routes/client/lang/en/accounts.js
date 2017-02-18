@@ -38,7 +38,7 @@ module.exports = {
     thead:{
         number:'Number',
         client:'Client',
-        assignstaff:'Assign Staff',
+        assignstaff:'Assigned Staff',
         accountstatus:'Account Status',
         contact:'Contact',
         email:'Email',

@@ -4,7 +4,7 @@
 var express = require('express');
 var router = express.Router();
 
-var create = require('./users/createStaff');
+
 var accounts = require('./client/accounts');
 var createaccount = require('./client/createaccount'); 
 var notification = require('./client/notification');
@@ -21,7 +21,7 @@ var modifyinvoice = require('./client/modifyinvoice');
 var newsletter = require('./client/newsletter');
 var createnewsletter = require('./client/createnewsletter');
 
-router.use('/create', create);
+
 router.use('/accounts', accounts);
 router.use('/createaccount',createaccount);
 router.use('/notification',notification);

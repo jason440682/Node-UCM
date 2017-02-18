@@ -8,9 +8,10 @@ router.use('/',function(req,res,next){
         language:'en',
         lang:require('./lang/en/createaccount')
     }
-    if(req.lang & req.lang == 'zh-cn'){
+   
+    if(req.lang && req.lang == 'zh-cn'){
         data.language = 'zh-cn';
-        data.lang = require('./zh-cn/lang/createaccount');
+        data.lang = require('./lang/zh-cn/createaccount');
     }
     res.render('client/createaccount',data);  
 });
