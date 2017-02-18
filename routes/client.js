@@ -4,7 +4,6 @@
 var express = require('express');
 var router = express.Router();
 
-var create = require('./client/user/createStaff');
 var accounts = require('./client/accounts/clientAccounts');
 var createaccount = require('./client/accounts/createAccount');
 var notification = require('./client/accounts/notification');
@@ -13,8 +12,8 @@ var creatework = require('./client/workbook/createWork');
 var workcalendar = require('./client/workbook/workCalendar');
 var worktemplate = require('./client/workbook/workTemplate');
 var modifywork = require('./client/others/modifyWork');
-var billingpayment = require('./client/billingPayment/billingpayment');
-var createinvoice = require('./client/billingPayment/createinvoice');
+var billingpayment = require('./client/billingPayment/billingPayment');
+var createinvoice = require('./client/billingPayment/createInvoice');
 var invoices = require('./client/billingPayment/invoices');
 var payment = require('./client/billingPayment/payment');
 var modifyinvoice = require('./client/others/modifyInvoice');
@@ -22,7 +21,6 @@ var newsletter = require('./client/marketing/newsletter');
 var createnewsletter = require('./client/marketing/createNewsletter');
 var documentManager = require('./client/accounts/docManager');
 var createStaff = require('./client/user/createStaff');
-
 
 router.use('/accounts', accounts);
 router.use('/createaccount',createaccount);

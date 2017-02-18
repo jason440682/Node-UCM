@@ -3,16 +3,16 @@ var router = express.Router();
 
 router.get('/',function(req,res,next){
     var data = {
-        key:'modifywork',
+        key:'others/modifyWork',
         title:'View/Modify Work',
         language:'en',
-        lang:require('./lang/en/modifywork'),
+        lang:require('./lang/en/modifyWork'),
         nav: require('../public/lang/en/navbar')
     };
 
     if(req.lang && req.lang=='zh-cn'){
         data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/modifywork');
+        data.lang = require('./lang/zh-cn/modifyWork');
     }
 
     res.render('client/others/modifyWork',data);
