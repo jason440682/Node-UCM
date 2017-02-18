@@ -5,30 +5,30 @@ block content
         h1.title= lang.title
         div.section
             div.form-group
-                label.col-sm-2(for="accounttype")= lang.type.text
-            
+                label.col-sm-2= lang.type.text
+
             div.form-group
                 label.col-sm-2
                     input(type="radio",name="accounttype",value="1" checked)
                     =lang.personal.text
-                div.col-sm-4
-                    span.col-sm-4=lang.personal.firstname
-                    div.col-sm-8
+                div.col-sm-5
+                    span.col-sm-5=lang.personal.firstname
+                    div.col-sm-7
                         input.form-control(placeholder = lang.personal.placeholder)
-                div.col-sm-4
+                div.col-sm-5
                     span.col-sm-4=lang.personal.lastname
                     div.col-sm-8
-                        input.form-control(placeholder= lang.personal.placeholder) 
-            
+                        input.form-control(placeholder= lang.personal.placeholder)
+
             div.form-group
                 label.col-sm-2
                     input(type="radio",name="accounttype",value="2" checked)
                     =lang.business.text
                 div.col-sm-5
-                    span.col-sm-4=lang.business.name
-                    div.col-sm-8
+                    span.col-sm-5=lang.business.name
+                    div.col-sm-7
                         input.form-control(name="businessName",placeholder= lang.business.placeholder)
-          
+
         div.section
             div.form-group
                 label.col-sm-2(for="accountstatus")= lang.accountstatus.text
@@ -41,30 +41,30 @@ block content
                     select.form-control#assignto(name="assignto")
                         for sta in lang.assignto.staff
                             option= sta
-        
+
         div.section
             div.form-group
                 label.col-sm-2(for="contact_first_name")= lang.contact_first_name.text
                 div.col-sm-4
                     input.form-control#contact_first_name(type="text", name="contact_first_name", placeholder= lang.contact_first_name.placeholder)
-                            
+
                 label.col-sm-2(for="contact_last_name")= lang.contact_last_name.text
                 div.col-sm-4
                     input.form-control#contact_last_name(type="text", name="contact_last_name", placeholder= lang.contact_last_name.placeholder)
 
             div.form-group
-                label.col-sm-2(for="email")= lang.email_address.text
-                div.col-sm-5
+                label.col-sm-3(for="email")= lang.email_address.text
+                div.col-sm-6
                     input.form-control#email(type="email", name="email", placeholder= lang.email_address.placeholder)
 
             div.form-group
-                label.col-sm-2(for="mobileNum")= lang.mobile_num.text
-                div.col-sm-5
+                label.col-sm-3(for="mobileNum")= lang.mobile_num.text
+                div.col-sm-6
                     input.form-control#mobileNum(type="tel", name="mobileNum", placeholder= lang.mobile_num.placeholder)
-            
+
             div.form-group
-                label.col-sm-2(for="mailing_address")= lang.mailing_address.text
-                div.col-sm-5.country
+                label.col-sm-3(for="mailing_address")= lang.mailing_address.text
+                div.col-sm-6.country
                     input.form-control#mailing_address(type="text", name="street", placeholder= lang.mailing_address.placeholder.street)
                     div
                         input.form-control(type="text", name="city", placeholder= lang.mailing_address.placeholder.city)
@@ -74,14 +74,14 @@ block content
                         select.form-control(name="country")
                             for country in lang.mailing_address.country
                                 option= country
-            
+
             div.form-group
-                div.col-sm-2
-                    label.col-sm-12(for="billing_address")= lang.billing_address.text
+                div.col-sm-3
+                    label.address(for="billing_address")= lang.billing_address.text
                     label
                         input#same(type="checkbox")
                         =lang.billing_address.issame
-                div.col-sm-5.country
+                div.col-sm-6.country
                     input.form-control#billing_address(type="text", name="street", placeholder= lang.billing_address.placeholder.street)
                     div
                         input.form-control(type="text", name="city", placeholder= lang.billing_address.placeholder.city)
@@ -93,20 +93,20 @@ block content
                                 option= country
 
             div.form-group
-                label.col-sm-2(for="account_note")= lang.account_note.text
-                div.col-sm-5
+                label.col-sm-3(for="account_note")= lang.account_note.text
+                div.col-sm-6
                     textarea.form-control#account_note(placeholder= lang.account_note.placeholder)
 
             div.form-group
-                label.col-sm-2(for="email_group")= lang.email_group.text
-                div.col-sm-5
+                label.col-sm-3(for)= lang.email_group.text
+                div.col-sm-6
                     select.form-control(name="group")
                             for group in lang.email_group.groups
                                 option= group
 
             div.form-group
-                label.col-sm-2(for="notification")= lang.notification.text
-                div.col-sm-5
+                label.col-sm-3= lang.notification.text
+                div.col-sm-6
                     label.col-sm-4
                         input#nemail(type="checkbox",name="nemail")
                         =lang.notification.email
@@ -116,26 +116,25 @@ block content
                     label.col-sm-4
                         input#nsms(type="checkbox",name="nsms")
                         =lang.notification.sms
-            
+
             div.form-group
-                label.col-sm-2(for="client_portal")= lang.client_portal.text
-                div.col-sm-3
+                label.col-sm-3(for)= lang.client_portal.text
+                div.col-sm-4
                     label.col-sm-6
                             input(type="radio", name="client_portal", value="enable" checked)
                             = lang.client_portal.enable
                     label.col-sm-6
                         input(type="radio", name="client_portal", value="disable")
                         = lang.client_portal.disable
-                     
+
                 div.col-sm-2
                     button.btn.btn-default.btn-info= lang.client_portal.btn_text
-           
+
         div.section
             div.form-group
                 div.col-sm-3
-                button.btn.btn-default.btn-info= lang.submit_btn.text
-           
-            
-            
+                button.submit.btn.btn-default.btn-info= lang.submit_btn.text
 
-        
+
+
+

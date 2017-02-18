@@ -6,11 +6,10 @@ html(lang= language)
         meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
         title= title
         link(rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css")
-        link(rel='stylesheet' href='/styles/users/css/default/default.css')
-        link(rel='stylesheet' href='/styles/users/css/' + key + '.css')
-        
+        link(rel='stylesheet' href='/styles/users/' + key + '.css')
+
     body
         div.container
             block content
-        
-        include footer
+
+        block footer

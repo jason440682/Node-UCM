@@ -1,21 +1,20 @@
 doctype html
 
 html(lang= language)
-    head
-        meta(charset='UTF-8')
-        meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
-        title= title
-        link(rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css")
-        link(rel='stylesheet' href='/styles/users/css/default/default.css')
-        link(rel='stylesheet' href='/styles/public/navbar.css')
-        link(rel='stylesheet' href='/styles/users/css/' + key + '.css')
-        script(type='text/javascript' src='/script/My97DatePicker/WdatePicker.js')
-    body
-        include navbar
-        div.container
-            block content
-            include footnavbar
-        include footer
+  head
+    meta(charset='UTF-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+    title= title
+    link(rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css")
+    link(rel='stylesheet' href='/styles/client/public/navbar.css')
+    link(rel='stylesheet' href='/styles/client/public/footer.css')
+    link(rel='stylesheet' href='/styles/client/' + key + '.css')
+  body
+    include navbar
+    div.container
+      block content
+      include footnavbar
+    block footer
 
-        script(type="text/javascript" src="/scripts/lib/jquery-3.1.1.min.js")
-        script(type="text/javascript" src="/scripts/lib/bootstrap.min.js")
+    script(type="text/javascript" src="/scripts/lib/jquery-3.1.1.min.js")
+    script(type="text/javascript" src="/scripts/lib/bootstrap.min.js")

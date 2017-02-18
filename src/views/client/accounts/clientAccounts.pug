@@ -1,73 +1,90 @@
 extends ../public/layout
 
 block content
-    div.section.hidden-xs
-        div.form-group.clearfix
-            div.col-sm-2
-                input.form-control
-            div.col-sm-7.search
-                a(href='#')=lang.search.text
-            div.col-sm-3
-                button.btn.btn-default.btn-info=lang.create_account.text
-        div.table-style.col-sm-12
-            table.table.table-bordered.table-striped.table-condensed
-                thead
-                    th= lang.thead.number
-                    th= lang.thead.client
-                    th= lang.thead.assignstaff
-                    th= lang.thead.accountstatus
-                    th= lang.thead.contact
-                    th= lang.thead.email
-                    th= lang.thead.phone
-                    th= lang.thead.manage
-                tbody
-                    if lang.accounts.length>0
-                        each account in lang.accounts
-                            tr
-                                td= account.number
-                                td= account.client
-                                td= account.assignstaff
-                                td= account.accountstatus
-                                td= account.contact
-                                td= account.email
-                                td= account.phone
-                                td
-                                    button.btn.btn-default.btn-info='Work'
-                                    button.btn.btn-default.btn-info='Billing'
-                                    button.btn.btn-default.btn-info='Notification'
-                                    button.btn.btn-default.btn-info='Document'
-    div.visible-xs
-        div.search-bar.container
-            div.search-text.col-xs-5
-                input.form-control(type="text", placeholder="search account")
-                span.glyphicon.glyphicon-search
-            div.search-btn.col-xs-4.col-xs-offset-1
-                button.btn.btn-info Sort Name
-        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+  div.section.hidden-xs
+    div.form-group.clearfix
+      div.col-sm-2
+        input.form-control(type="text", placeholder="search account")
+      div.col-sm-7.search
+        a(href='#')=lang.search.text
+      div.col-sm-3
+        button.btn.btn-default.btn-info
+          a(href="createAccount")=lang.create_account.text
+    div.table-style.col-sm-12
+      table.table.table-bordered.table-striped.table-condensed
+        thead
+          th= lang.thead.number
+          th= lang.thead.client
+          th= lang.thead.assignstaff
+          th= lang.thead.accountstatus
+          th= lang.thead.contact
+          th= lang.thead.email
+          th= lang.thead.phone
+          th= lang.thead.manage
+        tbody
+          if lang.accounts.length > 0
             each account in lang.accounts
-                div.panel.panel-default
-                    div.panel-heading(role="tab", id=account.id)
-                        h4.panel-title
-                            a(role="button",
-                            data-toggle="collapse",
-                            data-parent="#accordion",
-                            href="#collapse-" + account.id,
-                            aria-expanded="false",
-                            aria-controls="collapse-" + account.id)
-                                span= lang.thead.number + ': ' + account.number
-                                span &nbsp&nbsp&nbsp&nbsp
-                                span= lang.thead.client + ': ' + account.client
-                    div.panel-collapse.collapse(
-                    id="collapse-" + account.id,
-                    role="tabpanel",
-                    aria-labelledby=account.id)
-                        div.panel-body
-                            p= lang.thead.assignstaff + ': ' + account.assignstaff
-                            p= lang.thead.accountstatus + ': ' + account.accountstatus
-                            p= lang.thead.contact + ': ' + account.contact
-                            p= lang.thead.email + ': ' + account.email
-                            p= lang.thead.phone + ': ' + account.phone
-                            button.btn.btn-default.btn-info='Work'
-                            button.btn.btn-default.btn-info='Billing'
-                            button.btn.btn-default.btn-info='Notification'
-                            button.btn.btn-default.btn-info='Document'
+              tr
+                td
+                  a(href="modifyAccounts")= account.number
+                td= account.client
+                td= account.assignstaff
+                td= account.accountstatus
+                td= account.contact
+                td= account.email
+                td= account.phone
+                td
+                  button.btn.btn-default.btn-info
+                    a(href="workbook")='Work'
+                  button.btn.btn-default.btn-info
+                    a(href="billingPayment")='Billing'
+                  button.btn.btn-default.btn-info
+                    a(href="notification")='Notification'
+                  button.btn.btn-default.btn-info
+                    a(href="docManager")='Document'
+  div.visible-xs
+    div.search-bar.container
+      div.search-text.col-xs-6
+        input.form-control(type="text", placeholder="search account")
+        span.glyphicon.glyphicon-search
+      div.search-btn.col-xs-6
+        button.btn.btn-info.btn-sm Create Client Account
+    div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+      each account in lang.accounts
+        div.panel.panel-default
+          div.panel-heading(role="tab", id=account.id)
+            h4.panel-title
+              a(role="button",
+              data-toggle="collapse",
+              data-parent="#accordion",
+              href="#collapse-" + account.id,
+              aria-expanded="false",
+              aria-controls="collapse-" + account.id)
+                span= lang.thead.number + ': ' + account.number
+                span &nbsp&nbsp&nbsp&nbsp
+                span= lang.thead.client + ': ' + account.client
+          div.panel-collapse.collapse(
+          id="collapse-" + account.id,
+          role="tabpanel",
+          aria-labelledby=account.id)
+            div.panel-body
+              p= lang.thead.assignstaff + ': ' + account.assignstaff
+              p= lang.thead.accountstatus + ': ' + account.accountstatus
+              p= lang.thead.contact + ': ' + account.contact
+              p= lang.thead.email + ': ' + account.email
+              p= lang.thead.phone + ': ' + account.phone
+              div
+                button.btn.btn-default.btn-info
+                  a(href="modifyAccounts")='Modify Account'
+                button.btn.btn-default.btn-info
+                  a(href="workbook")='Work'
+                button.btn.btn-default.btn-info
+                  a(href="billingPayment")='Billing'
+              div
+                button.btn.btn-default.btn-info
+                  a(href="notification")='Notification'
+                button.btn.btn-default.btn-info
+                  a(href="docManager")='Document'
+
+block footer
+  include ../public/footerfixed

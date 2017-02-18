@@ -1,6 +1,7 @@
 extends ../../users/public/layout
 
 block content
+    link(rel='stylesheet' href='/styles/client/' + key + '.css')
     form.form-horizontal(method="post", role="form")
         h1.title= lang.title
         div.section

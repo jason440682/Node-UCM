@@ -30,8 +30,8 @@ block content
                     input.form-control#answer(type="text", name="answer", placeholder= lang.answer.placeholder)
 
             div.form-group
-                div.radio.col-sm-6
-                    span.col-sm-7= lang.auto_login.text
+                div.radio.col-sm-5
+                    span.label-text.col-sm-7= lang.auto_login.text
                     div.col-sm-5
                         label.col-sm-6
                             input(type="radio", name="auto-login", value="yes" checked)
@@ -40,13 +40,13 @@ block content
                             input(type="radio", name="auto-login", value="no")
                             = lang.auto_login.no
 
-                div.radio.col-sm-5
-                    span.col-sm-6= lang.send_code.text
-                    div.col-sm-6
-                        label.col-sm-6
+                div.radio.col-sm-7
+                    span.label-text.col-sm-5= lang.send_code.text
+                    div.col-sm-7
+                        label.col-sm-7
                             input(type="radio", name="send-code", value="mobile" checked)
                             = lang.send_code.mobile
-                        label.col-sm-6
+                        label.col-sm-5
                             input(type="radio", name="send-code", value="email")
                             = lang.send_code.email
 
@@ -131,3 +131,6 @@ block content
 
         div.section
             button.btn.btn-primary.submit(type="submit")= lang.submit_btn.text
+
+block footer
+    include ./public/footer

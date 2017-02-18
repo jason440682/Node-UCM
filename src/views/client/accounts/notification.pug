@@ -1,77 +1,81 @@
 extends ../public/layout
 
 block content
-    div.section.hidden-xs
-        div.form-group.clearfix
-            div.col-sm-2
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.col-sm-2
-                select.form-control#searchname(name='searchname')
-                    for name in lang.names
-                        option=name
-            div.col-sm-5.search
-                a(href='#')=lang.search.text
-            div.col-sm-3
-                button.btn.btn-default.btn-info=lang.create_notification.text
-        div.table-style.col-sm-12
-            table.table.table-bordered.table-striped.table-condensed
-                thead
-                    th= lang.thead.number
-                    th= lang.thead.name
-                    th= lang.thead.description
-                    th= lang.thead.recipients
-                    th= lang.thead.sendtime
-                    th= lang.thead.status
-                    th= lang.thead.manage
-                tbody
-                    if lang.notifications.length > 0
-                        each notification in lang.notifications
-                            tr
-                                td= notification.number
-                                td= notification.name
-                                td= notification.description
-                                td= notification.recipients
-                                td= notification.sendtime
-                                td= notification.status
-                                td
-                                    button.btn.btn-default.btn-info='Modify'
-                                    button.btn.btn-default.btn-info='Resend'
-                                    button.btn.btn-default.btn-info='Delete'
-    div.visible-xs
-        div.search-bar.container
-            div.search-box.col-xs-12
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.search-box.col-xs-12
-                select.form-control#searchname-xs(name='searchname')
-                    for name in lang.names
-                        option=name
-            div.search.col-xs-6
-                a(href='#')=lang.search.text
-            div.search-btn.col-xs-3
-                button.btn.btn-default.btn-info.btn-xs=lang.create_notification.text
-        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+  div.section.hidden-xs
+    div.form-group.clearfix
+      div.col-sm-3
+        input.form-control(type='text',placeholder=lang.searchplaceholder)
+      div.col-sm-3
+        select.form-control#searchname(name='searchname')
+          for name in lang.names
+            option=name
+      div.col-sm-3.search
+        a(href='#')=lang.search.text
+      div.col-sm-3
+        button.btn.btn-default.btn-info=lang.create_notification.text
+    div.table-style.col-sm-12
+      table.table.table-bordered.table-striped.table-condensed
+        thead
+          th= lang.thead.number
+          th= lang.thead.name
+          th= lang.thead.description
+          th= lang.thead.recipients
+          th= lang.thead.sendtime
+          th= lang.thead.status
+          th= lang.thead.manage
+        tbody
+          if lang.notifications.length > 0
             each notification in lang.notifications
-                div.panel.panel-default
-                    div.panel-heading(role="tab", id=notification.id)
-                        h4.panel-title
-                            a(role="button",
-                            data-toggle="collapse",
-                            data-parent="#accordion",
-                            href="#collapse-" + notification.id,
-                            aria-expanded="false",
-                            aria-controls="collapse-" + notification.id)
-                                span= lang.thead.number + ': ' + notification.number
-                                span &nbsp&nbsp&nbsp&nbsp
-                                span= lang.thead.name + ': ' + notification.name
-                    div.panel-collapse.collapse(
-                    id="collapse-" + notification.id,
-                    role="tabpanel",
-                    aria-labelledby=notification.id)
-                        div.panel-body
-                            p= lang.thead.description + ': ' + notification.description
-                            p= lang.thead.recipients + ': ' + notification.recipients
-                            p= lang.thead.sendtime + ': ' + notification.sendtime
-                            p= lang.thead.status + ': ' + notification.status
-                            button.btn.btn-default.btn-info='Modify'
-                            button.btn.btn-default.btn-info='Resend'
-                            button.btn.btn-default.btn-info='Delete'
+              tr
+                td= notification.number
+                td= notification.name
+                td= notification.description
+                td= notification.recipients
+                td= notification.sendtime
+                td= notification.status
+                td
+                  button.btn.btn-default.btn-info='Modify'
+                  button.btn.btn-default.btn-info='Resend'
+                  button.btn.btn-default.btn-info='Delete'
+  div.visible-xs
+    div.search-bar.container
+      div.search-box.col-xs-12
+        input.form-control(type='text',placeholder=lang.searchplaceholder)
+      div.search-box.col-xs-12
+        select.form-control#searchname-xs(name='searchname')
+          for name in lang.names
+            option=name
+      div.search-box.col-xs-12
+        div.col-xs-6
+          a(href='#')=lang.search.text
+        div.search-btn.col-xs-3
+          button.btn.btn-default.btn-info.btn-sm=lang.create_notification.text
+    div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+      each notification in lang.notifications
+        div.panel.panel-default
+          div.panel-heading(role="tab", id=notification.id)
+            h4.panel-title
+              a(role="button",
+              data-toggle="collapse",
+              data-parent="#accordion",
+              href="#collapse-" + notification.id,
+              aria-expanded="false",
+              aria-controls="collapse-" + notification.id)
+                span= lang.thead.number + ': ' + notification.number
+                span &nbsp&nbsp&nbsp&nbsp
+                span= lang.thead.name + ': ' + notification.name
+          div.panel-collapse.collapse(
+          id="collapse-" + notification.id,
+          role="tabpanel",
+          aria-labelledby=notification.id)
+            div.panel-body
+              p= lang.thead.description + ': ' + notification.description
+              p= lang.thead.recipients + ': ' + notification.recipients
+              p= lang.thead.sendtime + ': ' + notification.sendtime
+              p= lang.thead.status + ': ' + notification.status
+              button.btn.btn-default.btn-info='Modify'
+              button.btn.btn-default.btn-info='Resend'
+              button.btn.btn-default.btn-info='Delete'
+
+block footer
+  include ../public/footerfixed

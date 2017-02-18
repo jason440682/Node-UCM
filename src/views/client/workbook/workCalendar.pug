@@ -16,7 +16,8 @@ block content
             div.col-sm-3.search
                 a(href='#')=lang.search.text
             div.col-sm-3
-                button.btn.btn-default.btn-info=lang.create_newwork.text
+                button.btn.btn-default.btn-info
+                  a(href="createWork")=lang.create_newwork.text
         div.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
                 thead
@@ -53,7 +54,7 @@ block content
                 select.form-control#searchname-xs(name='searchname')
                     for name in lang.names
                         option=name
-            div.search-btn.col-xs-12
+            div.search-box.col-xs-12
                 button.btn.btn-default.btn-info=lang.create_newwork.text
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
             each work in lang.works
@@ -79,3 +80,6 @@ block content
                             p= lang.thead.Thursday + ': ' + work.Thursday
                             p= lang.thead.Friday + ': ' + work.Friday
                             p= lang.thead.Saturday + ': ' + work.Saturday
+
+block footer
+  include ../public/footerfixed
