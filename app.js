@@ -15,7 +15,7 @@ app.set('view engine', 'pug');
 app.use(morgan('dev'));
 
 // 设置静态资源的目录，比如 css js 等文件的路径
-app.use(express.static(path.join(__dirname, './src')));
+app.use(express.static(path.join(__dirname, './dist')));
 
 // 覆盖默认的 X-Powered-By HTTP返回头
 app.use(function (req, res, next) {
