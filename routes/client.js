@@ -23,7 +23,7 @@ var createnewsletter = require('./client/marketing/createNewsletter');
 var documentManager = require('./client/accounts/docManager');
 var createStaff = require('./client/user/createStaff');
 
-router.use('/create', create);
+
 router.use('/accounts', accounts);
 router.use('/createaccount',createaccount);
 router.use('/notification',notification);

@@ -12,7 +12,7 @@ router.get('/',function(req,res,next){
 
     if(req.lang && req.lang=='zh-cn'){
         data.language = 'zh-cn';
-        data.lang = require('./zh-cn/createnewsletter');
+        data.lang = require('./lang/zh-cn/createnewsletter');
     }
     
     res.render('client/marketing/createNewsletter',data);
