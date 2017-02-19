@@ -3,13 +3,13 @@ extends ../public/layout
 block content
     div.section.hidden-xs
         div.form-group.clearfix
-            div.col-sm-2
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.col-sm-2
+            div.col-sm-2.search
+                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+            div.col-sm-2.search
                 select.form-control#showmethod(name='showmethod')
                     for staff in lang.showmethod
                         option=staff
-            div.col-sm-2
+            div.col-sm-2.search
                 select.form-control#searchname(name='searchname')
                     for name in lang.names
                         option=name
@@ -44,19 +44,23 @@ block content
                                 td= work.Saturday
     div.visible-xs
         div.search-bar.container
-            div.search-box.col-xs-12
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.search-box.col-xs-12
+            div.search-box
+                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+            div.search-box
                 select.form-control#showmethod-xs(name='showmethod')
                     for staff in lang.showmethod
                         option=staff
-            div.search-box.col-xs-12
+            div.search-box
                 select.form-control#searchname-xs(name='searchname')
                     for name in lang.names
                         option=name
-            div.search-box.col-xs-12
-                button.btn.btn-default.btn-info=lang.create_newwork.text
+            div.search-box
+                button.btn.btn-default.btn-info.btn-sm
+                    a(href="createWork")=lang.create_newwork.text
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            mixin work-url(work)
+                - work = work ? work : '-'
+                a(href="modifyWork")= work
             each work in lang.works
                 div.panel.panel-default
                     div.panel-heading(role="tab", id=work.id)
@@ -73,13 +77,20 @@ block content
                     role="tabpanel",
                     aria-labelledby=work.id)
                         div.panel-body
-                            p= lang.thead.Sunday + ': ' + work.Sunday
-                            p= lang.thead.Monday + ': ' + work.Monday
-                            p= lang.thead.Tuesday + ': ' + work.Tuesday
-                            p= lang.thead.Wednesday + ': ' + work.Wednesday
-                            p= lang.thead.Thursday + ': ' + work.Thursday
-                            p= lang.thead.Friday + ': ' + work.Friday
-                            p= lang.thead.Saturday + ': ' + work.Saturday
+                            p= lang.thead.Sunday + ': '
+                                +work-url(work.Sunday)
+                            p= lang.thead.Monday + ': '
+                                +work-url(work.Monday)
+                            p= lang.thead.Tuesday + ': '
+                                +work-url(work.Tuesday)
+                            p= lang.thead.Wednesday + ': '
+                                +work-url(work.Wednesday)
+                            p= lang.thead.Thursday + ': '
+                                +work-url(work.Thursday)
+                            p= lang.thead.Friday + ': '
+                                +work-url(work.Friday)
+                            p= lang.thead.Saturday + ': '
+                                +work-url(work.Saturday)
 
 block footer
   include ../public/footerfixed

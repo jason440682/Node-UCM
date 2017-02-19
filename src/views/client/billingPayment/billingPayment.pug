@@ -3,20 +3,21 @@ extends ../public/layout
 block content
     div.section.hidden-xs
         div.form-group.clearfix
-            div.col-sm-2
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.col-sm-2
+            div.col-sm-2.search
+                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+            div.col-sm-2.search
                 select.form-control#searchmethod(name='searchmethod')
                     for method in lang.searchmethod
                         option=method
-            div.col-sm-2
+            div.col-sm-2.search
                 select.form-control#searchname(name='searchname')
                     for name in lang.names
                         option=name
             div.col-sm-3.search
                 a(href='#')=lang.search.text
             div.col-sm-3
-                button.btn.btn-default.btn-info= lang.create_invoice.text
+                button.btn.btn-default.btn-info
+                    a(href="createInvoice")= lang.create_invoice.text
         div.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
                 thead
@@ -38,23 +39,26 @@ block content
                                 td= invoice.date
                                 td= invoice.total
                                 td= invoice.status
-                                td= invoice.manage
+                                td
+                                    a(href="modifyInvoice")= invoice.manage
     div.visible-xs
         div.search-bar.container
-            div.search-box.col-xs-12
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.search-box.col-xs-12
+            div.search-box
+                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+            div.search-box
                 select.form-control#searchmethod-xs(name='searchmethod')
                     for method in lang.searchmethod
                         option=method
-            div.search-box.col-xs-12
+            div.search-box
                 select.form-control#searchname-xs(name='searchname')
                     for name in lang.names
                         option=name
-            div.search.col-xs-6
-                a(href='#')=lang.search.text
-            div.search-btn.col-xs-3
-                button.btn.btn-default.btn-info.btn-xs=lang.create_invoice.text
+            div.search-box
+                button.btn.btn-default.btn-info.btn-sm
+                    a(href='#')=lang.search.text
+            div.search-box
+                button.btn.btn-default.btn-info.btn-sm
+                    a(href="createInvoice")= lang.create_invoice.text
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
             each invoice in lang.invoices
                 div.panel.panel-default
@@ -78,4 +82,8 @@ block content
                             p= lang.thead.date + ': ' + invoice.date
                             p= lang.thead.total + ': ' + invoice.total
                             p= lang.thead.status + ': ' + invoice.status
-                            p= lang.thead.manage + ': ' + invoice.manage
+                            button.btn.btn-default.btn-info
+                                a(href="modifyInvoice")= invoice.manage
+
+block footer
+    include ../public/footerfixed

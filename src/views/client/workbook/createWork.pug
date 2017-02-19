@@ -1,199 +1,198 @@
 extends ../public/layout
 
 block content
-  form.form-horizontal(method="post", role="form")
-    div.form-group.title-group
-      div.col-sm-12
-        h1.title= lang.title
-      div.work-temp
-        button.btn.btn-default.btn-info.center-vertical=lang.template.text
+    form.form-horizontal(method="post", role="form")
+        div.form-group.title-group
+            div.col-sm-12
+                h1.title= lang.title
+            div.work-temp
+                button.btn.btn-default.btn-info.center-vertical=lang.template.text
 
-    div.section
-      div.form-group
-        div.col-sm-3
-          label(for="work")= lang.work.text
-        div.col-sm-6
-          input.form-control#work(type="text", name="work", placeholder= lang.work.placeholder)
+        div.section
+            div.form-group
+                div.col-sm-3
+                    label(for="work")= lang.work.text
+                div.col-sm-6
+                    input.form-control#work(type="text", name="work", placeholder= lang.work.placeholder)
 
-      div.form-group
-        div.col-sm-3
-          label(for="status")= lang.status.text
-        div.col-sm-6
-          select.form-control#status(name="status")
-            for sta in lang.status.statuses
-              option= sta
+            div.form-group
+                div.col-sm-3
+                    label(for="status")= lang.status.text
+                div.col-sm-6
+                    select.form-control#status(name="status")
+                        for sta in lang.status.statuses
+                            option= sta
 
-      div.form-group
-        div.col-sm-3
-          label(for="assignee")= lang.assignee.text
-        div.col-sm-6
-          select.form-control#assignee(name="assignee")
-            for ass in lang.assignee.assignees
-              option= ass
+            div.form-group
+                div.col-sm-3
+                    label(for="assignee")= lang.assignee.text
+                div.col-sm-6
+                    select.form-control#assignee(name="assignee")
+                        for ass in lang.assignee.assignees
+                            option= ass
 
-      div.form-group
-        label.col-sm-3(for="date")= lang.date.text
-        div.col-sm-6
-          input.form-control.Wdate#date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.date.placeholder)
+            div.form-group
+                label.col-sm-3(for="date")= lang.date.text
+                div.col-sm-6
+                    input.form-control.Wdate#date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.date.placeholder)
 
-      div.form-group
-        div.col-sm-3
-        div.col-sm-6
-          label.col-sm-5.col-xs-4(for="repeat")
-            input#repeat(type="checkbox",name="repeat")
-            =lang.date.repeat
-          div.col-sm-7.col-xs-8
-            select.form-control#frequency(name="frequency")
-              for fre in lang.date.frequency
-                option= fre
+            div.form-group
+                div.col-sm-3
+                div.col-sm-6
+                    label.col-sm-5.col-xs-5(for="repeat")
+                        input#repeat(type="checkbox",name="repeat")
+                        =lang.date.repeat
+                    div.col-sm-7.col-xs-7
+                        select.form-control#frequency(name="frequency")
+                            for fre in lang.date.frequency
+                                option= fre
 
-      div.form-group
-        div.col-sm-3
-          label(for="date")= lang.date.enddate
-        div.col-sm-6
-          input.form-control.Wdate#enddate(type="text", name="enddate", onClick='WdatePicker()',placeholder= lang.date.never)
+            div.form-group
+                div.col-sm-3
+                    label(for="date")= lang.date.enddate
+                div.col-sm-6
+                    input.form-control.Wdate#enddate(type="text", name="enddate", onClick='WdatePicker()',placeholder= lang.date.never)
 
-      div.form-group
-        label.col-sm-3(for="time")= lang.time.text
-        div.col-sm-6
-          input.form-control#time(type="text", name="question", placeholder= lang.time.placeholder)
+            div.form-group
+                label.col-sm-3(for="time")= lang.time.text
+                div.col-sm-6
+                    input.form-control#time(type="text", name="question", placeholder= lang.time.placeholder)
 
-      div.form-group
-        label.col-sm-3(for="duration")= lang.time.duration
-        div.col-sm-6
-          select.form-control#duration(name="duration")
-            for dur in lang.time.durationtime
-              option= dur
+            div.form-group
+                label.col-sm-3(for="duration")= lang.time.duration
+                div.col-sm-6
+                    select.form-control#duration(name="duration")
+                        for dur in lang.time.durationtime
+                            option= dur
 
-      div.form-group
-        label.col-sm-3(for="location")= lang.location.text
-        div.col-sm-6
-          input.form-control#location(type="text", name="location", placeholder= lang.location.placeholder)
+            div.form-group
+                label.col-sm-3(for="location")= lang.location.text
+                div.col-sm-6
+                    input.form-control#location(type="text", name="location", placeholder= lang.location.placeholder)
 
-      div.form-group
-        label.col-sm-3(for="contact")= lang.contact.text
-        div.col-sm-6
-          input.form-control#contact(type="text", name="contact", placeholder= lang.contact.placeholder)
+            div.form-group
+                label.col-sm-3(for="contact")= lang.contact.text
+                div.col-sm-6
+                    input.form-control#contact(type="text", name="contact", placeholder= lang.contact.placeholder)
 
-      div.form-group
-        label.col-sm-3(for="description")= lang.description.text
-        div.col-sm-9
-          textarea.form-control#description(type="text", name="contact", placeholder= lang.description.placeholder)
+            div.form-group
+                label.col-sm-3(for="description")= lang.description.text
+                div.col-sm-9
+                    textarea.form-control#description(type="text", name="contact", placeholder= lang.description.placeholder)
 
-    div.section
-      div.form-group
-        label.col-sm-3(for="document")= lang.document.text
-        div.col-sm-6
-          input.form-control#document(type="text", name="document", placeholder= lang.document.placeholder)
-        div.col-sm-2
-          button.btn.btn-default.btn-info= lang.document.button
+        div.section
+            div.form-group
+                label.col-sm-3.col-xs-12(for="document")= lang.document.text
+                div.col-sm-6.col-xs-8
+                    input.form-control#document(type="text", name="document", placeholder= lang.document.placeholder)
+                div.col-sm-2.col-xs-4
+                    button.btn.btn-default.btn-info= lang.document.button
 
-      div.form-group
-        div.col-sm-3
-        div.col-sm-9
-          table.table-bordered.table-condensed.file-upload.col-sm-12
-            thead
-              tr
-                th.col-sm-8= lang.document.thname
-                th.col-sm-4= lang.document.thdate
-            tbody
+            div.form-group
+                div.col-sm-3
+                div.col-sm-9
+                    table.table-bordered.table-condensed.file-upload.col-sm-12
+                        thead
+                            tr
+                                th.col-sm-8= lang.document.thname
+                                th.col-sm-4= lang.document.thdate
+                        tbody
 
-    div.section
-      div.form-group
-        label.col-sm-3(for="billiable")= lang.billiable.text
-        label.col-sm-2
-          input#billiable(type="radio", name="billiable",value="1" checked)
-          =lang.billiable.yes
-        label.col-sm-2
-          input(type="radio",name="billiable",value="2" checked)
-          =lang.billiable.no
+        div.section
+            div.form-group
+                label.col-sm-3(for="billiable")= lang.billiable.text
+                label.col-sm-2
+                    input#billiable(type="radio", name="billiable",value="1" checked)
+                    =lang.billiable.yes
+                label.col-sm-2
+                    input(type="radio",name="billiable",value="2" checked)
+                    =lang.billiable.no
 
-      div.form-group
-        label.col-sm-3(for="billingrate")=lang.billingrate.text
-        div.col-sm-3
-          select.form-control#billingrate
-            for rate in lang.billingrate.rates
-              option= rate
+            div.form-group
+                label.col-sm-3(for="billingrate")=lang.billingrate.text
+                div.col-sm-3
+                    select.form-control#billingrate
+                        for rate in lang.billingrate.rates
+                            option= rate
 
-      div.form-group
-        div.col-sm-3
-          label(for="invoicestatus")=lang.invoicestatus.text
-        div.col-sm-3
-          select.form-control#invoicestatus
-            for sta in lang.invoicestatus.statuses
-              option= sta
-        div.invoice-num.col-sm-6
-          label=lang.invoicestatus.number
-          span :&nbsp&nbsp&nbsp
-          span=lang.invoicestatus.truenum
+            div.form-group
+                div.col-sm-3
+                    label(for="invoicestatus")=lang.invoicestatus.text
+                div.col-sm-3
+                    select.form-control#invoicestatus
+                        for sta in lang.invoicestatus.statuses
+                            option= sta
+                div.invoice-num.col-sm-6
+                    label=lang.invoicestatus.number
+                    span :&nbsp&nbsp&nbsp
+                    span=lang.invoicestatus.truenum
 
-    div.section
-      div.form-group
-        div.col-sm-3
-          label(for)=lang.autoreminder.text
-        div.col-sm-9
-          div.col-sm-12.col-md-4.reminder
-            label
-              input(for="notifyclient",type="checkbox")
-              =lang.autoreminder.notifyclient
-          div.col-sm-12.col-md-8.reminder.reminder-box
-            div.col-sm-2.col-xs-3
-              label=lang.autoreminder.reminder
-            div.col-sm-3.col-xs-8.col-xs-offset-1
-              select.form-control
-                for ti in lang.autoreminder.time
-                  option= ti
-            div.col-sm-7.col-xs-12
-              label.reminder-check
-                input(type="checkbox",name="wemail")
-                =lang.autoreminder.email
-              label.reminder-check
-                input(type="checkbox",name="wphone")
-                =lang.autoreminder.phone
-              label.reminder-check
-                input(type="checkbox",name="wsms")
-                =lang.autoreminder.sms
+        div.section
+            div.form-group
+                div.col-sm-3
+                    label(for)=lang.autoreminder.text
+                div.col-sm-9
+                    div.col-sm-12.col-md-4.reminder
+                        label
+                            input(type="checkbox")
+                            =lang.autoreminder.notifyclient
+                    div.col-sm-12.col-md-8.reminder.reminder-box
+                        div.col-sm-2.col-xs-3
+                            label=lang.autoreminder.reminder
+                        div.col-sm-3.col-xs-8
+                            select.form-control
+                                for ti in lang.autoreminder.time
+                                    option= ti
+                        div.col-sm-7.col-xs-12
+                            label.reminder-check
+                                input(type="checkbox",name="wemail")
+                                =lang.autoreminder.email
+                            label.reminder-check
+                                input(type="checkbox",name="wphone")
+                                =lang.autoreminder.phone
+                            label.reminder-check
+                                input(type="checkbox",name="wsms")
+                                =lang.autoreminder.sms
 
-      div.form-group
-        div.col-sm-3
-        div.col-sm-9
-          div.col-sm-12.col-md-4.reminder
-            label
-              input(for="notifystaff",type="checkbox")
-              =lang.autoreminder.notifystaff
-          div.col-sm-12.col-md-8.reminder.reminder-box
-            div.col-sm-2.col-xs-3
-              label=lang.autoreminder.reminder
-            div.col-sm-3.col-xs-8.col-xs-offset-1
-              select.form-control
-                for ti in lang.autoreminder.time
-                  option= ti
-            div.col-sm-7.col-xs-12
-              label.reminder-check
-                input#wemail(type="checkbox",name="wemail")
-                =lang.autoreminder.email
-              label.reminder-check
-                input#wphone(type="checkbox",name="wphone")
-                =lang.autoreminder.phone
-              label.reminder-check
-                input#wsms(type="checkbox",name="wsms")
-                =lang.autoreminder.sms
+            div.form-group
+                div.col-sm-3
+                div.col-sm-9
+                    div.col-sm-12.col-md-4.reminder
+                        label
+                            input(type="checkbox")
+                            =lang.autoreminder.notifystaff
+                    div.col-sm-12.col-md-8.reminder.reminder-box
+                        div.col-sm-2.col-xs-3
+                            label=lang.autoreminder.reminder
+                        div.col-sm-3.col-xs-8
+                            select.form-control
+                                for ti in lang.autoreminder.time
+                                    option= ti
+                        div.col-sm-7.col-xs-12
+                            label.reminder-check
+                                input#wemail(type="checkbox",name="wemail")
+                                =lang.autoreminder.email
+                            label.reminder-check
+                                input#wphone(type="checkbox",name="wphone")
+                                =lang.autoreminder.phone
+                            label.reminder-check
+                                input#wsms(type="checkbox",name="wsms")
+                                =lang.autoreminder.sms
 
-      div.form-group
-        div.col-sm-3
-          label(for)=lang.remindermes.text
-        div.col-sm-9
-          textarea.form-control(placeholder=lang.remindermes.placeholder)
+            div.form-group
+                div.col-sm-3
+                    label(for)=lang.remindermes.text
+                div.col-sm-9
+                    textarea.form-control(placeholder=lang.remindermes.placeholder)
 
-    div.section
-      div.form-group
-        div.col-sm-3
-        div.btn-group.col-sm-9
-          button.btn.btn-default.btn-info=lang.buttons.work
-          button.btn.btn-default.btn-info=lang.buttons.invoice
-          button.btn.btn-default.btn-info=lang.buttons.both
+        div.section
+            div.form-group
+                div.buttons.col-sm-9.col-sm-offset-3.col-xs-12
+                    button.btn.btn-default.btn-info=lang.buttons.work
+                    button.btn.btn-default.btn-info=lang.buttons.invoice
+                    button.btn.btn-default.btn-info=lang.buttons.both
 
-  script(type='text/javascript' src='/scripts/lib/My97DatePicker/WdatePicker.js')
+    script(type='text/javascript' src='/scripts/lib/My97DatePicker/WdatePicker.js')
 
 block footer
-  include ../public/footer
+    include ../public/footer

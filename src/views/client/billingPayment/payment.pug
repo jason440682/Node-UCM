@@ -3,17 +3,17 @@ extends ../public/layout
 block content
     div.section.hidden-xs
         div.form-group.clearfix
-            div.col-sm-2
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.col-sm-2
+            div.col-sm-3.search
+                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+            div.col-sm-3.search
                 select.form-control#searchmethod(name='searchmethod')
                     for method in lang.searchmethod
                         option=method
-            div.col-sm-2
+            div.col-sm-3.search
                 select.form-control#searchname(name='searchname')
                     for name in lang.names
                         option=name
-            div.col-sm-4.search
+            div.col-sm-3.search
                 a(href='#')=lang.search.text
         div.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
@@ -37,18 +37,19 @@ block content
                                 td= payment.detail
     div.visible-xs
         div.search-bar.container
-            div.search-box.col-xs-12
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.search-box.col-xs-12
+            div.search-box
+                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+            div.search-box
                 select.form-control#searchmethod-xs(name='searchmethod')
                     for method in lang.searchmethod
                         option=method
-            div.search-box.col-xs-12
+            div.search-box
                 select.form-control#searchname-xs(name='searchname')
                     for name in lang.names
                         option=name
-            div.search.col-xs-12
-                a(href='#')=lang.search.text
+            div.search-box
+                button.btn.btn-info.btn-sm
+                    a(href='#')=lang.search.text
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
             each payment in lang.payments
                 div.panel.panel-default
@@ -71,3 +72,6 @@ block content
                             p= lang.thead.date + ': ' + payment.date
                             p= lang.thead.amount + ': ' + payment.amount
                             p= lang.thead.detail + ': ' + payment.detail
+
+block footer
+    include ../public/footerfixed

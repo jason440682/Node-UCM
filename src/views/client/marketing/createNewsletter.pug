@@ -3,7 +3,7 @@ extends ../public/layout
 block content
     form.form-horizontal(method="post", role="form")
         h1.title= lang.title
-     
+
         div.section
             div.form-group
                 label.col-sm-3(for="name")= lang.name.text
@@ -17,59 +17,65 @@ block content
 
             div.form-group
                 label.col-sm-3=lang.recipients.text
-                div.col-sm-3
+                div.col-sm-6
                     label.col-sm-6
                         input(for="recipient",type="radio",name="recipient",checked)
                         =lang.recipients.client
                     label.col-sm-6
                         input(for="recipient",type="radio",name="recipient")
                         =lang.recipients.group
-                div.col-sm-3
+
+            div.form-group
+                div.col-sm-4.col-sm-offset-3.col-xs-8
                     input.form-control(type="text",placeholder=lang.recipients.placeholder)
-                div.col-sm-3
+                div.col-sm-3.col-xs-4
                     button.btn.btn-default.btn-info= lang.recipients.search
-                
+
             div.form-group
                 label.col-sm-3(for="send_date")= lang.send_date.text
-                div.col-sm-4
-                    input.form-control(type="text", name="send_date",placeholder= lang.send_date.placeholder)
-            
+                div.col-sm-6
+                    input.form-control.Wdate#send_date(type="text", name="send_date", onClick='WdatePicker()', placeholder= lang.send_date.placeholder)
+
             div.form-group
                 label.col-sm-3(for="send_time")= lang.send_time.text
-                div.col-sm-4
+                div.col-sm-6
                     input.form-control.Wdate#send_time(type="text", name="send_time", onClick='WdatePicker()',placeholder= lang.send_time.placeholder)
-            
+
             div.form-group
                 label.col-sm-3(for="line")= lang.line.text
                 div.col-sm-6
                     input.form-control#line(type="text", name="line", placeholder= lang.line.placeholder)
 
             div.form-group
-                label.col-sm-3(for="content")= lang.content.text
-                div.col-sm-6
+                label.col-sm-3(for="contact")= lang.content.text
+                div.col-sm-9
                     textarea.form-control.ckeditor#contact( name="editor")
-            
+
             div.form-group
-                label.col-sm-3(for="document")= lang.document.text
-                div.col-sm-6
+                label.col-sm-3.col-xs-12(for="document")= lang.document.text
+                div.col-sm-6.col-xs-8
                     input.form-control#document(type="text", name="document", placeholder= lang.document.placeholder)
-                div.col-sm-2
+                div.col-sm-2.col-xs-4
                     button.btn.btn-default.btn-info= lang.document.button
-            
+
             div.form-group
                 div.col-sm-3
                 div.col-sm-9
                     table.table-bordered.table-condensed.file-upload.col-sm-12
                         thead
                             tr
-                                th.col-sm-8= lang.document.thname
-                                th.col-sm-4= lang.document.thdate
+                                th.col-sm-8.col-xs-8= lang.document.thname
+                                th.col-sm-4.col-xs-4= lang.document.thdate
                         tbody
 
-              
+
         div.section
             div.form-group
-                div.col-sm-5
-                div.col-sm-2
+                div.buttons.col-sm-3.col-sm-offset-4
                     button.btn.btn-default.btn-info=lang.buttons.create
-            
+
+    script(type='text/javascript' src='/scripts/lib/My97DatePicker/WdatePicker.js')
+    script(type='text/javascript' src='/scripts/lib/ckeditor/ckeditor.js')
+
+block footer
+    include ../public/footer

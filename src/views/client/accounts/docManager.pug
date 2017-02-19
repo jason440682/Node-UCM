@@ -1,0 +1,103 @@
+extends ../public/layout
+
+mixin panel_group(data, i)
+    if data.hasOwnProperty('file')
+        div.panel-body
+            span.glyphicon.glyphicon-list-alt
+            span.filename=data.filename
+            btn.file-btn.btn.btn-info Share on client portal
+            btn.file-btn.btn.btn-info Remove from client protal
+            btn.file-btn.btn.btn-info Email client
+            btn.file-btn.btn.btn-info View
+            btn.file-btn.btn.btn-info Edit
+            btn.file-btn.btn.btn-info Delete
+    else if data.hasOwnProperty('folder')
+        -var headingId = 'heading' + i,
+        -    collapseId = 'collapse' + i;
+        div.panel
+            h4.panel-title(role="tab", id=headingId)
+                a(role="button",
+                data-toggle="collapse",
+                data-parent="#accordion",
+                aria-expanded="false",
+                href="#" + collapseId,
+                aria-controls=collapseId)
+                    span.glyphicon.glyphicon-folder-close
+                    span.title=data.name
+            div.panel-collapse.collapse.in(
+            id= collapseId,
+            aria-labelledby=headingId,
+            role="tabpanel",
+            aria-expanded="false")
+        +panel_group(data, i)
+
+block content
+    div.content
+        div.form-group.clearfix
+            div.col-sm-2
+                input.form-control(type='text',placeholder=lang.searchplaceholder)
+            div.col-sm-2
+                select.form-control#searchname(name='searchname')
+                    for name in lang.names
+                        option=name
+            div.col-sm-6.search
+                a(href='#')=lang.search.text
+            div.col-sm-2
+                button.btn.btn-default.btn-info=lang.create_notification.text
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            -
+                var i = 1;
+                var data = [
+                {type: 'folder', name: 'folder1', list: [
+                    {type: 'file', name: 'file1.1'},
+                    {type: 'file', name: 'file1.2'},
+                    {type: 'file', name: 'file1.3'}
+                ]},
+                {type: 'folder', name: 'folder2', list: [
+                    {type: 'file', name: 'file2.1'},
+                    {type: 'file', name: 'file2.2'},
+                    {type: 'file', name: 'file2.3'}
+                ]},
+                {type: 'folder', name: 'folder3', list: [
+                    {type: 'file', name: 'file3.1'},
+                    {type: 'file', name: 'file3.2'},
+                    {type: 'file', name: 'file3.3'}
+                ]},
+                {type: 'file', name: 'file2'},
+                {type: 'file', name: 'file3'},
+                {type: 'file', name: 'file4'}
+                ];
+
+                function test(data) {
+
+                }
+            //for d in data
+            //    if d.type === 'folder'
+            //        for list_data in d.list
+            //    else if d.type === 'file'
+
+
+            //+panel-group(data, i)
+            div.panel
+                h4.panel-title(role="tab", id="headingOne")
+                    a(role="button",
+                    data-toggle="collapse",
+                    data-parent="#accordion",
+                    href="#collapseOne",
+                    aria-expanded="false",
+                    aria-controls="collapseOne")
+                        span.glyphicon.glyphicon-folder-close
+                        span.title= lang.searchplaceholder
+                div.panel-collapse.collapse.in#collapseOne(
+                role="tabpanel",
+                aria-labelledby="headingOne",
+                aria-expanded="false")
+                    div.panel-body
+                        span.glyphicon.glyphicon-list-alt
+                        span.filename heiheihei
+                        btn.file-btn.btn.btn-info Share on client portal
+                        btn.file-btn.btn.btn-info Remove from client protal
+                        btn.file-btn.btn.btn-info Email client
+                        btn.file-btn.btn.btn-info View
+                        btn.file-btn.btn.btn-info Edit
+                        btn.file-btn.btn.btn-info Delete

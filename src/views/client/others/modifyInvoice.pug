@@ -6,23 +6,25 @@ block content
             h2= lang.title
         div.form-group
             div.col-sm-6
-                label.col-sm-5= lang.invoice_date.text
+                div.col-sm-5
+                    label(for="invoice_date")= lang.invoice_date.text
                 div.col-sm-7
                     input.form-control.Wdate#invoice_date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date.text)
             div.col-sm-6
-                label.col-sm-3= lang.client.text
+                div.col-sm-3
+                    label(for)= lang.client.text
                 div.col-sm-9
                     select.form-control
                         for name in lang.client.names
                             option=name
-                            
-        div.form-group.col-sm-12
-            div.col-sm-12.font-weight=lang.bill_to.number
-            div.col-sm-12.font-weight=lang.bill_to.date 
-            div.col-sm-12.font-weight=lang.bill_to.text
-            div.col-sm-12.font-weight=lang.bill_to.name
-            div.col-sm-12.font-weight=lang.bill_to.address
-       
+
+        div.form-group.col-sm-12.info
+            p.col-sm-12=lang.bill_to.number
+            p.col-sm-12=lang.bill_to.date
+            p.col-sm-12=lang.bill_to.text
+            p.col-sm-12=lang.bill_to.name
+            p.col-sm-12=lang.bill_to.address
+
         div.table-style.col-sm-12.form-group
             table.table.table-bordered.table-striped.table-condensed
                 thead
@@ -47,28 +49,30 @@ block content
                                 td= invoice.subtotal
                                 td= invoice.work_status
                                 td
-                                    button.btn.btn-default.btn-info= invoice.edit
-        
-        div.margin-bottom
-            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.cancel
-            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.both
-            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.manual_edit
-            button.btn.btn-default.btn-info.marginleft= lang.btn_groups.save
+                                    button.btn.btn-default.btn-info= lang.btn_edit
+
+        div.form-group
+            div.footer-btn-group.col-sm-12
+                button.btn.btn-default.btn-info= lang.btn_groups.cancel
+                button.btn.btn-default.btn-info= lang.btn_groups.both
+                button.btn.btn-default.btn-info= lang.btn_groups.manual_edit
+                button.btn.btn-default.btn-info= lang.btn_groups.save
+                button.btn.btn-default.btn-info= lang.btn_add_work
 
     div.visible-xs
         div.search-bar.container
-            div.search-box.col-xs-12
+            div.search-box
                 input.form-control.Wdate#invoice_date-xs(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date.text)
-            div.search-box.col-xs-12
+            div.search-box
                 select.form-control#searchname-xs(name='searchname')
                     for name in lang.client.names
                         option=name
-            div.form-group.col-xs-12
-                div.col-xs-12.font-weight=lang.invoice_date.text
-                div.col-xs-12.font-weight=lang.bill_to.date
-                div.col-xs-12.font-weight=lang.bill_to.text
-                div.col-xs-12.font-weight=lang.bill_to.name
-                div.col-xs-12.font-weight=lang.bill_to.address
+            div.form-group.info
+                div.col-xs-12=lang.invoice_date.text
+                div.col-xs-12=lang.bill_to.date
+                div.col-xs-12=lang.bill_to.text
+                div.col-xs-12=lang.bill_to.name
+                div.col-xs-12=lang.bill_to.address
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
             each invoice in lang.invoices
                 div.panel.panel-default
@@ -80,9 +84,8 @@ block content
                             href="#collapse-" + invoice.id,
                             aria-expanded="false",
                             aria-controls="collapse-" + invoice.id)
-                                span= lang.thead.work_number + ': ' + invoice.work_number
-                                span &nbsp&nbsp&nbsp&nbsp
-                                span= lang.thead.time + ': ' + invoice.time
+                                p= lang.thead.work_number + ': ' + invoice.work_number
+                                = lang.thead.time + ': ' + invoice.time
                     div.panel-collapse.collapse(
                     id="collapse-" + invoice.id,
                     role="tabpanel",
@@ -93,10 +96,17 @@ block content
                             p= lang.thead.rate + ': ' + invoice.rate
                             p= lang.thead.subtotal + ': ' + invoice.subtotal
                             p= lang.thead.work_status + ': ' + invoice.work_status
-                            button.btn.btn-default.btn-info= invoice.edit
-        div
-            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.cancel
-            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.both
-            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.manual_edit
-            button.btn.btn-default.btn-info.btn-xs= lang.btn_groups.save
-            
+                            button.btn.btn-default.btn-info= lang.btn_edit
+
+        div.section
+            div.form-group
+                div.buttons.col-sm-9.col-sm-offset-3.col-xs-12
+                    button.btn.btn-default.btn-info= lang.btn_add_work
+                    button.btn.btn-default.btn-info= lang.btn_groups.cancel
+                    button.btn.btn-default.btn-info= lang.btn_groups.both
+                    button.btn.btn-default.btn-info= lang.btn_groups.manual_edit
+                    button.btn.btn-default.btn-info= lang.btn_groups.save
+    script(type='text/javascript' src='/scripts/lib/My97DatePicker/WdatePicker.js')
+
+block footer
+    include ../public/footerfixed
