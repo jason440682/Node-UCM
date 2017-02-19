@@ -45,7 +45,7 @@ tbody tr {
   line-height: 20px;
 }
 
-td>.btn, .panel-body .btn {
+td > .btn, .panel-body .btn {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-right: 5px;
@@ -61,10 +61,30 @@ button a {
   }
 }
 
+.search {
+  padding-right: 0;
+}
+
+.search-input {
+  background: url("../../../images/client/search.png") no-repeat 5px center;
+  background-size: 17px 17px;
+  padding-left: 25px;
+}
+
+.search-btn {
+  @media (max-width: 992px) {
+    margin-top: 10px;
+  }
+}
+
 .search-bar {
   margin-bottom: 20px;
 }
 
-.search-text {
-  padding-left: 0;
+.search-box {
+  margin: 5px 0;
+
+  button {
+    width: 100%;
+  }
 }

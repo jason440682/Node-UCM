@@ -1,52 +1,96 @@
-.clearfix:after {
-  content: '';
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
+.title {
+  margin: 20px auto;
+  text-align: center;
+  font-size: 20px;
 }
 
-ul {
-  margin: auto;
+.title-group {
+  position: relative;
 
-  li {
-    font-weight: bold;
-    color: black;
+  .work-temp {
+    @media (min-width: 768px) {
+      position: absolute;
+      right: 40px;
+      top: -13px;
+    }
+
+    @media (max-width: 768px) {
+      position: relative;
+      margin: 0 auto;
+      width: 70%;
+
+      button {
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
   }
 }
 
-.right {
-  position: absolute;
-  font-size: 15px;
-  top: 1rem;
-  bottom: 1rem;
+.section {
+  border-top: 1px solid gray;
+  padding: 20px 0;
+
+  textarea {
+    height: 150px;
+  }
 }
 
-.search {
-  height: 34px;
+label[for] {
   line-height: 34px;
 }
 
-.create {
-  position: absolute;
-  right: 0;
+input[type="radio"], input[type="checkbox"] {
+  margin-right: 10px;
 }
 
-.table-style {
-  margin-top: 10px;
-  min-height: 400px;
-  background-color: #f9f9f9;
+.address {
+  margin-right: 40px;
 }
 
-thead {
-  background: lightblue;
+.label-text {
+  font-weight: bold;
+  padding-left: 0;
 }
 
-tbody tr {
-  height: 20px;
-  line-height: 20px;
+.invoice-num {
+  line-height: 34px;
 }
 
-td .btn {
-  margin-left: 5px;
+.reminder {
+  line-height: 34px;
+}
+
+.reminder-box {
+  padding: 0;
+}
+
+.reminder-check {
+  margin-right: 20px;
+}
+
+.form-group button {
+  margin: 0 10px;
+
+  @media (max-width: 768px) {
+    margin: 5px 0;
+    width: 100%;
+  }
+}
+
+.submit {
+  display: block;
+  margin: 10px auto;
+}
+
+.center-vertical {
+  margin-top: 30px;
+}
+
+.file-upload {
+  margin-top: 5px;
+}
+
+.submit {
+  margin-left: 10px
 }
