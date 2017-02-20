@@ -1,86 +1,52 @@
 module.exports = {
-    title:'Create Newsletter/Group Notification',
+    title: 'Create Newsletter/Group Notification',
 
-
-    client_accounts: {
-        text: 'Client Accounts',
+    name: {
+        text: 'Name',
+        placeholder: 'Name'
     },
 
-    work_book: {
-        text: 'Work Book',
+    description: {
+        text: 'Description',
+        placeholder: 'Description'
     },
 
-    billing_payment: {
-        text: 'Billing&Payment',
+    recipients: {
+        text: 'Recipients',
+        client: 'All Client',
+        group: 'Group',
+        placeholder: 'Recipients',
+        search: 'Search'
     },
 
-    marketing: {
-        text: 'Marketing',
+    send_date: {
+        text: 'Send Date',
+        placeholder: 'Send Date'
     },
 
-    reports: {
-        text: 'Reports',
+    send_time: {
+        text: 'Send Time',
+        placeholder: 'Send Time'
     },
 
-
-    name:{
-        text:'Name',
-        placeholder:'Name'
+    line: {
+        text: 'Email Subject Line',
+        placeholder: 'text'
     },
 
-    description:{
-        text:'Description',
-        placeholder:'Description'
+    content: {
+        text: 'Email Content'
     },
 
-    recipients:{
-        text:'Recipients',
-        client:'All Client',
-        group:'Group',
-        placeholder:'Recipients',
-        search:'Search'
+    document: {
+        text: 'Email Attachment',
+        placeholder: 'File Path',
+        button: 'Upload',
+        thname: 'Name',
+        thdate: 'Upload Date'
     },
 
-    send_date:{
-        text:'Send Date',
-        placeholder:'Send Date'
-    },
-
-    send_time:{
-        text:'Send Time',
-        placeholder:'Send Time'
-    },
-
-    line:{
-        text:'Email Subject Line',
-        placeholder:'text'
-    },
-
-    content:{
-        text:'Email Content'
-    },
-
-    
-
-    document:{
-        text:'Email Attachment',
-        placeholder:'File Path',
-        button:'Upload',
-        thname:'Name',
-        thdate:'Upload Date'
-    },
-
-
-    buttons:{
-        create:'Create'
-    },
-
-   
-    footnavbar:{
-        help:'Help & Support',
-        manual:'Manual & Tutorial',
-        forum:'Forum',
-        privacy:'Privacy Policy',
-        service:'Terms of Service'
+    buttons: {
+        create: 'Create'
     }
-}
+};

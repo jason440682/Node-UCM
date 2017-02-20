@@ -7,22 +7,22 @@ block content
         div.form-group
             div.col-sm-6
                 div.col-sm-5
-                    label(for="invoice_date")= lang.invoice_date.text
+                    label(for="invoice_date")= lang.invoice_date
                 div.col-sm-7
-                    input.form-control.Wdate#invoice_date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date.text)
+                    input.form-control.Wdate#invoice_date(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date)
             div.col-sm-6
                 div.col-sm-3
-                    label(for)= lang.client.text
+                    label(for)= lang.client
                 div.col-sm-9
                     select.form-control
-                        for name in lang.client.names
+                        for name in client_names
                             option=name
 
         div.form-group.col-sm-12.info
-            p.col-sm-12=lang.invoice_date.text
-            p.col-sm-12=lang.bill_to.text
-            p.col-sm-12=lang.bill_to.name
-            p.col-sm-12=lang.bill_to.address
+            p.col-sm-12= lang.invoice_date + bill_info.date
+            p.col-sm-12= lang.bill_to
+            p.col-sm-12= bill_info.name
+            p.col-sm-12= bill_info.address
 
         div.table-style.col-sm-12.form-group
             table.table.table-bordered.table-striped.table-condensed
@@ -36,8 +36,8 @@ block content
                     th= lang.thead.work_status
                     th= lang.thead.edit
                 tbody
-                    if lang.invoices.length > 0
-                        each invoice in lang.invoices
+                    if invoices.length > 0
+                        each invoice in invoices
                             tr
                                 td= invoice.work_number
                                 td= invoice.description
@@ -58,18 +58,18 @@ block content
     div.visible-xs
         div.search-bar.container
             div.search-box
-                input.form-control.Wdate#invoice_date-xs(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date.text)
+                input.form-control.Wdate#invoice_date-xs(type="text", name="date", onClick='WdatePicker()',placeholder= lang.invoice_date)
             div.search-box
                 select.form-control#searchname-xs(name='searchname')
-                    for name in lang.client.names
+                    for name in client_names
                         option=name
             div.form-group.info.clearfix
-                div.col-xs-12=lang.invoice_date.text
-                div.col-xs-12=lang.bill_to.text
-                div.col-xs-12=lang.bill_to.name
-                div.col-xs-12=lang.bill_to.address
+                div.col-xs-12= lang.invoice_date + bill_info.date
+                div.col-xs-12= lang.bill_to
+                div.col-xs-12= bill_info.name
+                div.col-xs-12= bill_info.address
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
-            each invoice in lang.invoices
+            each invoice in invoices
                 div.panel.panel-default
                     div.panel-heading(role="tab", id=invoice.id)
                         h4.panel-title

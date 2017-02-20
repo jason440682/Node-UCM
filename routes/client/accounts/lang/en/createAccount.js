@@ -1,61 +1,28 @@
 module.exports = {
-    title:'Create Client Account',
+    title: 'Create Client Account',
+    type: 'Account Type',
 
-    username:{
-        text:'username'
+    personal: {
+        text: 'Personal',
+        firstname: 'First Name',
+        lastname: 'Last Name',
+        placeholder: 'Text'
     },
 
-    client_accounts: {
-        text: 'Client Accounts',
+    business: {
+        text: 'Business',
+        name: 'Business Name',
+        placeholder: 'Text'
     },
 
-    work_book: {
-        text: 'Work Book',
+    accountstatus: {
+        text: 'Account Status',
+        status: ['new', 'out of date']
     },
 
-    billing_payment: {
-        text: 'Billing&Payment',
-    },
-
-    marketing: {
-        text: 'Marketing',
-    },
-
-    reports: {
-        text: 'Reports',
-    },
-
-    create_account:{
-        text:'Create Client Account'
-    },
-    
-    type:{
-         text:'Account Type'
-    },
-
-    personal:{
-        text:'Personal',
-        firstname:'First Name',
-        lastname:'Last Name',
-        placeholder:'Text'
-    },
-
-    business:{
-        text:'Business',
-        name:'Business Name',
-        placeholder:'Text'
-    },
-
-    accountstatus:{
-        text:'Account Status',
-        status:[
-            'new','out of date'
-        ]
-    },
-
-    assignto:{
-        text:'Assign To',
-        staff:['Staff A','Staff B']
+    assignto: {
+        text: 'Assign To',
+        staff: ['Staff A', 'Staff B']
     },
 
     contact_first_name: {
@@ -67,8 +34,8 @@ module.exports = {
         text: 'Last Name',
         placeholder: 'Last Name'
     },
-    
-     email_address: {
+
+    email_address: {
         text: 'Email Address',
         placeholder: 'Your Email Address'
     },
@@ -94,9 +61,10 @@ module.exports = {
             'China 5'
         ]
     },
+
     billing_address: {
         text: 'Billing Address',
-        issame:'Same as mailing address',
+        issame: 'Same as mailing address',
         placeholder: {
             street: 'Street',
             city: 'City',
@@ -117,34 +85,24 @@ module.exports = {
         placeholder: 'Text'
     },
 
-    email_group:{
-        text:'Email Group',
-        groups:['email group 1','email group 2']
+    email_group: {
+        text: 'Email Group',
+        groups: ['email group 1', 'email group 2']
     },
 
-    notification:{
-        text:'Notification Preference',
-        email:'Email',
-        phone:'Phone',
-        sms:'SMS'
+    notification: {
+        text: 'Notification Preference',
+        email: 'Email',
+        phone: 'Phone',
+        sms: 'SMS'
     },
 
-    client_portal:{
-        text:'Client Portal',
-        enable:'Enable',
-        disable:'Disable',
-        btn_text:'Send Portal Invitation'
+    client_portal: {
+        text: 'Client Portal',
+        enable: 'Enable',
+        disable: 'Disable',
+        btn_text: 'Send Portal Invitation'
     },
 
-    submit_btn: {
-        text: 'Create Client Account'
-    },
-
-    footnavbar:{
-        help:'Help & Support',
-        manual:'Manual & Tutorial',
-        forum:'Forum',
-        privacy:'Privacy Policy',
-        service:'Terms of Service'
-    }
-}
+    submit_btn: 'Create Client Account'
+};

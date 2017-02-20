@@ -75,22 +75,22 @@ module.exports = {
     business_type: {
         text: '公司种类',
         types: [
-            'Bussiness Type 1',
-            'Bussiness Type 2',
-            'Bussiness Type 3',
-            'Bussiness Type 4',
-            'Bussiness Type 5'
+            '公司类别 1',
+            '公司类别 2',
+            '公司类别 3',
+            '公司类别 4',
+            '公司类别 5'
         ]
     },
 
     time_zone: {
         text: '公司时区',
         timeZones: [
-            'US Pacific Time 1',
-            'US Pacific Time 2',
-            'US Pacific Time 3',
-            'US Pacific Time 4',
-            'US Pacific Time 5'
+            '美国时区 1',
+            '美国时区 2',
+            '美国时区 3',
+            '美国时区 4',
+            '美国时区 5'
         ]
     },
 
@@ -113,11 +113,11 @@ module.exports = {
             zip_code: '邮政编码'
         },
         country: [
-            'China 1',
-            'China 2',
-            'China 3',
-            'China 4',
-            'China 5'
+            '中国地区 1',
+            '中国地区 2',
+            '中国地区 3',
+            '中国地区 4',
+            '中国地区 5'
         ]
     },
 
@@ -127,7 +127,7 @@ module.exports = {
     },
 
     logo: {
-        text: '公司logo',
+        text: '公司 Logo',
         placeholder: '上传'
     },
 

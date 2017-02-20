@@ -2,24 +2,27 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function (req, res, next) {
-  var data = {
-    key: 'marketing/createNewsletter',
-    title: 'Create Newsletter/Group Notification',
-    language: 'en',
-    lang: require('./lang/en/createNewsletter'),
-    nav: require('../public/lang/en/navbar')
-  };
+    var data = {
+        key: 'marketing/createNewsletter',
 
-  if (req.lang && req.lang == 'zh-cn') {
-    data.language = 'zh-cn';
-    data.lang = require('./lang/zh-cn/createNewsletter');
-  }
+        language: 'en',
+        lang: require('./lang/en/createNewsletter'),
+        nav: require('../public/lang/en/navbar'),
+        footnavbar: require('../public/lang/en/footbavbar')
+    };
 
-  res.render('client/marketing/createNewsletter', data);
+    if (req.lang && req.lang == 'zh-cn') {
+        data.language = 'zh-cn';
+        data.lang = require('./lang/zh-cn/createNewsletter');
+        data.nav = require('../public/lang/zh-cn/navbar');
+        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
+    }
+
+    res.render('client/marketing/createNewsletter', data);
 });
 
 router.post('/', function (req, res, next) {
-  //表单处理逻辑
+    //表单处理逻辑
 });
 
 module.exports = router;

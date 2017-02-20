@@ -4,21 +4,20 @@ block content
     div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-3.col-md-2.search
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
             div.col-sm-3.col-md-2.search
                 select.form-control#searchname(name='searchname')
-                    for name in lang.names
+                    for name in names
                         option=name
             div.col-sm-3.col-md-2.search
                 select.form-control#searchstaff(name='searchstaff')
-                    for staff in lang.staffs
+                    for staff in staffs
                         option=staff
             div.col-sm-3.col-md-2.search
-                a(href='#')=lang.search.text
-            div.col-sm-3.col-md-2.search-btn
-                button.btn.btn-default.btn-info=lang.create_notification.text
-            div.col-sm-3.col-md-2.search-btn
-                button.btn.btn-default.btn-info=lang.create_notification.text
+                a(href='#')=lang.search
+            div.col-sm-6.col-md-4
+                button.btn.btn-default.btn-info.search-btn=lang.calendar
+                button.btn.btn-default.btn-info.search-btn=lang.create_notification
         div.table-responsive.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
                 thead
@@ -35,8 +34,8 @@ block content
                     th= lang.thead.billingrate
                     th= lang.thead.manage
                 tbody
-                    if lang.works.length > 0
-                        each work in lang.works
+                    if works.length > 0
+                        each work in works
                             tr
                                 td= work.number
                                 td= work.work
@@ -51,29 +50,29 @@ block content
                                 td= work.billingrate
                                 td
                                     button.btn.btn-default.btn-info
-                                        a(href="modifyWork")='Update'
+                                        a(href="modifyWork")= lang.btn_update
     div.visible-xs
         div.search-bar.container
             div.search-box
-                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
             div.search-box
                 select.form-control#searchname-xs(name='searchname')
-                    for name in lang.names
+                    for name in names
                         option=name
             div.search-box
                 select.form-control#searchstaff-xs(name='searchstaff')
-                    for staff in lang.staffs
+                    for staff in staffs
                         option=staff
             div.search-box
                 button.btn.btn-default.btn-info.btn-sm.search-adv
-                    a(href='#')=lang.search.text
+                    a(href='#')=lang.search
             div.search-box
                 div.search-btn
-                    button.btn.btn-default.btn-info.btn-sm=lang.create_notification.text
+                    button.btn.btn-default.btn-info.btn-sm=lang.calendar
                 div.search-btn
-                    button.btn.btn-default.btn-info.btn-sm=lang.create_notification.text
+                    button.btn.btn-default.btn-info.btn-sm=lang.create_notification
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
-            each work in lang.works
+            each work in works
                 div.panel.panel-default
                     div.panel-heading(role="tab", id=work.id)
                         h4.panel-title
@@ -101,7 +100,7 @@ block content
                             p= lang.thead.billable + ': ' + work.billable
                             p= lang.thead.billingrate + ': ' + work.billingrate
                             button.btn.btn-default.btn-info
-                                a(href="modifyWork")='Update'
+                                a(href="modifyWork")= lang.btn_update
 
 block footer
     include ../public/footerfixed

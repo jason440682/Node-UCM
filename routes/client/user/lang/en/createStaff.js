@@ -1,7 +1,3 @@
-/**
- * Created by shoufu on 17/1/19.
- */
-
 module.exports = {
     title: 'Create Stuff User',
 

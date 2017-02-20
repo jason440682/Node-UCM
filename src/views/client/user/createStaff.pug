@@ -32,8 +32,8 @@ block content
 
             div.form-group
                 div.radio.col-sm-6
-                    span.col-sm-7= lang.auto_login.text
-                    div.col-sm-5
+                    span.col-sm-7.label-text= lang.auto_login.text
+                    div.col-sm-5.label-radio
                         label.col-sm-6
                             input(type="radio", name="auto-login", value="yes" checked)
                             = lang.auto_login.yes
@@ -42,8 +42,8 @@ block content
                             = lang.auto_login.no
 
                 div.radio.col-sm-5
-                    span.col-sm-6= lang.send_code.text
-                    div.col-sm-6
+                    span.col-sm-6.label-text= lang.send_code.text
+                    div.col-sm-6.label-radio
                         label.col-sm-6
                             input(type="radio", name="send-code", value="mobile" checked)
                             = lang.send_code.mobile

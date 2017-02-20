@@ -7,7 +7,8 @@ router.get('/',function(req,res,next){
         title:'View/Modify Work',
         language:'en',
         lang:require('./lang/en/modifyWork'),
-        nav: require('../public/lang/en/navbar')
+        nav: require('../public/lang/en/navbar'),
+        footnavbar: require('../public/lang/en/footbavbar')
     };
 
     if(req.lang && req.lang=='zh-cn'){

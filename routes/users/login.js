@@ -4,15 +4,14 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
     var data = {
         key: 'login',
-        title: 'Log In'
+
+        language: 'en',
+        lang: require('./lang/en/login')
     };
 
     if (req.lang && req.lang == 'zh-cn') {
         data.language = 'zh-cn';
         data.lang = require('./lang/zh-cn/login');
-    } else {
-        data.language = 'en';
-        data.lang = require('./lang/en/login');
     }
 
     res.render('users/login', data);
@@ -21,7 +20,11 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     // 这里写登录页面 POST 数据过来时要处理的逻辑
     console.log('Post login!');
-    res.redirect('/en/client/accounts');
+    if (req.lang && req.lang == 'zh-cn') {
+        res.redirect('/cn/client/accounts');
+    } else {
+        res.redirect('/en/client/accounts');
+    }
 });
 
 module.exports = router;

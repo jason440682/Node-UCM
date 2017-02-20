@@ -1,133 +1,97 @@
 module.exports = {
-    title:'Create New Work',
+    title: 'Create New Work',
+    template: 'Use Work Template',
 
-    username:{
-        text:'username'
+    work: {
+        text: 'Work',
+        placeholder: 'work'
     },
 
-    client_accounts: {
-        text: 'Client Accounts',
+    status: {
+        text: 'Status',
+        statuses: ['Status 1', 'Status 2']
     },
 
-    work_book: {
-        text: 'Work Book',
+    assignee: {
+        text: 'Staff Assignee',
+        assignees: ['Assignee to me', 'Assignee to others']
     },
 
-    billing_payment: {
-        text: 'Billing&Payment',
+    date: {
+        text: 'Date',
+        repeat: 'Repeate',
+        enddate: 'End Date',
+        frequency: ['Every 3 month', 'Every 6 month', 'Every 1 year'],
+        never: 'Never End'
     },
 
-    marketing: {
-        text: 'Marketing',
+    time: {
+        text: 'Time',
+        placeholder: 'Time',
+        duration: 'Duration',
+        durationtime: ['2 hour', '4 hour', '1 day']
     },
 
-    reports: {
-        text: 'Reports',
+    location: {
+        text: 'Location',
+        placeholder: 'Location'
     },
 
-    template:{
-        text:'Use Work Template'
+    contact: {
+        text: 'Client Contact',
+        contacts: ['client contact 1', 'client contact 2']
     },
 
-    work:{
-        text:'Work',
-        placeholder:'work'
+    description: {
+        text: 'Work Description',
+        placeholder: 'Work Description'
     },
 
-    status:{
-        text:'Status',
-        statuses:['Status 1','Status 2']
+    document: {
+        text: 'Work Documents',
+        placeholder: 'File Path',
+        button: 'Upload',
+        thname: 'Name',
+        thdate: 'Upload Date'
     },
 
-    assignee:{
-        text:'Staff Assignee',
-        assignees:['Assignee to me','Assignee to others']
+    billiable: {
+        text: 'Billiable',
+        yes: 'Yes',
+        no: 'No'
     },
 
-    date:{
-        text:'Date',
-        repeat:'Repeate',
-        enddate:'End Date',
-        frequency:['Every 3 month','Every 6 month','Every 1 year'],
-        never:'Never End'
+    billingrate: {
+        text: 'Billing Rate',
+        rates: ['$200/hour', '$400/hour']
     },
 
-    time:{
-        text:'Time',
-        placeholder:'Time',
-        duration:'Duration',
-        durationtime:['2 hour','4 hour','1 day']
+    invoicestatus: {
+        text: 'Invoice Status',
+        statuses: ['unpaid', 'paid'],
+        number: 'Invoice Number',
+        truenum: '000387'
     },
 
-    location:{
-        text:'Location',
-        placeholder:'Location'
+    autoreminder: {
+        text: 'Automatic Reminder',
+        notifyclient: 'Notify Client Contact',
+        notifystaff: 'Notify Staff Contact',
+        reminder: 'Reminder',
+        time: ['1 day', '10 day', '1 month'],
+        email: 'Email',
+        phone: 'Phone',
+        sms: 'Sms'
     },
 
-    contact:{
-        text:'Client Contact',
-        contacts:['client contact 1','client contact 2']
+    remindermes: {
+        text: 'Reminder Message',
+        placeholder: 'REminder Message'
     },
 
-    description:{
-        text:'Work Description',
-        placeholder:'Work Description'
-    },
-
-    document:{
-        text:'Work Documents',
-        placeholder:'File Path',
-        button:'Upload',
-        thname:'Name',
-        thdate:'Upload Date'
-    },
-
-    billiable:{
-        text:'Billiable',
-        yes:'Yes',
-        no:'No'
-    },
-
-    billingrate:{
-        text:'Billing Rate',
-        rates:['$200/hour','$400/hour']
-    },
-
-    invoicestatus:{
-        text:'Invoice Status',
-        statuses:['unpaid','paid'],
-        number:'Invoice Number',
-        truenum:'000387'
-    },
-
-    autoreminder:{
-        text:'Automatic Reminder',
-        notifyclient:'Notify Client Contact',
-        notifystaff:'Notify Staff Contact',
-        reminder:'Reminder',
-        time:['1 day','10 day','1 month'],
-        email:'Email',
-        phone:'Phone',
-        sms:'Sms'
-    },
-
-    remindermes:{
-        text:'Reminder Message',
-        placeholder:'REminder Message'
-    },
-
-    buttons:{
-        work:'Create Work Activity',
-        invoice:'Create Invoice',
-        both:'Create And Send Invoice'
-    },
-
-   
-    footnavbar:{
-        help:'Help & Support',
-        manual:'Manual & Tutorial',
-        forum:'Forum',
-        privacy:'Privacy Policy',
-        service:'Terms of Service'
+    buttons: {
+        work: 'Create Work Activity',
+        invoice: 'Create Invoice',
+        both: 'Create And Send Invoice'
     }
-}
+};

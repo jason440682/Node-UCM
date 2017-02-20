@@ -7,6 +7,7 @@ var router = express.Router();
 var accounts = require('./client/accounts/clientAccounts');
 var createaccount = require('./client/accounts/createAccount');
 var notification = require('./client/accounts/notification');
+var documentManager = require('./client/accounts/docManager');
 var workbook = require('./client/workbook/workbook');
 var creatework = require('./client/workbook/createWork');
 var workcalendar = require('./client/workbook/workCalendar');
@@ -19,25 +20,28 @@ var payment = require('./client/billingPayment/payment');
 var modifyinvoice = require('./client/others/modifyInvoice');
 var newsletter = require('./client/marketing/newsletter');
 var createnewsletter = require('./client/marketing/createNewsletter');
-var documentManager = require('./client/accounts/docManager');
 var createStaff = require('./client/user/createStaff');
 
 router.use('/accounts', accounts);
-router.use('/createaccount',createaccount);
-router.use('/notification',notification);
-router.use('/workbook',workbook);
-router.use('/creatework',creatework);
-router.use('/workcalendar',workcalendar);
-router.use('/worktemplate',worktemplate);
-router.use('/modifywork',modifywork);
-router.use('/billingpayment',billingpayment);
-router.use('/createinvoice',createinvoice);
-router.use('/invoices',invoices);
-router.use('/payment',payment);
-router.use('/modifyinvoice',modifyinvoice);
-router.use('/newsletter',newsletter);
-router.use('/createnewsletter',createnewsletter);
+router.use('/createaccount', createaccount);
+router.use('/notification', notification);
 router.use('/docManager', documentManager);
+
+router.use('/workbook', workbook);
+router.use('/creatework', creatework);
+router.use('/workcalendar', workcalendar);
+router.use('/worktemplate', worktemplate);
+router.use('/modifywork', modifywork);
+
+router.use('/billingpayment', billingpayment);
+router.use('/createinvoice', createinvoice);
+router.use('/invoices', invoices);
+router.use('/payment', payment);
+router.use('/modifyinvoice', modifyinvoice);
+
+router.use('/newsletter', newsletter);
+router.use('/createNewsletter', createnewsletter);
+
 router.use('/createStaff', createStaff);
 
 module.exports = router;

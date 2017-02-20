@@ -4,15 +4,15 @@ block content
     div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-3
-                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
             div.col-sm-3
                 select.form-control#searchname(name='searchname')
-                    for name in lang.names
+                    for name in names
                         option=name
             div.col-sm-3.search
-                a(href='#')=lang.search.text
+                a(href='#')=lang.search
             div.col-sm-3
-                button.btn.btn-default.btn-info=lang.create_notification.text
+                button.btn.btn-default.btn-info=lang.create_notification
         div.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
                 thead
@@ -24,8 +24,8 @@ block content
                     th= lang.thead.status
                     th= lang.thead.manage
                 tbody
-                    if lang.notifications.length > 0
-                        each notification in lang.notifications
+                    if notifications.length > 0
+                        each notification in notifications
                             tr
                                 td= notification.number
                                 td= notification.name
@@ -34,25 +34,25 @@ block content
                                 td= notification.sendtime
                                 td= notification.status
                                 td
-                                    button.btn.btn-default.btn-info='Modify'
-                                    button.btn.btn-default.btn-info='Resend'
-                                    button.btn.btn-default.btn-info='Delete'
+                                    button.btn.btn-default.btn-info= lang.btn_modify
+                                    button.btn.btn-default.btn-info= lang.btn_resend
+                                    button.btn.btn-default.btn-info= lang.btn_delete
     div.visible-xs
         div.search-bar.container
             div.search-box
-                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
             div.search-box
                 select.form-control#searchname-xs(name='searchname')
-                    for name in lang.names
+                    for name in names
                         option=name
             div.search-box
                 button.btn.btn-default.btn-info.btn-sm
-                    a(href='#')=lang.search.text
+                    a(href='#')=lang.search
             div.search-box
                 button.btn.btn-default.btn-info.btn-sm
-                    a(href="#")=lang.create_notification.text
+                    a(href="#")=lang.create_notification
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
-            each notification in lang.notifications
+            each notification in notifications
                 div.panel.panel-default
                     div.panel-heading(role="tab", id=notification.id)
                         h4.panel-title
@@ -74,9 +74,9 @@ block content
                             p= lang.thead.recipients + ': ' + notification.recipients
                             p= lang.thead.sendtime + ': ' + notification.sendtime
                             p= lang.thead.status + ': ' + notification.status
-                            button.btn.btn-default.btn-info='Modify'
-                            button.btn.btn-default.btn-info='Resend'
-                            button.btn.btn-default.btn-info='Delete'
+                            button.btn.btn-default.btn-info= lang.btn_modify
+                            button.btn.btn-default.btn-info= lang.btn_resend
+                            button.btn.btn-default.btn-info= lang.btn_delete
 
 block footer
     include ../public/footerfixed

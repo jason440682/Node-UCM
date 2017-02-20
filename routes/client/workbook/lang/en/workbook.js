@@ -1,47 +1,10 @@
 module.exports = {
-
     title: 'Work Book',
+    search_placeholder: 'search work',
+    search: 'Advanced Search',
+    calendar: 'Calendar',
+    create_notification: 'Create Notification',
 
-    username: {
-        text: 'username'
-    },
-
-    client_accounts: {
-        text: 'Client Accounts',
-    },
-
-    work_book: {
-        text: 'Work Book',
-    },
-
-    billing_payment: {
-        text: 'Billing&Payment',
-    },
-
-    marketing: {
-        text: 'Marketing',
-    },
-
-    reports: {
-        text: 'Reports',
-    },
-
-    names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],
-
-    staffs: ['staff1', 'staff2', 'staff3', 'staff4', 'staff5'],
-
-    calendar: {
-        text: 'Calendar'
-    },
-
-    searchplaceholder: 'search work',
-
-    search: {
-        text: 'Advanced Search'
-    },
-    create_notification: {
-        text: 'Create Notification'
-    },
     thead: {
         number: 'Number',
         work: 'Work',
@@ -56,60 +19,6 @@ module.exports = {
         billingrate: 'Billingrate',
         manage: 'Manage'
     },
-    works: [
-        {
-            id: '1',
-            number: 'Number',
-            work: 'Work',
-            status: 'Status',
-            assignee: 'Assignee',
-            time: 'Date/Time',
-            duration: 'Duration',
-            location: 'Location',
-            client: 'Client',
-            note: 'Note',
-            billable: 'Billable',
-            billingrate: 'Billingrate',
-            manage: 'Manage'
-        },
-        {
-            id: '2',
-            number: 'Number',
-            work: 'Work',
-            status: 'Status',
-            assignee: 'Assignee',
-            time: 'Date/Time',
-            duration: 'Duration',
-            location: 'Location',
-            client: 'Client',
-            note: 'Note',
-            billable: 'Billable',
-            billingrate: 'Billingrate',
-            manage: 'Manage'
-        },
-        {
-            id: '3',
-            number: 'Number',
-            work: 'Work',
-            status: 'Status',
-            assignee: 'Assignee',
-            time: 'Date/Time',
-            duration: 'Duration',
-            location: 'Location',
-            client: 'Client',
-            note: 'Note',
-            billable: 'Billable',
-            billingrate: 'Billingrate',
-            manage: 'Manage'
-        }
-    ],
-    footnavbar: {
-        help: 'Help & Support',
-        manual: 'Manual & Tutorial',
-        forum: 'Forum',
-        privacy: 'Privacy Policy',
-        service: 'Terms of Service'
-    }
 
-
+    btn_update: 'Update'
 };

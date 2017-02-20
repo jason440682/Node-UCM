@@ -5,7 +5,7 @@ block content
         h1.title= lang.title
 
         div.section
-            div=lang.worktitle
+            div=lang.work_title
             div.form-group
                 label.col-sm-3(for="work")= lang.work.text
                 div.col-sm-6
@@ -78,7 +78,7 @@ block content
                             input(for="notifyclient",type="checkbox")
                             =lang.autoreminder.notifyclient
                     div.col-sm-12.col-md-8.reminder.reminder-box
-                        div.col-sm-2.col-xs-3
+                        div.col-sm-2.col-xs-3.reminder-label
                             label=lang.autoreminder.reminder
                         div.col-sm-3.col-xs-8
                             select.form-control
@@ -102,7 +102,7 @@ block content
                             input(for="notifystaff",type="checkbox")
                             =lang.autoreminder.notifystaff
                     div.col-sm-12.col-md-8.reminder.reminder-box
-                        div.col-sm-2.col-xs-3
+                        div.col-sm-2.col-xs-3.reminder-label
                             label=lang.autoreminder.reminder
                         div.col-sm-3.col-xs-8
                             select.form-control

@@ -1,103 +1,70 @@
 module.exports = {
-    title:'Create Work Template',
+    title: 'Create Work Template',
+    work_title: 'Work #1',
 
-    username:{
-        text:'username'
+    work: {
+        text: 'Work',
+        placeholder: 'work'
     },
 
-    client_accounts: {
-        text: 'Client Accounts',
+    assignee: {
+        text: 'Staff Assignee',
+        assignees: ['Assignee to me', 'Assignee to others']
     },
 
-    work_book: {
-        text: 'Work Book',
+    duration: {
+        text: 'Duration',
+        times: ['1 hour', '1 day', '1 month']
     },
 
-    billing_payment: {
-        text: 'Billing&Payment',
+    location: {
+        text: 'Location',
+        placeholder: 'Location'
     },
 
-    marketing: {
-        text: 'Marketing',
+    description: {
+        text: 'Work Description',
+        placeholder: 'Work Description'
     },
 
-    reports: {
-        text: 'Reports',
+    document: {
+        text: 'Work Documents',
+        placeholder: 'File Path',
+        button: 'Upload',
+        thname: 'Name',
+        thdate: 'Upload Date'
     },
 
-    worktitle:'Work #1',
-    work:{
-        text:'Work',
-        placeholder:'work'
+    billiable: {
+        text: 'Billiable',
+        yes: 'Yes',
+        no: 'No'
     },
 
-    assignee:{
-        text:'Staff Assignee',
-        assignees:['Assignee to me','Assignee to others']
+    billingrate: {
+        text: 'Billing Rate',
+        rates: ['$200/hour', '$400/hour']
     },
 
-    duration:{
-        text:'Duration',
-        times:['1 hour','1 day','1 month']
+    autoreminder: {
+        text: 'Automatic Reminder',
+        notifyclient: 'Notify Client Contact',
+        notifystaff: 'Notify Staff Contact',
+        reminder: 'Reminder',
+        time: ['1 day', '10 day', '1 month'],
+        email: 'Email',
+        phone: 'Phone',
+        sms: 'Sms'
     },
 
-    location:{
-        text:'Location',
-        placeholder:'Location'
+    remindermes: {
+        text: 'Reminder Message',
+        placeholder: 'Reminder Message'
     },
 
-    description:{
-        text:'Work Description',
-        placeholder:'Work Description'
-    },
-
-    document:{
-        text:'Work Documents',
-        placeholder:'File Path',
-        button:'Upload',
-        thname:'Name',
-        thdate:'Upload Date'
-    },
-
-    billiable:{
-        text:'Billiable',
-        yes:'Yes',
-        no:'No'
-    },
-
-    billingrate:{
-        text:'Billing Rate',
-        rates:['$200/hour','$400/hour']
-    },
-
-    autoreminder:{
-        text:'Automatic Reminder',
-        notifyclient:'Notify Client Contact',
-        notifystaff:'Notify Staff Contact',
-        reminder:'Reminder',
-        time:['1 day','10 day','1 month'],
-        email:'Email',
-        phone:'Phone',
-        sms:'Sms'
-    },
-
-    remindermes:{
-        text:'Reminder Message',
-        placeholder:'REminder Message'
-    },
-
-    buttons:{
-        clear:'Clear',
-        add:'Add More Work',
-        save:'Finish And Save Template'
-    },
-
-   
-    footnavbar:{
-        help:'Help & Support',
-        manual:'Manual & Tutorial',
-        forum:'Forum',
-        privacy:'Privacy Policy',
-        service:'Terms of Service'
+    buttons: {
+        clear: 'Clear',
+        add: 'Add More Work',
+        save: 'Finish And Save Template'
     }
-}
+};

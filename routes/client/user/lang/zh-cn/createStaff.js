@@ -1,7 +1,3 @@
-/**
- * Created by shoufu on 17/1/19.
- */
-
 module.exports = {
     title: ' 创建新用户',
 
@@ -75,22 +71,22 @@ module.exports = {
     department: {
         text: '部门/分组',
         departments: [
-            'Billing Department 1',
-            'Billing Department 2',
-            'Billing Department 3',
-            'Billing Department 4',
-            'Billing Department 5'
+            '部门 1',
+            '部门 2',
+            '部门 3',
+            '部门 4',
+            '部门 5'
         ]
     },
 
     time_zone: {
         text: '工作时区',
         timeZones: [
-            'US Pacific Time 1',
-            'US Pacific Time 2',
-            'US Pacific Time 3',
-            'US Pacific Time 4',
-            'US Pacific Time 5'
+            '美国时区 1',
+            '美国时区 2',
+            '美国时区 3',
+            '美国时区 4',
+            '美国时区 5'
         ]
     },
 

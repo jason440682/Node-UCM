@@ -4,12 +4,12 @@ block content
     div.section.hidden-xs
         div.form-group.clearfix
             div.col-sm-3.search
-                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
             div.col-sm-3.search
-                a(href='#')=lang.search.text
+                a(href='#')=lang.search
             div.col-sm-5.col-sm-offset-1
                 button.btn.btn-default.btn-info
-                    a(href="createNewsletter")=lang.create_newsletter.text
+                    a(href="createNewsletter")=lang.create_newsletter
 
         div.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
@@ -22,9 +22,11 @@ block content
                     th= lang.thead.status
                     th= lang.thead.manage
                 tbody
+                    mixin btn_manage(newsletter)
+                        a(href="#")= newsletter.status == 'Completed' ? lang.btn_view : lang.btn_update
 
-                    if lang.newsletters.length>0
-                        each newsletter in lang.newsletters
+                    if newsletters.length>0
+                        each newsletter in newsletters
                             tr
                                 td= newsletter.number
                                 td= newsletter.name
@@ -34,19 +36,19 @@ block content
                                 td= newsletter.status
                                 td
                                     button.btn.btn-default.btn-info
-                                        a(href="#")= newsletter.manage
+                                        +btn_manage(newsletter)
     div.visible-xs
         div.search-bar.container
             div.search-box
-                input.form-control.search-input(type='text',placeholder=lang.searchplaceholder)
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
             div.search-box
                 button.btn.btn-default.btn-info.btn-sm
-                    a(href='#')=lang.search.text
+                    a(href='#')=lang.search
             div.search-box
                 button.btn.btn-default.btn-info.btn-sm
-                    a(href="createNewsletter")=lang.create_newsletter.text
+                    a(href="createNewsletter")=lang.create_newsletter
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
-            each newsletter in lang.newsletters
+            each newsletter in newsletters
                 div.panel.panel-default
                     div.panel-heading(role="tab", id=newsletter.id)
                         h4.panel-title
@@ -68,7 +70,8 @@ block content
                             p= lang.thead.recipents + ': ' + newsletter.recipents
                             p= lang.thead.send_time + ': ' + newsletter.send_time
                             p= lang.thead.status + ': ' + newsletter.status
-                            button.btn.btn-default.btn-info= newsletter.manage
+                            button.btn.btn-default.btn-info
+                                +btn_manage(newsletter)
 
 block footer
     include ../public/footerfixed

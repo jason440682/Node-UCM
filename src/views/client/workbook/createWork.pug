@@ -6,7 +6,7 @@ block content
             div.col-sm-12
                 h1.title= lang.title
             div.work-temp
-                button.btn.btn-default.btn-info.center-vertical=lang.template.text
+                button.btn.btn-default.btn-info.center-vertical=lang.template
 
         div.section
             div.form-group
@@ -137,7 +137,7 @@ block content
                             input(type="checkbox")
                             =lang.autoreminder.notifyclient
                     div.col-sm-12.col-md-8.reminder.reminder-box
-                        div.col-sm-2.col-xs-3
+                        div.col-sm-2.col-xs-3.reminder-label
                             label=lang.autoreminder.reminder
                         div.col-sm-3.col-xs-8
                             select.form-control
@@ -162,7 +162,7 @@ block content
                             input(type="checkbox")
                             =lang.autoreminder.notifystaff
                     div.col-sm-12.col-md-8.reminder.reminder-box
-                        div.col-sm-2.col-xs-3
+                        div.col-sm-2.col-xs-3.reminder-label
                             label=lang.autoreminder.reminder
                         div.col-sm-3.col-xs-8
                             select.form-control
@@ -170,13 +170,13 @@ block content
                                     option= ti
                         div.col-sm-7.col-xs-12
                             label.reminder-check
-                                input#wemail(type="checkbox",name="wemail")
+                                input(type="checkbox",name="wemail")
                                 =lang.autoreminder.email
                             label.reminder-check
-                                input#wphone(type="checkbox",name="wphone")
+                                input(type="checkbox",name="wphone")
                                 =lang.autoreminder.phone
                             label.reminder-check
-                                input#wsms(type="checkbox",name="wsms")
+                                input(type="checkbox",name="wsms")
                                 =lang.autoreminder.sms
 
             div.form-group

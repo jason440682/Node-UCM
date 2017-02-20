@@ -10,13 +10,7 @@ module.exports = {
         text: '密码',
         placeholder: '用户名 here'
     },
-    submit_btn: {
-        text: '登录'
-    },
-    tips:{
-        text:'忘记密码？'
-    },
-    signup:{
-        text:'注册'
-    }
+    submit_btn: '登录',
+    tips: '忘记密码？',
+    signup: '注册'
 };

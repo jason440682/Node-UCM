@@ -4,15 +4,14 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
     var data = {
         key: 'signup',
-        title: 'Sign UP'
+
+        language: 'en',
+        lang: require('./lang/en/signup')
     };
 
     if (req.lang && req.lang == 'zh-cn') {
         data.language = 'zh-cn';
         data.lang = require('./lang/zh-cn/signup');
-    } else {
-        data.language = 'en';
-        data.lang = require('./lang/en/signup');
     }
 
     res.render('users/signup', data);
@@ -21,7 +20,11 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     // 这里写注册页面 POST 数据过来时要处理的逻辑
     console.log('Post Register!');
-    res.redirect('/en/client/accounts');
+    if (req.lang && req.lang == 'zh-cn') {
+        res.redirect('/cn/client/accounts');
+    } else {
+        res.redirect('/en/client/accounts');
+    }
 });
 
 module.exports = router;

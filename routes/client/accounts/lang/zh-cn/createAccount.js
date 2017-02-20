@@ -1,60 +1,28 @@
 module.exports = {
-    title:'创建新账户',
+    title: '创建新账户',
+    type: '账户类型',
 
-    username:{
-        text:'用户名'
-    },
-
-    client_accounts: {
-        text: '客户账户',
-    },
-
-    work_book: {
-        text: '工作簿',
+    personal: {
+        text: '个人',
+        firstname: '名字',
+        lastname: '姓氏',
+        placeholder: '请输入您的名字'
     },
 
-    billing_payment: {
-        text: '计费与付款',
+    business: {
+        text: '公司',
+        name: '公司名称',
+        placeholder: '请输入您的公司名称'
     },
 
-    marketing: {
-        text: '销售',
+    accountstatus: {
+        text: '账户状态',
+        status: ['新建', '过期']
     },
 
-    reports: {
-        text: '报告',
-    },
-    create_account:{
-        text:'创建新账户'
-    },
-    
-    type:{
-         text:'账户类型'
-    },
-
-    personal:{
-        text:'个人',
-        firstname:'名字',
-        lastname:'姓氏',
-        placeholder:'Text'
-    },
-
-    business:{
-        text:'公司',
-        name:'公司名称',
-        placeholder:'Text'
-    },
-
-    accountstatus:{
-        text:'账户状态',
-        status:[
-            '新建','过期'
-        ]
-    },
-
-    assignto:{
-        text:'代理人',
-        staff:['Staff A','Staff B']
+    assignto: {
+        text: '代理人',
+        staff: ['Staff A', 'Staff B']
     },
 
     contact_first_name: {
@@ -66,10 +34,10 @@ module.exports = {
         text: '姓氏',
         placeholder: '姓氏'
     },
-    
-     email_address: {
+
+    email_address: {
         text: '邮箱',
-        placeholder: 'Your email address'
+        placeholder: '请输入您的邮箱地址'
     },
 
     mobile_num: {
@@ -86,16 +54,17 @@ module.exports = {
             zip_code: '邮政编码'
         },
         country: [
-            'China 1',
-            'China 2',
-            'China 3',
-            'China 4',
-            'China 5'
+            '中国地区 1',
+            '中国地区 2',
+            '中国地区 3',
+            '中国地区 4',
+            '中国地区 5'
         ]
     },
+
     billing_address: {
         text: '商品寄送地址',
-        issame:'同邮寄地址',
+        issame: '同邮寄地址',
         placeholder: {
             street: '街',
             city: '市',
@@ -103,11 +72,11 @@ module.exports = {
             zip_code: '邮政编码'
         },
         country: [
-            'China 1',
-            'China 2',
-            'China 3',
-            'China 4',
-            'China 5'
+            '中国地区 1',
+            '中国地区 2',
+            '中国地区 3',
+            '中国地区 4',
+            '中国地区 5'
         ]
     },
 
@@ -116,35 +85,24 @@ module.exports = {
         placeholder: '备注'
     },
 
-    email_group:{
-        text:'邮箱组',
-        groups:['email group 1','email group 2']
+    email_group: {
+        text: '邮箱组',
+        groups: ['email group 1', 'email group 2']
     },
 
-    notification:{
-        text:'通知方式',
-        email:'邮箱',
-        phone:'电话',
-        sms:'SMS'
+    notification: {
+        text: '通知方式',
+        email: '邮箱',
+        phone: '电话',
+        sms: 'SMS'
     },
 
-    client_portal:{
-        text:'账户通道',
-        enable:'开启',
-        disable:'关闭',
-        btn_text:'发送邀请函'
+    client_portal: {
+        text: '账户通道',
+        enable: '开启',
+        disable: '关闭',
+        btn_text: '发送邀请函'
     },
 
-    submit_btn: {
-        text: '创建'
-    },
-
-    footnavbar:{
-        help:'支持与帮助',
-        manual:'说明手册',
-        forum:'讨论',
-        privacy:'隐私策略',
-        service:'服务条件'
-    }
-       
-}
+    submit_btn: '创建'
+};
