@@ -32,7 +32,7 @@ gulp.task('mincss', function () {
         .pipe(reload({stream: true}));
 });
 
-// 压缩JS文件
+// 检查JS文件是否有语法错误
 gulp.task('jshint', function () {
     return gulp.src(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'])
         .pipe(jshint())                     // 进行检查
@@ -50,7 +50,7 @@ gulp.task('uglify', function () {
 // 压缩图片
 gulp.task('imagemin', function () {
     return gulp.src('src/images/**/*')
-    //.pipe(imagemin())
+        .pipe(imagemin())
         .pipe(gulp.dest('dist/images/'));
 });
 
@@ -81,5 +81,6 @@ gulp.task('server', ['build'], function () {
 
     gulp.watch(['src/styles/**/*.less'], ['mincss']);
     gulp.watch(['src/scripts/**/*.js'], ['jshint', 'uglify']);
+    gulp.watch(['src/images/*'], ['imagemin']);
 
 });
