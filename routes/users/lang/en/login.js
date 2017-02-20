@@ -3,7 +3,7 @@ module.exports = {
 
     username: {
         text: 'Username',
-        placeholder: 'Text123'
+        placeholder: 'Text'
     },
 
     password: {

@@ -79,5 +79,11 @@ module.exports = {
                 }
             ]
         }
-    ]
+    ],
+
+    user: {
+        management: 'User Management',
+        plan: 'Plan and Billing',
+        logout: 'Log Out'
+    }
 };

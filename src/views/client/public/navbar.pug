@@ -10,11 +10,11 @@ nav.navbar.navbar-default.navbar-static-top(role="navigation")
                 span.user.user-left.dropdown-toggle(data-toggle="dropdown") Username
                 ul.dropdown-menu(role="menu")
                     li
-                        a(href="#") User Management
+                        a(href="createStaff")= nav.user.management
                     li
-                        a(href="#") Plan and Billing
+                        a(href="#")= nav.user.plan
                     li
-                        a(href="/") Log Out
+                        a(href="/")= nav.user.logout
 
         div.collapse.navbar-collapse.col-sm-10#nav-list
             ul.nav.navbar-nav
@@ -22,16 +22,17 @@ nav.navbar.navbar-default.navbar-static-top(role="navigation")
                     li.dropdown
                         a.dropdown-toggle(href="#", data-toggle="dropdown")= navbar.title
                         ul.dropdown-menu(role="menu")
-                            for data in navbar.list
-                                li
-                                    a(href=data.url)= data.title
+                            if navbar.list
+                                for data in navbar.list
+                                    li
+                                        a(href=data.url)= data.title
 
         div.nav.navbar-right.col-sm-1.hidden-xs.user-div
             a.user.dropdown-toggle(href="#", data-toggle="dropdown") Username
             ul.dropdown-menu(role="menu")
                 li
-                    a(href="#") User Management
+                    a(href="createStaff")= nav.user.management
                 li
-                    a(href="#") Plan and Billing
+                    a(href="#")= nav.user.plan
                 li
-                    a(href="/") Log Out
+                    a(href="/")= nav.user.logout

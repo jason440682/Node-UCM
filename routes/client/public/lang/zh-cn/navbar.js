@@ -1,83 +1,89 @@
 module.exports = {
     nav_list: [
         {
-            title: 'Client Accounts',
+            title: '账户客户',
             list: [
                 {
-                    title: 'Client Accounts',
+                    title: '客户账户',
                     url: './accounts'
                 },
                 {
-                    title: 'Create Client Account',
-                    url: './createaccount'
+                    title: '新建账户',
+                    url: './createAccount'
                 }, {
-                    title: 'Notification Manager',
+                    title: '通知管理',
                     url: './notification'
                 }, {
-                    title: 'Document Manager',
+                    title: '文件管理',
                     url: './docManager'
                 }
             ]
         },
         {
-            title: 'Work Book',
+            title: '工作簿',
             list: [
                 {
-                    title: 'Work Book',
+                    title: '工作簿',
                     url: './workbook'
                 },
                 {
-                    title: 'Create New Work',
-                    url: './creatework'
+                    title: '新建工作簿',
+                    url: './createWork'
                 }, {
-                    title: 'Work Calendar',
-                    url: './workcalendar'
+                    title: '工作日程',
+                    url: './workCalendar'
                 }, {
-                    title: 'Work Template',
-                    url: './worktemplate'
+                    title: '工作模板',
+                    url: './workTemplate'
                 }
             ]
         },
         {
-            title: 'Billing & Payment',
+            title: '计费与支付',
             list: [
                 {
-                    title: 'Billing & Payment',
-                    url: './billingpayment'
+                    title: '计费与支付',
+                    url: './billingPayment'
                 },
                 {
-                    title: 'Create New Invoice',
-                    url: './createinvoice'
+                    title: '新建发票',
+                    url: './createInvoice'
                 }, {
-                    title: 'Invoices',
+                    title: '发票',
                     url: './invoices'
                 }, {
-                    title: 'Payments',
+                    title: '付款项',
                     url: './payment'
                 }
             ]
         },
         {
-            title: 'Marketing',
+            title: '营销通信/通知组',
             list: [
                 {
-                    title: 'Marketing',
+                    title: '营销通信/通知组',
                     url: './newsletter'
                 },
                 {
-                    title: 'Create Newsletter',
-                    url: './createnewsletter'
+                    title: '新建通信组',
+                    url: './createNewsletter'
                 }
             ]
         },
         {
-            title: 'Reports',
+            title: '报告',
             list: [
                 {
-                    title: 'Reports',
+                    title: '报告',
                     url: '#'
                 }
             ]
         }
-    ]
+    ],
+
+    user: {
+        management: '用户管理',
+        plan: '收费计划',
+        logout: '用户注销'
+    }
 };
