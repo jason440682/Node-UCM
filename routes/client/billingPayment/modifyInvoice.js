@@ -64,7 +64,7 @@ router.get('/', function (req, res, next) {
         data.footnavbar = require('../public/lang/zh-cn/footnavbar');
     }
 
-    res.render('client/others/modifyInvoice', data);
+    res.render('client/billingPayment/modifyInvoice', data);
 });
 
 router.post('/', function (req, res, next) {

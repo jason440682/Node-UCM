@@ -16,7 +16,7 @@ router.get('/',function(req,res,next){
         data.lang = require('./lang/zh-cn/modifyWork');
     }
 
-    res.render('client/others/modifyWork',data);
+    res.render('client/workbook/modifyWork',data);
 });
 
 router.post('/',function(req,res,next){
