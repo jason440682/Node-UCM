@@ -31,25 +31,28 @@ block content
 
         div.section
             div.form-group
-                label.col-sm-2(for="accountstatus")= lang.accountstatus.text
-                div.col-sm-4
+                label.col-sm-3(for="accountstatus")= lang.accountstatus.text
+                div.col-sm-6
                     select.form-control#accountstatus(name="accountstatus")
                         for sta in lang.accountstatus.status
                             option= sta
-                label.col-sm-2(for="assignto")= lang.assignto.text
-                div.col-sm-4
+
+            div.form-group
+                label.col-sm-3(for="assignto")= lang.assignto.text
+                div.col-sm-6
                     select.form-control#assignto(name="assignto")
                         for sta in lang.assignto.staff
                             option= sta
 
         div.section
             div.form-group
-                label.col-sm-2(for="contact_first_name")= lang.contact_first_name.text
-                div.col-sm-4
+                label.col-sm-3(for="contact_first_name")= lang.contact_first_name.text
+                div.col-sm-6
                     input.form-control#contact_first_name(type="text", name="contact_first_name", placeholder= lang.contact_first_name.placeholder)
 
-                label.col-sm-2(for="contact_last_name")= lang.contact_last_name.text
-                div.col-sm-4
+            div.form-group
+                label.col-sm-3(for="contact_last_name")= lang.contact_last_name.text
+                div.col-sm-6
                     input.form-control#contact_last_name(type="text", name="contact_last_name", placeholder= lang.contact_last_name.placeholder)
 
             div.form-group
@@ -101,8 +104,8 @@ block content
                 label.col-sm-3(for)= lang.email_group.text
                 div.col-sm-6
                     select.form-control(name="group")
-                            for group in lang.email_group.groups
-                                option= group
+                        for group in lang.email_group.groups
+                            option= group
 
             div.form-group
                 label.col-sm-3= lang.notification.text
@@ -121,8 +124,8 @@ block content
                 label.col-sm-3(for)= lang.client_portal.text
                 div.col-sm-4
                     label.col-sm-6
-                            input(type="radio", name="client_portal", value="enable" checked)
-                            = lang.client_portal.enable
+                        input(type="radio", name="client_portal", value="enable" checked)
+                        = lang.client_portal.enable
                     label.col-sm-6
                         input(type="radio", name="client_portal", value="disable")
                         = lang.client_portal.disable
