@@ -1,7 +1,7 @@
 module.exports = {
     title: '查看/编辑发票',
-    invoice_num: '发票编号',
-    invoice_date: '发票日期',
+    invoice_num: '发票编号: ',
+    invoice_date: '发票日期: ',
     bill_to: '收款人: ',
 
     thead: {

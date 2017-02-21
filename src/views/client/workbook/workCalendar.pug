@@ -30,18 +30,27 @@ block content
                     th= lang.thead.Friday
                     th= lang.thead.Saturday
                 tbody
-
+                    mixin work-url(work)
+                        - work = work ? work : '-'
+                        a(href="modifyWork")= work
                     if works.length>0
                         each work in works
                             tr
                                 td= work.time
-                                td= work.Sunday
-                                td= work.Monday
-                                td= work.Tuesday
-                                td= work.Wednesday
-                                td= work.Thursday
-                                td= work.Friday
-                                td= work.Saturday
+                                td
+                                    +work-url(work.Sunday)
+                                td
+                                    +work-url(work.Monday)
+                                td
+                                    +work-url(work.Tuesday)
+                                td
+                                    +work-url(work.Wednesday)
+                                td
+                                    +work-url(work.Thursday)
+                                td
+                                    +work-url(work.Friday)
+                                td
+                                    +work-url(work.Saturday)
     div.visible-xs
         div.search-bar.container
             div.search-box
@@ -58,9 +67,6 @@ block content
                 button.btn.btn-default.btn-info.btn-sm
                     a(href="createWork")=lang.create_new_work
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
-            mixin work-url(work)
-                - work = work ? work : '-'
-                a(href="modifyWork")= work
             each work in works
                 div.panel.panel-default
                     div.panel-heading(role="tab", id=work.id)

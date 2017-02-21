@@ -4,6 +4,7 @@ var router = express.Router();
 var data_eg = {
     client_names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],
     bill_info: {
+        number: '000023',
         date: '2017/1/24',
         name: 'James Johnson',
         address: '123 ABC Street, Good City, CA9001'

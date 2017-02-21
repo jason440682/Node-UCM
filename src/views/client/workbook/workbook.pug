@@ -16,8 +16,10 @@ block content
             div.col-sm-3.col-md-2.search
                 a(href='#')=lang.search
             div.col-sm-6.col-md-4
-                button.btn.btn-default.btn-info.search-btn=lang.calendar
-                button.btn.btn-default.btn-info.search-btn=lang.create_notification
+                button.btn.btn-default.btn-info.search-btn
+                    a(href="workCalendar")=lang.calendar
+                button.btn.btn-default.btn-info.search-btn
+                    a(href="createWork")=lang.create_notification
         div.table-responsive.table-style.col-sm-12
             table.table.table-bordered.table-striped.table-condensed
                 thead
@@ -68,9 +70,11 @@ block content
                     a(href='#')=lang.search
             div.search-box
                 div.search-btn
-                    button.btn.btn-default.btn-info.btn-sm=lang.calendar
+                    button.btn.btn-default.btn-info.btn-sm
+                        a(href="workCalendar")=lang.calendar
                 div.search-btn
-                    button.btn.btn-default.btn-info.btn-sm=lang.create_notification
+                    button.btn.btn-default.btn-info.btn-sm
+                        a(href="createWork")=lang.create_notification
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
             each work in works
                 div.panel.panel-default
