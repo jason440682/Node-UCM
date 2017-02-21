@@ -1,0 +1,133 @@
+extends ../public/layout
+
+block content
+    form.form-horizontal(method="post", role="form")
+        div.section
+            div.form-group
+                div.col-sm-4
+                    span.label-text= lang.account_num
+                    span= account.num
+                div.col-sm-4.col-sm-offset-1
+                    span.label-text= lang.account_type
+                    span= account.type
+            div.form-group
+                div.col-sm-3
+                    label(for="business-name")= lang.business_name
+                div.col-sm-6
+                    input.form-control#business-name(type="text", name="business-name", placeholder= lang.business_placeholder)
+
+        div.section
+            div.form-group
+                div.col-sm-3
+                    label(for="account-status")= lang.account_status
+                div.col-sm-6
+                    select.form-control#account-status(name="account-status")
+                        for status in lang.status
+                            option= status
+
+            div.form-group
+                div.col-sm-3
+                    label(for="assigned")= lang.assigned_to
+                div.col-sm-6
+                    select.form-control#assigned(name="assigned")
+                        for assign in lang.assigns
+                            option= assign
+
+
+        div.section
+            div.form-group
+                label.col-sm-3(for="contact_first_name")= lang.contact_first_name.text
+                div.col-sm-6
+                    input.form-control#contact_first_name(type="text", name="contact_first_name", placeholder= lang.contact_first_name.placeholder)
+
+            div.form-group
+                label.col-sm-3(for="contact_last_name")= lang.contact_last_name.text
+                div.col-sm-6
+                    input.form-control#contact_last_name(type="text", name="contact_last_name", placeholder= lang.contact_last_name.placeholder)
+
+            div.form-group
+                label.col-sm-3(for="email")= lang.email_address.text
+                div.col-sm-6
+                    input.form-control#email(type="email", name="email", placeholder= lang.email_address.placeholder)
+
+            div.form-group
+                label.col-sm-3(for="mobileNum")= lang.mobile_num.text
+                div.col-sm-6
+                    input.form-control#mobileNum(type="tel", name="mobileNum", placeholder= lang.mobile_num.placeholder)
+
+            div.form-group
+                label.col-sm-3(for="mailing_address")= lang.mailing_address.text
+                div.col-sm-6.country
+                    input.form-control#mailing_address(type="text", name="street", placeholder= lang.mailing_address.placeholder.street)
+                    div
+                        input.form-control(type="text", name="city", placeholder= lang.mailing_address.placeholder.city)
+                        input.form-control(type="text", name="state", placeholder= lang.mailing_address.placeholder.state)
+                    div
+                        input.form-control(type="text", name="zip-code", placeholder= lang.mailing_address.placeholder.zip_code)
+                        select.form-control(name="country")
+                            for country in lang.mailing_address.country
+                                option= country
+
+            div.form-group
+                div.col-sm-3
+                    label.address(for="billing_address")= lang.billing_address.text
+                    label
+                        input#same(type="checkbox")
+                        =lang.billing_address.issame
+                div.col-sm-6.country
+                    input.form-control#billing_address(type="text", name="street", placeholder= lang.billing_address.placeholder.street)
+                    div
+                        input.form-control(type="text", name="city", placeholder= lang.billing_address.placeholder.city)
+                        input.form-control(type="text", name="state", placeholder= lang.billing_address.placeholder.state)
+                    div
+                        input.form-control(type="text", name="zip-code", placeholder= lang.billing_address.placeholder.zip_code)
+                        select.form-control(name="country")
+                            for country in lang.billing_address.country
+                                option= country
+
+            div.form-group
+                label.col-sm-3(for="account_note")= lang.account_note.text
+                div.col-sm-6
+                    textarea.form-control#account_note(placeholder= lang.account_note.placeholder)
+
+            div.form-group
+                label.col-sm-3= lang.notification.text
+                div.col-sm-6
+                    label.col-sm-4
+                        input#nemail(type="checkbox",name="nemail")
+                        =lang.notification.email
+                    label.col-sm-4
+                        input#nphone(type="checkbox",name="nphone")
+                        =lang.notification.phone
+                    label.col-sm-4
+                        input#nsms(type="checkbox",name="nsms")
+                        =lang.notification.sms
+
+            div.form-group
+                label.col-sm-3(for)= lang.client_portal.text
+                div.col-sm-4
+                    label.col-sm-6
+                        input(type="radio", name="client_portal", value="enable" checked)
+                        = lang.client_portal.enable
+                    label.col-sm-6
+                        input(type="radio", name="client_portal", value="disable")
+                        = lang.client_portal.disable
+
+                div.col-sm-2
+                    button.btn.btn-default.btn-info= lang.client_portal.btn_text
+
+        div.section
+            div.form-group
+                div.buttons.col-sm-9.col-sm-offset-3.col-xs-12
+                    button.btn.btn-default.btn-info=lang.buttons.save
+                    button.btn.btn-default.btn-info=lang.buttons.archive
+                    button.btn.btn-default.btn-info=lang.buttons.delete
+
+        div.list-fixed.hidden-xs
+            ul.list-group
+                for item in lang.list_group
+                    li.list-group-item
+                        a(href= item.link)= item.text
+
+block footer
+    include ../public/footer
