@@ -1,103 +1,110 @@
 extends ../public/layout
 
-mixin panel_group(data, i)
-    if data.hasOwnProperty('file')
-        div.panel-body
-            span.glyphicon.glyphicon-list-alt
-            span.filename=data.filename
-            btn.file-btn.btn.btn-info Share on client portal
-            btn.file-btn.btn.btn-info Remove from client protal
-            btn.file-btn.btn.btn-info Email client
-            btn.file-btn.btn.btn-info View
-            btn.file-btn.btn.btn-info Edit
-            btn.file-btn.btn.btn-info Delete
-    else if data.hasOwnProperty('folder')
-        -var headingId = 'heading' + i,
-        -    collapseId = 'collapse' + i;
-        div.panel
-            h4.panel-title(role="tab", id=headingId)
-                a(role="button",
-                data-toggle="collapse",
-                data-parent="#accordion",
-                aria-expanded="false",
-                href="#" + collapseId,
-                aria-controls=collapseId)
-                    span.glyphicon.glyphicon-folder-close
-                    span.title=data.name
-            div.panel-collapse.collapse.in(
-            id= collapseId,
-            aria-labelledby=headingId,
-            role="tabpanel",
-            aria-expanded="false")
-        +panel_group(data, i)
-
-block content
-    div.content
-        div.form-group.clearfix
-            div.col-sm-2
-                input.form-control(type='text',placeholder=lang.searchplaceholder)
-            div.col-sm-2
-                select.form-control#searchname(name='searchname')
-                    for name in lang.names
-                        option=name
-            div.col-sm-6.search
-                a(href='#')=lang.search.text
-            div.col-sm-2
-                button.btn.btn-default.btn-info=lang.create_notification.text
-        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+mixin files_group(files)
+    for file in files
+        if file.type === 'file'
+            div.file-body
+                div.file
+                    span.glyphicon.glyphicon-list-alt
+                    span= file.name
+                div.buttons
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_share
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_remove
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_email
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_view
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_edit
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_delete
+        else if file.type === 'folder'
             -
-                var i = 1;
-                var data = [
-                {type: 'folder', name: 'folder1', list: [
-                    {type: 'file', name: 'file1.1'},
-                    {type: 'file', name: 'file1.2'},
-                    {type: 'file', name: 'file1.3'}
-                ]},
-                {type: 'folder', name: 'folder2', list: [
-                    {type: 'file', name: 'file2.1'},
-                    {type: 'file', name: 'file2.2'},
-                    {type: 'file', name: 'file2.3'}
-                ]},
-                {type: 'folder', name: 'folder3', list: [
-                    {type: 'file', name: 'file3.1'},
-                    {type: 'file', name: 'file3.2'},
-                    {type: 'file', name: 'file3.3'}
-                ]},
-                {type: 'file', name: 'file2'},
-                {type: 'file', name: 'file3'},
-                {type: 'file', name: 'file4'}
-                ];
+                var heading_id = 'heading-' + file.name;
+                var collapse_id = 'collapse-' + file.name;
 
-                function test(data) {
-
-                }
-            //for d in data
-            //    if d.type === 'folder'
-            //        for list_data in d.list
-            //    else if d.type === 'file'
-
-
-            //+panel-group(data, i)
-            div.panel
-                h4.panel-title(role="tab", id="headingOne")
+            div.panel.folder
+                h4.panel-title(
+                role="tab",
+                id= heading_id)
                     a(role="button",
                     data-toggle="collapse",
-                    data-parent="#accordion",
-                    href="#collapseOne",
+                    href="#" + collapse_id,
                     aria-expanded="false",
-                    aria-controls="collapseOne")
+                    aria-controls= collapse_id)
                         span.glyphicon.glyphicon-folder-close
-                        span.title= lang.searchplaceholder
-                div.panel-collapse.collapse.in#collapseOne(
+                        span= file.name
+                div.panel-collapse.collapse(
                 role="tabpanel",
-                aria-labelledby="headingOne",
+                id= collapse_id
+                aria-labelledby= heading_id,
                 aria-expanded="false")
-                    div.panel-body
-                        span.glyphicon.glyphicon-list-alt
-                        span.filename heiheihei
-                        btn.file-btn.btn.btn-info Share on client portal
-                        btn.file-btn.btn.btn-info Remove from client protal
-                        btn.file-btn.btn.btn-info Email client
-                        btn.file-btn.btn.btn-info View
-                        btn.file-btn.btn.btn-info Edit
-                        btn.file-btn.btn.btn-info Delete
+                    +files_group(file.list)
+
+mixin files_group_mobile(files)
+    for file in files
+        if file.type === 'file'
+            div.file-body.panel-body
+                div.file
+                    span.glyphicon.glyphicon-list-alt
+                    span= file.name
+                div.buttons
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_share
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_remove
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_email
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_view
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_edit
+                    button.file-btn.btn.btn-info.btn-xs= lang.btn_delete
+        else if file.type === 'folder'
+            -
+                var heading_id = 'mobile-heading-' + file.name;
+                var collapse_id = 'mobile-collapse-' + file.name;
+
+            div.panel.panel-default.folder
+                div.panel-heading(role="tab", id= heading_id)
+                    h4.panel-title
+                        a(role="button",
+                        data-toggle="collapse",
+                        href="#" + collapse_id,
+                        aria-expanded="false",
+                        aria-controls= collapse_id)
+                            span.glyphicon.glyphicon-folder-close
+                            span= file.name
+                div.panel-collapse.collapse(
+                role="tabpanel",
+                id= collapse_id
+                aria-labelledby= heading_id,
+                aria-expanded="false")
+                    +files_group_mobile(file.list)
+
+
+block content
+    div.section.hidden-xs
+        div.form-group.clearfix
+            div.col-sm-3
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
+            div.col-sm-3
+                select.form-control#searchname(name='searchname')
+                    for name in names
+                        option=name
+            div.col-sm-3.search
+                a(href='#')=lang.search
+            div.col-sm-3
+                button.btn.btn-default.btn-info=lang.create_notification
+
+        div.panel-group(role="tablist", id="accordion", aria-multiselectable="true")
+            +files_group(files)
+
+    div.visible-xs
+        div.search-bar.container
+            div.search-box
+                input.form-control.search-input(type='text',placeholder=lang.search_placeholder)
+            div.search-box
+                select.form-control#searchname-xs(name='searchname')
+                    for name in names
+                        option=name
+            div.search-box
+                button.btn.btn-default.btn-info.btn-sm
+                    a(href='#')=lang.search
+            div.search-box
+                button.btn.btn-default.btn-info.btn-sm
+                    a(href="#")=lang.create_notification
+
+        div.panel-group(role="tablist", id="accordion2", aria-multiselectable="true")
+            +files_group_mobile(files)
