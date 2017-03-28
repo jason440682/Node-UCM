@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var less = require('gulp-less');
 var mincss = require('gulp-clean-css');
-var rename = require('gulp-rename');
 var clean = require('gulp-clean');
 var nodemon = require('gulp-nodemon');
 var uglify = require('gulp-uglify');
@@ -41,7 +40,7 @@ gulp.task('jshint', function () {
 
 // 压缩JS文件
 gulp.task('uglify', function () {
-    return gulp.src(['src/scripts/**/*.js'])
+    return gulp.src(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'])
         .pipe(uglify({mangle: false}))
         .pipe(gulp.dest('dist/scripts/'))
         .pipe(reload({stream: true}));
