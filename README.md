@@ -3,23 +3,23 @@
 
 # 项目运行
 ```powershell
-	// 将代码拷贝到本地
-	git clone git@github.com:UCMProjectTeam/Node-UCM.git
+// 将代码拷贝到本地
+git clone git@github.com:UCMProjectTeam/Node-UCM.git
 
-	// 进入到项目文件夹
-	cd Node-UCM
+// 进入到项目文件夹
+cd Node-UCM
 
-	// 安装依赖项
-	npm install
-	
-	// 该项目用到了 Gulp 工具来构建项目，如果之前没有用过 Gulp ，则需要执行下面的命令来安装 Gulp，如果安装了则可以跳过
-	npm install -g gulp
-	
-	// 运行项目
-	npm run dev
-	
-	// 或者直接执行下面的语句也可以，其实是一样的
-	gulp server
+// 安装依赖项
+npm install
+
+// 该项目用到了 Gulp 工具来构建项目，如果之前没有用过 Gulp ，则需要执行下面的命令来安装 Gulp，如果安装了则可以跳过
+npm install -g gulp
+
+// 运行项目
+npm run dev
+
+// 或者直接执行下面的语句也可以，其实是一样的
+gulp server
 ```	
 
 # 项目结构
