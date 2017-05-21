@@ -29,7 +29,7 @@ gulp server
 ├── build
 │   └── dev-server.js
 ├── dist					# Gulp 编译后的文件目录
-├── gulpfile.js          	# Gulp 构建脚本配置文件
+├── gulpfile.js             # Gulp 构建脚本配置文件
 ├── node_modules
 ├── package.json
 ├── README.md
