@@ -1,2 +1,2 @@
-require(['jquery'], function ($) {
+require(['bootstrap'], function ($) {
 });
