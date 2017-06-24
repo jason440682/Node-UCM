@@ -4,7 +4,8 @@
   "description": "A USA client manage platform",
   "main": "./build/dev-server",
   "scripts": {
-    "test": "node ./build/dev-server",
+    "start": "gulp build && node ./build/dev-server",
+    "build": "gulp build",
     "dev": "gulp server"
   },
   "repository": {
@@ -13,23 +14,40 @@
   },
   "author": "GYMing, Kilims, Kaibin",
   "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
-    "express-session": "^1.14.2",
+    "express-session": "^1.15.3",
     "less": "^2.7.2",
     "morgan": "^1.8.0",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babelify": "^7.3.0",
     "browser-sync": "^2.18.8",
+    "browserify": "^14.4.0",
+    "cssgrace": "^3.0.0",
+    "cssnext": "^1.8.4",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.0.3",
     "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.4",
     "gulp-less": "^3.3.0",
     "gulp-nodemon": "^2.2.1",
+    "gulp-postcss": "^7.0.0",
     "gulp-sequence": "^0.4.6",
+    "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.0.1",
-    "jshint": "^2.9.4"
+    "http-proxy-middleware": "^0.17.4",
+    "jshint": "^2.9.4",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
