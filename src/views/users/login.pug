@@ -1,7 +1,7 @@
 extends public/layout
 
 block content
-    form.form-horizontal(method="post", role="form")
+    form.form-horizontal(method="post", role="form", action="login")
         h1.title= lang.title
         div.section
             div.form-group
@@ -14,16 +14,26 @@ block content
                 div.col-sm-3
                 label.col-sm-2(for="password")= lang.password.text
                 div.col-sm-4
-                    input.form-control#password(type="password", name="username", placeholder= lang.password.placeholder)
+                    input.form-control#password(type="password", name="password", placeholder= lang.password.placeholder)
+            
+            div.form-group
+                div.col-sm-4.col-sm-offset-5
+                    input.form-control#verification-code(type="password", name="verification-code", placeholder= 'validate code')
+                div.col-sm-2.verification-code
+                    img#verification-code-image(src='/UCM/getVerificationCode', alt="validate code")
 
             div.form-group
-                div.col-sm-3
-                div.col-sm-2
-                div.col-sm-4
+                div.col-sm-4.col-sm-offset-5
                     a= lang.tips
 
-            button.btn.btn-primary.submit(type="submit")= lang.submit_btn
+            button.btn.btn-primary.submit(type="submit")#submit= lang.submit_btn
             a.submit(href='register')= lang.signup
+
+            div.form-group
+                div.col-sm-7.col-sm-offset-5
+                    p#error='text'
+                    if err
+                        p#error= err
 
 block footer
     include ./public/footerfixed
