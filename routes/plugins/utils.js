@@ -1,6 +1,3 @@
-/**
- * Created by shoufu on 17/1/21.
- */
 function indexOf(array, item) {
     for (var i = 0; i < array.length; i++) {
         if (item === array[i]) {
@@ -9,6 +6,10 @@ function indexOf(array, item) {
     }
 
     return -1;
+}
+
+function isObject(obj) {
+  return null !== obj && 'object' === typeof obj;
 }
 
 module.exports = {
