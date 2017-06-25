@@ -28,20 +28,20 @@ gulp server
 ├── app.js
 ├── build
 │   └── dev-server.js
-├── dist					# Gulp 编译后的文件目录
+├── dist                    # Gulp 编译后的文件目录
 ├── gulpfile.js             # Gulp 构建脚本配置文件
 ├── node_modules
 ├── package.json
 ├── README.md
-├── routes               	# Node端逻辑
+├── routes                  # Node端逻辑
 │   ├── client                  # 处理平台模块相关页面逻辑的Router
 │   └── users                   # 处理用户模块相关页面逻辑的Router
-├── src                  	# 前端页面开发的文件夹
+├── src                     # 前端页面开发的文件夹
 │   ├── images                  # 前端图片保存的文件目录
 │   ├── javascript              # 前端页面 JS 文件文件夹
 │   ├── less                    # 前端页面 LESS 的文件夹
 │   └── views                   # 前端模板 PUG 的文件夹
-├── utils                	# Node端保存一些通用的模块
+├── utils                   # Node端保存一些通用的模块
 │   └── utils.js                # Node端保存通用的函数
-└── views               	# 存放构建后的Pug(Jade)文件
+└── views                   # 存放构建后的Pug(Jade)文件
 ~~~
