@@ -6,6 +6,7 @@ var router = express.Router();
 
 var users = require('./users');
 var client = require('./client');
+var verificationCode = require('./api/verificationCode');
 
 router.get('/', function (req, res, next) {
     req.lang = 'en';
@@ -36,5 +37,7 @@ router.use('/cn/client', function (req, res, next) {
     req.lang = 'zh-cn';
     next();
 }, client);
+
+router.use('/validate', verificationCode);
 
 module.exports = router;
