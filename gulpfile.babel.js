@@ -3,7 +3,10 @@ import clean from 'gulp-clean'
 import sequence from 'gulp-sequence'
 import imagemin from 'gulp-imagemin'
 import plumber from 'gulp-plumber'
-import babel from 'gulp-babel'
+import gulpif from 'gulp-if'
+import es from 'event-stream'
+import glob from 'glob'
+import { argv } from 'yargs'
 
 // Gulp CSS 工具
 import less from 'gulp-less'
@@ -18,18 +21,20 @@ import jshint from 'gulp-jshint'
 import uglify from 'gulp-uglify'
 import sourcemaps from 'gulp-sourcemaps'
 import source from 'vinyl-source-stream'
+import buffer from 'vinyl-buffer'
 import babelify from 'babelify'
 import browserify from 'browserify'
 
 // Gulp Nodejs 工具
 import nodemon from 'gulp-nodemon'
+import babel from 'gulp-babel'
 import bs from 'browser-sync'
 
 const browserSync = bs.create(); // 调试网页时浏览器能够自动刷新
 const reload = browserSync.reload;
 
 // 清除构建文件夹中的内容
-gulp.task('clean', () => gulp.src(['dist/'], { read: false }).pipe(clean()));
+gulp.task('clean', () => gulp.src(['dist/', 'dist_node/'], { read: false }).pipe(clean()));
 
 // 编译 LESS 并压缩 CSS 
 gulp.task('css', () => {
@@ -68,26 +73,30 @@ gulp.task('uglify', () => {
         .pipe(reload({ stream: true }));
 });
 
-// 前端 JS 文件转换 ES6 并压缩，不生成 Sourcemaps
-gulp.task('babel-web', () => {
-    return gulp.src(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'])
-        .pipe(plumber())
-        .pipe(babel())    //靠这个插件编译
-        .pipe(uglify({ mangle: false }))
-        .pipe(gulp.dest('dist/scripts/'))
-        .pipe(reload({ stream: true }));
-});
-
 // 前端 JS 文件转换 ES6 并压缩，Dev 版本生成 Sourcemaps
-gulp.task('babel-web-dev', function() {
-    return gulp.src(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'])
-        // .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(babel())    //靠这个插件编译
-        .pipe(uglify({ mangle: false }))
-        .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest('dist/scripts/'))
-        .pipe(reload({ stream: true }));
+gulp.task('babel-web', function (cb) {
+    glob('src/scripts/!(lib)/**/*.js', (err, files) => {
+        if (err) done(err);
+        let isDev = argv.env && argv.env === 'dev';
+        console.log(argv);
+        console.log('The production is dev ? :' + isDev);
+        let tasks = files.map((entry) => {
+            let filename = entry.replace('src/', '');
+            console.log('Babel Task has transform the file: ' + filename);
+            return browserify({ entries: [entry] })
+                .transform("babelify", { presets: ["es2015", "stage-2"] })
+                .bundle()
+                .pipe(source(filename))
+                .pipe(buffer())
+                .pipe(gulpif(isDev, sourcemaps.init()))
+                .pipe(uglify())
+                .pipe(gulpif(isDev, sourcemaps.write('./maps')))
+                .pipe(gulp.dest('./dist'));
+        })
+
+        es.merge(tasks).on('end', cb);
+    });
+
 });
 
 // 后台 JS 文件转换 ES6
@@ -95,7 +104,7 @@ gulp.task('babel-node', () => {
     return gulp.src(['routes/**/*.js'])
         .pipe(plumber())
         .pipe(babel())
-        .pipe(gulp.dest('nodejs/'));
+        .pipe(gulp.dest('dist_node/'));
 });
 
 // 压缩图片
@@ -107,7 +116,7 @@ gulp.task('imagemin', () => {
 
 // 把前端库复制一份到 dist
 gulp.task('lib', () => {
-    gulp.src('src/scripts/lib/**/*.*')
+    return gulp.src('src/scripts/lib/**/*.js')
         .pipe(gulp.dest('dist/scripts/lib'));
 });
 
@@ -119,13 +128,14 @@ gulp.task('dev', sequence('clean', ['css', 'lib', 'imagemin', 'jshint', 'babel-w
 gulp.task('server', ['dev'], () => {
     var started = false;
     let nm = nodemon({
+        restartable: 'rs',
         script: 'build/dev-server.js',
         ext: 'js',
         watch: [
             'build/',
             'config/',
-            './nodejs',
-            './app.js'
+            'dist_node/',
+            'app.js'
         ],
         env: { 'NODE_ENV': 'development' }
     });
@@ -147,10 +157,12 @@ gulp.task('server', ['dev'], () => {
     gulp.watch(['src/styles/**/*.less'], ['css']);
     gulp.watch(['src/scripts/**/*.js'], ['jshint', 'babel-web-dev']);
     gulp.watch(['src/images/*'], ['imagemin']);
-    gulp.watch(['routes/**/*.js'], ['babel-node'])
+    gulp.watch(['routes/**/*.js'], (event) => {
+        console.log(event);
+        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    })
 });
 
-import glob from 'glob'
 gulp.task('glob', (done) => {
     glob('src/scripts/!(lib)/**/*.js', (err, files) => {
         if (err) done(err);
