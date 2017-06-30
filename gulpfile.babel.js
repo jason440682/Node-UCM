@@ -144,7 +144,8 @@ gulp.task('server', ['build'], () => {
     });
 
     gulp.watch(['src/styles/**/*.less'], ['css']);
-    gulp.watch(['src/scripts/**/*.js'], ['jshint', 'babel-web-dev']);
+    gulp.watch(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'], ['jshint', 'babel-web']);
+    gulp.watch(['src/scripts/lib/**/*.js'], ['lib']);
     gulp.watch(['src/images/*'], ['imagemin']);
     gulp.watch(['routes/**/*.js'], (event) => {
         let p = path.parse(event.path);
