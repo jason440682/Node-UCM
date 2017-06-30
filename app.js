@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var config = require('./config');
-var index = require('./routes/index');
+var index = require('./dist_node/index'); 
 
 var app = express();
 
@@ -45,9 +45,6 @@ app.use(function (req, res, next) {
 if (process.env.NODE_ENV === 'development') {
     var proxyMiddleware = require('http-proxy-middleware');
     var proxyTable = config.proxyTable;
-    console.log('Yes!');
-    console.log(proxyTable);
-    console.log('-----')
     Object.keys(proxyTable).forEach(function (context) {
         var options = proxyTable[context];
         if (typeof options === 'string') {
