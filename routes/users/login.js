@@ -35,8 +35,8 @@ router.post('/', function (req, res, next) {
             // }
         }, function (err, response) {
             console.log('err');
-            console.log(err.status)
-            console.log(err.response.error.text)
+            console.log(err.status);
+            console.log(err.response.error.text);
             res.redirect('/');
         });
     }
