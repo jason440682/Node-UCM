@@ -7,6 +7,8 @@ import gulpif from 'gulp-if'
 import es from 'event-stream'
 import glob from 'glob'
 import { argv } from 'yargs'
+import path from 'path'
+import fs from 'fs'
 
 // Gulp CSS 工具
 import less from 'gulp-less'
@@ -64,22 +66,13 @@ gulp.task('jshint', () => {
         .pipe(jshint.reporter('default'))   // 对代码进行报错提示
 });
 
-// 压缩JS文件
-gulp.task('uglify', () => {
-    return gulp.src(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'])
-        .pipe(plumber())
-        .pipe(uglify({ mangle: false }))
-        .pipe(gulp.dest('dist/scripts/'))
-        .pipe(reload({ stream: true }));
-});
-
 // 前端 JS 文件转换 ES6 并压缩，Dev 版本生成 Sourcemaps
 gulp.task('babel-web', function (cb) {
     glob('src/scripts/!(lib)/**/*.js', (err, files) => {
         if (err) done(err);
         let isDev = argv.env && argv.env === 'dev';
         console.log(argv);
-        console.log('The production is dev ? :' + isDev);
+        console.log('env is dev ? :' + isDev);
         let tasks = files.map((entry) => {
             let filename = entry.replace('src/', '');
             console.log('Babel Task has transform the file: ' + filename);
@@ -101,10 +94,7 @@ gulp.task('babel-web', function (cb) {
 
 // 后台 JS 文件转换 ES6
 gulp.task('babel-node', () => {
-    return gulp.src(['routes/**/*.js'])
-        .pipe(plumber())
-        .pipe(babel())
-        .pipe(gulp.dest('dist_node/'));
+    return babelNode(['routes/**/*.js'], 'dist_node/');
 });
 
 // 压缩图片
@@ -122,10 +112,9 @@ gulp.task('lib', () => {
 
 // 构建
 gulp.task('build', sequence('clean', ['css', 'lib', 'imagemin', 'jshint', 'babel-web', 'babel-node']));
-gulp.task('dev', sequence('clean', ['css', 'lib', 'imagemin', 'jshint', 'babel-web-dev', 'babel-node']));
 
 // 测试启动服务
-gulp.task('server', ['dev'], () => {
+gulp.task('server', ['build'], () => {
     var started = false;
     let nm = nodemon({
         restartable: 'rs',
@@ -158,9 +147,18 @@ gulp.task('server', ['dev'], () => {
     gulp.watch(['src/scripts/**/*.js'], ['jshint', 'babel-web-dev']);
     gulp.watch(['src/images/*'], ['imagemin']);
     gulp.watch(['routes/**/*.js'], (event) => {
-        console.log(event);
-        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    })
+        let p = path.parse(event.path);
+        if (event.type === 'deleted') {
+            console.log(`The file ${p.base} has deleted, now delete this file ...`);
+            fs.unlink(event.path.replace('routes', 'dist_node'), (err) => {
+                if (err) throw err;
+                console.log('Successfully delete ' + event.base);
+            })
+        } else {
+            console.log(`The file ${p.base} has changed, now rebuild this file ...`);
+            return babelNode(event.path, p.dir.replace('routes', 'dist_node'));
+        }
+    });
 });
 
 gulp.task('glob', (done) => {
@@ -169,3 +167,10 @@ gulp.task('glob', (done) => {
         console.log(files);
     })
 })
+
+function babelNode(input, output) {
+    return gulp.src(input)
+        .pipe(plumber())
+        .pipe(babel())
+        .pipe(gulp.dest(output));
+}
