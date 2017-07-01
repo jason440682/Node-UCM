@@ -1,5 +1,5 @@
 var express = require('express');
-router = express.Router();
+var router = express.Router();
 
 var data_eg = {
     names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],

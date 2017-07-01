@@ -2,5 +2,6 @@
 /.vscode/
 /node_modules/
 /dist/
+/dist_node/
 
 .DS_Store

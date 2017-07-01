@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp build && node ./build/dev-server",
     "build": "gulp build",
-    "dev": "gulp server"
+    "dev": "gulp server --env=dev"
   },
   "repository": {
     "type": "git",
@@ -34,20 +34,26 @@
     "browserify": "^14.4.0",
     "cssgrace": "^3.0.0",
     "cssnext": "^1.8.4",
+    "event-stream": "^3.3.4",
+    "glob": "^7.1.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.0.3",
+    "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
     "gulp-jshint": "^2.0.4",
     "gulp-less": "^3.3.0",
     "gulp-nodemon": "^2.2.1",
+    "gulp-plumber": "^1.1.0",
     "gulp-postcss": "^7.0.0",
     "gulp-sequence": "^0.4.6",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.0.1",
     "http-proxy-middleware": "^0.17.4",
     "jshint": "^2.9.4",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^8.0.2"
   }
 }
