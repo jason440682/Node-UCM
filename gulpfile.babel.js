@@ -67,7 +67,7 @@ gulp.task('jshint', () => {
 });
 
 // 前端 JS 文件转换 ES6 并压缩，Dev 版本生成 Sourcemaps
-gulp.task('babel-web', function (cb) {
+gulp.task('babel-web', (cb) => {
     glob('src/scripts/!(lib)/**/*.js', (err, files) => {
         if (err) done(err);
         let isDev = argv.env && argv.env === 'dev';
@@ -115,7 +115,7 @@ gulp.task('build', sequence('clean', ['css', 'lib', 'imagemin', 'jshint', 'babel
 
 // 测试启动服务
 gulp.task('server', ['build'], () => {
-    var started = false;
+    let started = false;
     let nm = nodemon({
         restartable: 'rs',
         script: 'build/dev-server.js',
@@ -133,8 +133,6 @@ gulp.task('server', ['build'], () => {
         if (!started) {
             browserSync.init({
                 open: true,
-                // ui: false,
-                // notify: false,
                 proxy: "localhost:3333",
                 files: ['./src/views/**', './dist/**'],
                 port: 3331
