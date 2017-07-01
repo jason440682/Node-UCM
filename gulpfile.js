@@ -18,9 +18,6 @@ var mincss = require('gulp-clean-css');
 // Gulp JS 工具
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
-var source = require('vinyl-source-stream');
-var babelify = require('babelify');
-var browserify = require('browserify');
 
 // 清除构建文件夹中的内容
 gulp.task('clean', function () {
@@ -67,17 +64,6 @@ gulp.task('uglify', function () {
         .pipe(reload({ stream: true }));
 });
 
-// 压缩JS文件，开发版本，有 sourcemaps
-gulp.task('uglify-dev', function () {
-    return gulp.src(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'])
-        .pipe(browserify({ debug: true }).transform("babelify", { presets: ['es2015']}))
-        .pipe(sourcemaps.init())
-        .pipe(uglify({ mangle: false }))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/scripts/'))
-        .pipe(reload({ stream: true }));
-});
-
 // 压缩图片
 gulp.task('imagemin', function () {
     return gulp.src('src/images/**/*')
@@ -107,8 +93,6 @@ gulp.task('server', ['build'], function () {
         if (!started) {
             browserSync.init({
                 open: true,
-                // ui: false,
-                // notify: false,
                 proxy: "localhost:3333",
                 files: ['./src/views/**', './dist/**'],
                 port: 3331
