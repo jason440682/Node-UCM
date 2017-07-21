@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var config = require('./config');
-var index = require('./dist_node/index'); 
+var routes = require('./dist_node'); 
 
 var app = express();
 
@@ -33,7 +33,8 @@ app.use(session({
 }));
 
 // 设置静态资源的目录，比如 css js 等文件的路径
-app.use(express.static(path.join(__dirname, './dist')));
+app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/scripts/lib', express.static(path.join(__dirname, './bower_components')))
 
 // 覆盖默认的 X-Powered-By HTTP返回头
 app.use(function (req, res, next) {
@@ -41,8 +42,9 @@ app.use(function (req, res, next) {
     next();
 });
 
+console.log("process.env.NODE_ENV: " + app.get('env'));
 // 判断系统环境，如果是开发环境，则启用 http-proxy
-if (process.env.NODE_ENV === 'development') {
+if (app.get('env') === 'development') {
     var proxyMiddleware = require('http-proxy-middleware');
     var proxyTable = config.proxyTable;
     Object.keys(proxyTable).forEach(function (context) {
@@ -54,7 +56,7 @@ if (process.env.NODE_ENV === 'development') {
     })
 }
 
-app.use('/', index);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
