@@ -32,13 +32,15 @@ import nodemon from 'gulp-nodemon'
 import babel from 'gulp-babel'
 import bs from 'browser-sync'
 
+const isDev = argv.env && argv.env === 'dev';
 const browserSync = bs.create(); // 调试网页时浏览器能够自动刷新
 const reload = browserSync.reload;
 
 // 清除构建文件夹中的内容
-gulp.task('clean', () => gulp.src(['dist/', 'dist_node/'], { read: false }).pipe(clean()));
+gulp.task('clean', () => gulp.src(['dist/', 'dist_node/'],
+{ read: false }).pipe(clean()));
 
-// 编译 LESS 并压缩 CSS 
+// 编译 LESS 并压缩 CSS
 gulp.task('css', () => {
     let processors = [
         autoprefixer({
@@ -70,32 +72,14 @@ gulp.task('jshint', () => {
 gulp.task('babel-web', (cb) => {
     glob('src/scripts/!(lib)/**/*.js', (err, files) => {
         if (err) done(err);
-        let isDev = argv.env && argv.env === 'dev';
-        console.log(argv);
-        console.log('env is dev ? :' + isDev);
-        let tasks = files.map((entry) => {
-            let filename = entry.replace('src/', '');
-            console.log('Babel Task has transform the file: ' + filename);
-            return browserify({ entries: [entry] })
-                .transform("babelify", { presets: ["es2015", "stage-2"] })
-                .bundle()
-                .pipe(source(filename))
-                .pipe(buffer())
-                .pipe(gulpif(isDev, sourcemaps.init()))
-                .pipe(uglify())
-                .pipe(gulpif(isDev, sourcemaps.write('./maps')))
-                .pipe(gulp.dest('./dist'));
-        })
-
+        let tasks = files.map((entry) => babelWeb(entry));
         es.merge(tasks).on('end', cb);
     });
 
 });
 
 // 后台 JS 文件转换 ES6
-gulp.task('babel-node', () => {
-    return babelNode(['routes/**/*.js'], 'dist_node/');
-});
+gulp.task('babel-node', () => babelNode(['routes/**/*.js'], 'dist_node/'));
 
 // 压缩图片
 gulp.task('imagemin', () => {
@@ -141,33 +125,58 @@ gulp.task('server', ['build'], () => {
         }
     });
 
-    gulp.watch(['src/styles/**/*.less'], ['css']);
-    gulp.watch(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'], ['jshint', 'babel-web']);
-    gulp.watch(['src/scripts/lib/**/*.js'], ['lib']);
     gulp.watch(['src/images/*'], ['imagemin']);
-    gulp.watch(['routes/**/*.js'], (event) => {
-        let p = path.parse(event.path);
-        if (event.type === 'deleted') {
-            console.log(`The file ${p.base} has deleted, now delete this file ...`);
-            fs.unlink(event.path.replace('routes', 'dist_node'), (err) => {
-                if (err) throw err;
-                console.log('Successfully delete ' + event.base);
-            })
-        } else {
-            console.log(`The file ${p.base} has changed, now rebuild this file ...`);
-            return babelNode(event.path, p.dir.replace('routes', 'dist_node'));
-        }
-    });
+    gulp.watch(['src/styles/**/*.less'], ['css']);
+    gulp.watch(['src/scripts/lib/**/*.js'], ['lib']);
+    gulp.watch(['src/scripts/**/*.js', '!src/scripts/lib/**/*.js'], (event) => updateFile(event, 'web'));
+    gulp.watch(['routes/**/*.js'], (event) => updateFile(event, 'node'));
 });
 
-gulp.task('glob', (done) => {
-    glob('src/scripts/!(lib)/**/*.js', (err, files) => {
-        if (err) done(err);
-        console.log(files);
-    })
-})
+function updateFile(event, type) {
+    let p = path.parse(event.path), deleteDir, updateFunc, input, output;
+    if (type === 'node') {
+        deleteDir = event.path.replace('routes', 'dist_node');
+        updateFunc = babelNode;
+        input = event.path;
+        output = p.dir.replace('routes', 'dist_node');
+    } else if (type === 'web') {
+        deleteDir = event.path.replace('src', 'dist');
+        updateFunc = babelWeb;
+        input = event.path;
+        output = './dist';
+    }
 
-function babelNode(input, output) {
+    if (event.type === 'deleted') {
+        console.log(`The file ${p.base} has deleted, now delete this file ...`);
+        fs.unlink(deleteDir, (err) => {
+            if (err) throw err;
+            console.log('Successfully delete ' + event.base);
+        })
+    } else {
+        console.log(`The file ${p.base} has changed, now rebuild this file ...`);
+        return updateFunc(input, output);
+    }
+}
+
+function babelWeb(input, output = './dist') {
+    let filename = input.replace('src/', '');
+    console.log(`${filename}: is added into babel task.`);
+    return browserify({
+        entries: [input],
+        transform: ["browserify-shim"]
+    })
+        .transform(babelify)
+        .bundle()
+        .pipe(plumber())
+        .pipe(source(filename))
+        .pipe(buffer())
+        .pipe(gulpif(isDev, sourcemaps.init()))
+        .pipe(uglify())
+        .pipe(gulpif(isDev, sourcemaps.write('.')))
+        .pipe(gulp.dest(output));
+}
+
+function babelNode(input, output = './dist_node') {
     return gulp.src(input)
         .pipe(plumber())
         .pipe(babel())
