@@ -1,1 +1,5 @@
-console.log(1);
+import $ from 'jquery'
+
+$(() => {
+    console.log('jquery has loaded successfully');
+})
