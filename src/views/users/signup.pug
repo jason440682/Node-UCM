@@ -1,18 +1,18 @@
 extends public/layout
 
 block content
-    form.form-horizontal(method="post", role="form")
+    form.form-horizontal#form(method="post", role="form", action="register")
         h1.title= lang.title
         div.section
             div.form-group
                 label.col-sm-4(for="username")= lang.username.text
                 div.col-sm-5
-                    input.form-control#username(type="text", name="username", placeholder= lang.username.placeholder)
+                    input.form-control#username(type="text", name="userName", placeholder= lang.username.placeholder)
 
             div.form-group
                 label.col-sm-4(for="password")= lang.password.text
                 div.col-sm-5
-                    input.form-control#password(type="password", name="username", placeholder= lang.password.placeholder)
+                    input.form-control#password(type="password", name="hashedPassword", placeholder= lang.password.placeholder)
 
             div.form-group
                 label.col-sm-4(for="confirm")= lang.confirm.text
@@ -22,107 +22,107 @@ block content
             div.form-group
                 label.col-sm-4(for="question")= lang.question.text
                 div.col-sm-5
-                    input.form-control#question(type="password", name="question", placeholder= lang.question.placeholder)
+                    input.form-control#question(type="password", name="securityQuestion", placeholder= lang.question.placeholder)
 
             div.form-group
                 label.col-sm-4(for="answer")= lang.answer.text
                 div.col-sm-5
-                    input.form-control#answer(type="text", name="answer", placeholder= lang.answer.placeholder)
+                    input.form-control#answer(type="text", name="securityQuestionAnswer", placeholder= lang.answer.placeholder)
 
             div.form-group
                 div.radio.col-sm-5
                     span.label-text.col-sm-7= lang.auto_login.text
                     div.col-sm-5
                         label.col-sm-6
-                            input(type="radio", name="auto-login", value="yes" checked)
+                            input(type="radio", name="enable2FactorAuthenticationLogin", value="1" checked)
                             = lang.auto_login.yes
                         label.col-sm-6
-                            input(type="radio", name="auto-login", value="no")
+                            input(type="radio", name="enable2FactorAuthenticationLogin", value="0")
                             = lang.auto_login.no
 
                 div.radio.col-sm-7
                     span.label-text.col-sm-5= lang.send_code.text
                     div.col-sm-7
                         label.col-sm-7
-                            input(type="radio", name="send-code", value="mobile" checked)
+                            input(type="radio", name="sendPasscodeToDeviceId", value="1" checked)
                             = lang.send_code.mobile
                         label.col-sm-5
-                            input(type="radio", name="send-code", value="email")
+                            input(type="radio", name="sendPasscodeToDeviceId", value="2")
                             = lang.send_code.email
 
         div.section
             div.form-group
-                label.col-sm-4(for="firstName")= lang.first_name.text
+                label.col-sm-4(for="first-name")= lang.first_name.text
                 div.col-sm-5
-                    input.form-control#firstName(type="text", name="firstName", placeholder= lang.first_name.placeholder)
+                    input.form-control#first-name(type="text", name="firstName", placeholder= lang.first_name.placeholder)
 
             div.form-group
-                label.col-sm-4(for="lastName")= lang.last_name.text
+                label.col-sm-4(for="last-name")= lang.last_name.text
                 div.col-sm-5
-                    input.form-control#lastName(type="text", name="lastName", placeholder= lang.last_name.placeholder)
+                    input.form-control#last-name(type="text", name="lastName", placeholder= lang.last_name.placeholder)
 
             div.form-group
                 label.col-sm-4(for="email")= lang.email_address.text
                 div.col-sm-5
-                    input.form-control#email(type="email", name="email", placeholder= lang.email_address.placeholder)
+                    input.form-control#email(type="email", name="eMailAddress", placeholder= lang.email_address.placeholder)
 
             div.form-group
-                label.col-sm-4(for="mobileNum")= lang.mobile_num.text
+                label.col-sm-4(for="phone-number")= lang.mobile_num.text
                 div.col-sm-5
-                    input.form-control#mobileNum(type="tel", name="mobileNum", placeholder= lang.mobile_num.placeholder)
+                    input.form-control#phone-number(type="tel", name="phoneNumber", placeholder= lang.mobile_num.placeholder)
 
             div.form-group
-                label.col-sm-4(for="otherNum")= lang.other_num.text
+                label.col-sm-4(for="other-phone")= lang.other_num.text
                 div.col-sm-5
-                    input.form-control#otherNum(type="tel", name="otherNum", placeholder= lang.other_num.placeholder)
+                    input.form-control#other-phone(type="tel", name="otherPhone", placeholder= lang.other_num.placeholder)
 
         div.section
             div.form-group
                 label.col-sm-4(for="businessName")= lang.business_name.text
                 div.col-sm-5
-                    input.form-control#businessName(type="text", name="bussiness-name", placeholder= lang.business_name.placeholder)
+                    input.form-control#businessName(type="text", name="businessName", placeholder= lang.business_name.placeholder)
 
             div.form-group
                 label.col-sm-4(for="businessType")= lang.business_type.text
                 div.col-sm-5
-                    select.form-control#businessType(name="business-type")
-                        for type in lang.business_type.types
-                            option= type
+                    select.form-control#businessType(name="businessTypeId")
+                        for type in businessTypes
+                            option(value=type.businessTypeId)= type.businessType
 
             div.form-group
                 label.col-sm-4(for="timeZone")= lang.time_zone.text
                 div.col-sm-5
-                    select.form-control#timeZone(name="time-zone")
-                        for zone in lang.time_zone.timeZones
-                            option= zone
+                    select.form-control#timeZone(name="businessTimeZoneId")
+                        for zone in timezones
+                            option(value=zone.timeZoneId)= zone.timeZoneLocation + '\t' + zone.gmt
 
             div.form-group
                 label.col-sm-4(for="businessEmail")= lang.business_email.text
                 div.col-sm-5
-                    input.form-control#businessEmail(type="email", placeholder= lang.business_email.placeholder)
+                    input.form-control#businessEmail(type="email", name="businessEMail", placeholder= lang.business_email.placeholder)
 
             div.form-group
                 label.col-sm-4(for="businessPhone")= lang.business_phone.text
                 div.col-sm-5
-                    input.form-control#businessPhone(type="number", placeholder= lang.business_phone.placeholder)
+                    input.form-control#businessPhone(type="number", name="businessPhoneNumber", placeholder= lang.business_phone.placeholder)
 
             div.form-group
                 label.col-sm-4(for="addStreet")= lang.business_address.text
                 div.col-sm-5.country
-                    input.form-control#addStreet(type="text", name="street", placeholder= lang.business_address.placeholder.street)
+                    input.form-control#addStreet(type="text", name="businessAddressStreet", placeholder= lang.business_address.placeholder.street)
                     div
-                        input.form-control(type="text", name="city", placeholder= lang.business_address.placeholder.city)
-                        input.form-control(type="text", name="state", placeholder= lang.business_address.placeholder.state)
+                        input.form-control(type="text", name="businessAddressCity", placeholder= lang.business_address.placeholder.city)
+                        input.form-control(type="text", name="businessAddressStateProvince", placeholder= lang.business_address.placeholder.state)
                     div
-                        input.form-control(type="text", name="zip-code", placeholder= lang.business_address.placeholder.zip_code)
-                        select.form-control(name="country")
-                            for country in lang.business_address.country
-                                option= country
+                        input.form-control(type="text", name="zipCode", placeholder= lang.business_address.placeholder.zip_code)
+                        select.form-control(name="businessCountryId")
+                            for country in countries
+                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
                 label.col-sm-4(for="businessDescription")= lang.business_description.text
                 div.col-sm-5
-                    textarea.form-control#businessDescription(placeholder= lang.business_description.placeholder)
+                    textarea.form-control#businessDescription(name="businessDescription", placeholder= lang.business_description.placeholder)
 
             div.form-group
                 label.col-sm-4(for="logo")= lang.logo.text
@@ -130,7 +130,9 @@ block content
                     input#logo(type="file", placeholder= lang.logo.placeholder)
 
         div.section
-            button.btn.btn-primary.submit(type="submit")= lang.submit_btn.text
+            button.btn.btn-primary.submit#submit(type="submit")= lang.submit_btn.text
 
+    script(src="/scripts/lib/jquery/dist/jquery.min.js")
+    script(src="/scripts/lib/bootstrap/dist/js/bootstrap.min.js")
 block footer
     include ./public/footer
