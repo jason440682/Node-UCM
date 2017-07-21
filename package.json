@@ -8,6 +8,22 @@
     "build": "gulp build",
     "dev": "gulp server --env=dev"
   },
+  "browser": {
+    "jquery": "./bower_components/jquery/dist/jquery.js",
+    "bootstrap": "./bower_components/bootstrap/dist/js/bootstrap.js"
+  },
+  "browserify-shim": {
+    "bootstrap": {
+      "depends": [
+        "jquery:$"
+      ]
+    }
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/UCMProjectTeam/Node-UCM.git"
@@ -32,6 +48,8 @@
     "babelify": "^7.3.0",
     "browser-sync": "^2.18.8",
     "browserify": "^14.4.0",
+    "browserify-shim": "^3.8.14",
+    "cross-env": "^5.0.1",
     "cssgrace": "^3.0.0",
     "cssnext": "^1.8.4",
     "event-stream": "^3.3.4",
@@ -52,6 +70,7 @@
     "gulp-uglify": "^2.0.1",
     "http-proxy-middleware": "^0.17.4",
     "jshint": "^2.9.4",
+    "lodash": "^4.17.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "yargs": "^8.0.2"
