@@ -1,0 +1,20 @@
+doctype html
+
+html(lang= language)
+  head
+    meta(charset='UTF-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
+    title= lang.title
+    link(rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css")
+    link(rel='stylesheet' href='/styles/client/public/navbar.css')
+    link(rel='stylesheet' href='/styles/client/public/footer.css')
+    link(rel='stylesheet' href='/styles/client/' + key + '.css')
+  body
+    div.container
+      block content
+    block footer
+
+    script(type="text/javascript" src="/scripts/lib/require.js")
+    script(type="text/javascript" src="/scripts/config.js")
+    script(type="text/javascript" src="/scripts/client/" + key + ".js")
+
