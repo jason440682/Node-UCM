@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var requests = require('../plugins/requests');
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) => {
     requests.getVerificationCode().then(function (response) {
         var cookies = response.header['set-cookie'];
         req.session.name = cookies[1].split(';')[0];
@@ -10,12 +10,12 @@ router.get('/', function(req, res, next) {
     })
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', (req, res) => {
     console.log(req.body.code);
     console.log(req.session.name);
-    requests.checkVerificationCode(req.body.code, req.session.name).then(function(response) {
+    requests.checkVerificationCode(req.body.code, req.session.name).then((response) => {
         res.send(response.text);
-    }, function(error) {
+    }, (error) => {
         console.log('failed!');
         console.log(error);
         res.send('error');

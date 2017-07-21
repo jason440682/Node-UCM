@@ -1,18 +1,22 @@
-var express = require('express');
-var router = express.Router();
+'use strict'
+import requests from '../../plugins/requests'
+import Q from 'Q'
+import { Router } from 'express'
+const router = Router();
 
-router.get('/', function (req, res, next) {
-    var data = {
+router.get('/', (req, res) => {
+    let lang = req.lang ? req.lang : 'en';
+    let data = {
         key: 'user/createStaff',
-
-        language: 'en',
-        lang: require('./lang/en/createStaff')
+        language: lang,
+        lang: require(`./lang/${lang}/createStaff`)
     };
 
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/createStaff');
-    }
+    Q.all([requests.getBusinessTypes(), requests.getTimezones()]).then(list => {
+        console.log('success');
+        data.businessTypes = list[0].body;
+        data.timezones = list[1].body;
+    })
 
     res.render('client/user/createStaff', data);
 });

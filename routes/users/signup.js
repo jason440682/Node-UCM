@@ -1,30 +1,35 @@
-var express = require('express');
-var router = express.Router();
+'use strict'
+import { Router } from 'express'
+const router = Router();
 
-router.get('/', function (req, res, next) {
-    var data = {
+import promise from 'Q'
+import { getBusinessTypes, getTimezones, getCountries } from '../plugins/requests'
+
+router.get('/', (req, res) => {
+    console.log('Get register');
+    let lang = req.lang ? req.lang : 'en';
+    let data = {
         key: 'signup',
-
-        language: 'en',
-        lang: require('./lang/en/signup')
+        language: lang,
+        lang: require(`./lang/${lang}/signup`)
     };
 
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/signup');
-    }
+    promise.all([getBusinessTypes(), getTimezones(), getCountries()]).then(list => {
+        console.log('success');
+        data.businessTypes = list[0].body;
+        data.timezones = list[1].body;
+        data.countries = list[2].body;
 
-    res.render('users/signup', data);
+        res.render('users/signup', data);
+    })
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', (req, res) => {
     // 这里写注册页面 POST 数据过来时要处理的逻辑
     console.log('Post Register!');
-    if (req.lang && req.lang == 'zh-cn') {
-        res.redirect('/cn/client/accounts');
-    } else {
-        res.redirect('/en/client/accounts');
-    }
+    let lang = req.lang ? req.lang : 'en';
+    // res.redirect(`/${lang}/accounts`);
+    res.redirect('/register')
 });
 
 module.exports = router;

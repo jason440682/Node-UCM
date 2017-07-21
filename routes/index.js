@@ -32,24 +32,28 @@ const apiTable = {
     '/register': require('./users/signup'),
 
     // Api
-    '/validate': require('./api/verificationCode')
+    '/validate': require('./api/verificationCode'),
+    '/test': require('./api/test')
 };
 
+router.use('/:language', (req, res, next) => {
+    if (langs.findIndex(item => item === req.params.language) === -1) {
+        res.redirect('/en' + req.originalUrl);
+    } else {
+        req.lang = lang[req.params.language];
+        next();
+    }
+});
+
 Object.keys(apiTable).forEach(url => {
-    router.use('/:language' + url, (req, res, next) => {
-        let isOriginalUrl = !(req.params.language === 'images' || req.params.language === 'scripts' || req.params.language === 'styles');
-        let noLangTag = isOriginalUrl && langs.findIndex(item => item === req.params.language) === -1;
-        if (noLangTag) {
-            res.redirect('/en' + req.originalUrl);
-        } else {
-            req.lang = lang[req.params.language];
-            next();
-        }
-    }, apiTable[url]);
+    router.use('/:language' + url, apiTable[url]);
+})
+
+router.get('/:language', (req, res) => {
+    res.redirect(`/${req.params.language}/login`);
 })
 
 router.get('/', (req, res) => {
-    req.lang = 'en';
     res.redirect('/en/login');
 });
 
