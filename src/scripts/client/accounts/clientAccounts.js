@@ -1,1 +1,3 @@
-console.log(1);
+import $ from 'jquery';
+window.jQuery = $;
+require('bootstrap')
