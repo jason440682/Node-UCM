@@ -2,6 +2,9 @@
 .vscode/
 bower_components/
 build/
+config/
 dist/
 dist_node/
 node_modules/
+
+app.js
