@@ -7,7 +7,9 @@ module.exports = {
                 url: '/api/validate',
                 type: 'GET',
             }).then(
-                response => resolve(response),
+                (response, status, xhr) => {
+                    resolve({ response, status, xhr })
+                },
                 (xhr, status, error) => {
                     reject({ xhr, status, error })
                 })
@@ -21,21 +23,20 @@ module.exports = {
                 type: 'POST',
                 data,
             }).then(
-                response => resolve(response),
+                (response, status, xhr) => {
+                    resolve({ response, status, xhr })
+                },
                 (xhr, status, error) => {
                     reject({ xhr, status, error })
                 })
         })
     },
-    sendValidateCode(data) {
+    sendValidateCode(code) {
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: '/api/validate',
                 type: 'POST',
-                data,
-                beforeSend() {
-                    console.log(this)
-                },
+                data: { code },
             }).then(
                 (response, status, xhr) => {
                     resolve({ response, status, xhr })
@@ -51,13 +52,12 @@ module.exports = {
                 url: 'http://54.169.159.192:8080/UCM/SignUp',
                 type: 'POST',
                 data,
-                beforeSend() {
-                    console.log('Send data! Please wait...')
-                },
             }).then(
-                response => resolve(response),
-                (xmlHttpRequest, status, errorThrown) => {
-                    reject({ xmlHttpRequest, status, errorThrown })
+                (response, status, xhr) => {
+                    resolve({ response, status, xhr })
+                },
+                (xhr, status, error) => {
+                    reject({ xhr, status, error })
                 })
         })
     },
@@ -69,11 +69,10 @@ module.exports = {
                 data,
                 processData: false,
                 contentType: false,
-                beforeSend() {
-                    console.log('Send Upload Logo! Please wait...')
-                },
             }).then(
-                response => resolve(response),
+                (response, status, xhr) => {
+                    resolve({ response, status, xhr })
+                },
                 (xhr, status, error) => {
                     reject({ xhr, status, error })
                 })
