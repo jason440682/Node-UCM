@@ -67,7 +67,7 @@ module.exports = {
         console.log('\n----------- Request -----------')
         console.log(`url: ${server.checkVerificationCode}`)
         console.log('method: POST')
-        if (req._data) console.log(`data: ${req._data}`)
+        if (req._data) console.log(`data: ${JSON.stringify(req._data)}`)
         console.log(`header: ${JSON.stringify(req.header)}`)
         console.log('-------------------------------')
 
