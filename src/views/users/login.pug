@@ -15,12 +15,12 @@ block content
                 label.col-sm-2(for="password")= lang.password.text
                 div.col-sm-4
                     input.form-control#password(type="password", name="password", placeholder= lang.password.placeholder)
-            
+
             div.form-group
                 div.col-sm-4.col-sm-offset-5
                     input.form-control#verification-code(type="password", name="verification-code", placeholder= 'validate code')
                 div.col-sm-2.verification-code
-                    img#verification-code-image(src='/UCM/getVerificationCode', alt="validate code")
+                    img#verification-code-image(src='/api/validate', alt="validate code")
 
             div.form-group
                 div.col-sm-4.col-sm-offset-5

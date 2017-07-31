@@ -1,33 +1,44 @@
 extends public/layout
 
 block content
+    link(type="text/css", rel="stylesheet", href="/scripts/lib/bootstrap-fileinput/css/fileinput.min.css")
     form.form-horizontal#form(method="post", role="form", action="register")
         h1.title= lang.title
         div.section
             div.form-group
-                label.col-sm-4(for="username")= lang.username.text
+                label.col-sm-4(for="username")
+                    span.highlight *
+                    = lang.username.text
                 div.col-sm-5
-                    input.form-control#username(type="text", name="userName", placeholder= lang.username.placeholder)
+                    input.form-control.required#username(type="text", name="userName", placeholder= lang.username.placeholder)
 
             div.form-group
-                label.col-sm-4(for="password")= lang.password.text
+                label.col-sm-4(for="password")
+                    span.highlight *
+                    = lang.password.text
                 div.col-sm-5
-                    input.form-control#password(type="password", name="hashedPassword", placeholder= lang.password.placeholder)
+                    input.form-control.required#password(type="password", name="hashedPassword", placeholder= lang.password.placeholder)
 
             div.form-group
-                label.col-sm-4(for="confirm")= lang.confirm.text
+                label.col-sm-4(for="confirm")
+                    span.highlight *
+                    = lang.confirm.text
                 div.col-sm-5
-                    input.form-control#confirm(type="password", name="confirm", placeholder= lang.confirm.placeholder)
+                    input.form-control.required#confirm(type="password", name="confirm", placeholder= lang.confirm.placeholder)
 
             div.form-group
-                label.col-sm-4(for="question")= lang.question.text
+                label.col-sm-4(for="question")
+                    span.highlight *
+                    = lang.question.text
                 div.col-sm-5
-                    input.form-control#question(type="password", name="securityQuestion", placeholder= lang.question.placeholder)
+                    input.form-control.required#question(type="text", name="securityQuestion", placeholder= lang.question.placeholder)
 
             div.form-group
-                label.col-sm-4(for="answer")= lang.answer.text
+                label.col-sm-4(for="answer")
+                    span.highlight *
+                    = lang.answer.text
                 div.col-sm-5
-                    input.form-control#answer(type="text", name="securityQuestionAnswer", placeholder= lang.answer.placeholder)
+                    input.form-control.required#answer(type="text", name="securityQuestionAnswer", placeholder= lang.answer.placeholder)
 
             div.form-group
                 div.radio.col-sm-5
@@ -52,87 +63,112 @@ block content
 
         div.section
             div.form-group
-                label.col-sm-4(for="first-name")= lang.first_name.text
+                label.col-sm-4(for="first-name")
+                    span.highlight *
+                    = lang.first_name.text
                 div.col-sm-5
-                    input.form-control#first-name(type="text", name="firstName", placeholder= lang.first_name.placeholder)
+                    input.form-control.required#first-name(type="text", name="firstName", placeholder= lang.first_name.placeholder)
 
             div.form-group
-                label.col-sm-4(for="last-name")= lang.last_name.text
+                label.col-sm-4(for="last-name")
+                    span.highlight *
+                    = lang.last_name.text
                 div.col-sm-5
-                    input.form-control#last-name(type="text", name="lastName", placeholder= lang.last_name.placeholder)
+                    input.form-control.required#last-name(type="text", name="lastName", placeholder= lang.last_name.placeholder)
 
             div.form-group
-                label.col-sm-4(for="email")= lang.email_address.text
+                label.col-sm-4(for="email")
+                    span.highlight *
+                    = lang.email_address.text
                 div.col-sm-5
-                    input.form-control#email(type="email", name="eMailAddress", placeholder= lang.email_address.placeholder)
+                    input.form-control.required#email(type="email", name="eMailAddress", placeholder= lang.email_address.placeholder)
 
             div.form-group
-                label.col-sm-4(for="phone-number")= lang.mobile_num.text
+                label.col-sm-4(for="phone-number")
+                    span.highlight *
+                    = lang.mobile_num.text
                 div.col-sm-5
-                    input.form-control#phone-number(type="tel", name="phoneNumber", placeholder= lang.mobile_num.placeholder)
+                    input.form-control.required#phone-number(type="tel", name="phoneNumber", placeholder= lang.mobile_num.placeholder)
 
             div.form-group
-                label.col-sm-4(for="other-phone")= lang.other_num.text
+                label.col-sm-4(for="other-phone")
+                    span.highlight *
+                    = lang.other_num.text
                 div.col-sm-5
-                    input.form-control#other-phone(type="tel", name="otherPhone", placeholder= lang.other_num.placeholder)
+                    input.form-control.required#other-phone(type="tel", name="otherPhone", placeholder= lang.other_num.placeholder)
 
         div.section
             div.form-group
-                label.col-sm-4(for="businessName")= lang.business_name.text
+                label.col-sm-4(for="businessName")
+                    span.highlight *
+                    = lang.business_name.text
                 div.col-sm-5
-                    input.form-control#businessName(type="text", name="businessName", placeholder= lang.business_name.placeholder)
+                    input.form-control.required#businessName(type="text", name="businessName", placeholder= lang.business_name.placeholder)
 
             div.form-group
-                label.col-sm-4(for="businessType")= lang.business_type.text
+                label.col-sm-4(for="businessType")
+                    span.highlight *
+                    = lang.business_type.text
                 div.col-sm-5
-                    select.form-control#businessType(name="businessTypeId")
+                    select.form-control.required#businessType(name="businessTypeId")
                         for type in businessTypes
                             option(value=type.businessTypeId)= type.businessType
 
             div.form-group
-                label.col-sm-4(for="timeZone")= lang.time_zone.text
+                label.col-sm-4(for="timeZone")
+                    span.highlight *
+                    = lang.time_zone.text
                 div.col-sm-5
-                    select.form-control#timeZone(name="businessTimeZoneId")
+                    select.form-control.required#timeZone(name="businessTimeZoneId")
                         for zone in timezones
                             option(value=zone.timeZoneId)= zone.timeZoneLocation + '\t' + zone.gmt
 
             div.form-group
-                label.col-sm-4(for="businessEmail")= lang.business_email.text
+                label.col-sm-4(for="businessEmail")
+                    span.highlight *
+                    = lang.business_email.text
                 div.col-sm-5
-                    input.form-control#businessEmail(type="email", name="businessEMail", placeholder= lang.business_email.placeholder)
+                    input.form-control.required#businessEmail(type="email", name="businessEMail", placeholder= lang.business_email.placeholder)
 
             div.form-group
-                label.col-sm-4(for="businessPhone")= lang.business_phone.text
+                label.col-sm-4(for="businessPhone")
+                    span.highlight *
+                    = lang.business_phone.text
                 div.col-sm-5
-                    input.form-control#businessPhone(type="number", name="businessPhoneNumber", placeholder= lang.business_phone.placeholder)
+                    input.form-control.required#businessPhone(type="number", name="businessPhoneNumber", placeholder= lang.business_phone.placeholder)
 
             div.form-group
-                label.col-sm-4(for="addStreet")= lang.business_address.text
+                label.col-sm-4(for="addStreet")
+                    span.highlight *
+                    = lang.business_address.text
                 div.col-sm-5.country
-                    input.form-control#addStreet(type="text", name="businessAddressStreet", placeholder= lang.business_address.placeholder.street)
+                    input.form-control.required#addStreet(type="text", name="businessAddressStreet", placeholder= lang.business_address.placeholder.street)
                     div
-                        input.form-control(type="text", name="businessAddressCity", placeholder= lang.business_address.placeholder.city)
-                        input.form-control(type="text", name="businessAddressStateProvince", placeholder= lang.business_address.placeholder.state)
+                        input.form-control.required(type="text", name="businessAddressCity", placeholder= lang.business_address.placeholder.city)
+                        input.form-control.required(type="text", name="businessAddressStateProvince", placeholder= lang.business_address.placeholder.state)
                     div
-                        input.form-control(type="text", name="zipCode", placeholder= lang.business_address.placeholder.zip_code)
+                        input.form-control.required(type="text", name="zipCode", placeholder= lang.business_address.placeholder.zip_code)
                         select.form-control(name="businessCountryId")
                             for country in countries
                                 option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
-                label.col-sm-4(for="businessDescription")= lang.business_description.text
+                label.col-sm-4(for="businessDescription")
+                    span.highlight *
+                    = lang.business_description.text
                 div.col-sm-5
-                    textarea.form-control#businessDescription(name="businessDescription", placeholder= lang.business_description.placeholder)
+                    textarea.form-control.required#businessDescription(name="businessDescription", placeholder= lang.business_description.placeholder)
 
             div.form-group
-                label.col-sm-4(for="logo")= lang.logo.text
+                label.col-sm-4(for="logo")
+                    span.highlight *
+                    = lang.logo.text
                 div.col-sm-5
-                    input#logo(type="file", placeholder= lang.logo.placeholder)
+                    input.required#upload-logo(placeholder= lang.logo.placeholder, type="file", class="file", data-preview-file-type="text")
 
         div.section
             button.btn.btn-primary.submit#submit(type="submit")= lang.submit_btn.text
 
-    script(src="/scripts/lib/jquery/dist/jquery.min.js")
-    script(src="/scripts/lib/bootstrap/dist/js/bootstrap.min.js")
+    script(src="/scripts/lib/bootstrap-fileinput/js/fileinput.js")
 block footer
     include ./public/footer
