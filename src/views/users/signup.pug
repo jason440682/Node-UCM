@@ -1,7 +1,12 @@
-extends public/layout
+extends layout
+
+block ownStyles
+    link(type="text/css", rel="stylesheet", href="/scripts/lib/bootstrap-fileinput/css/fileinput.min.css")
+
+block ownScripts
+    script(src="/scripts/lib/bootstrap-fileinput/js/fileinput.js")
 
 block content
-    link(type="text/css", rel="stylesheet", href="/scripts/lib/bootstrap-fileinput/css/fileinput.min.css")
     form.form-horizontal#form(method="post", role="form", action="register")
         h1.title= lang.title
         div.section
@@ -169,6 +174,6 @@ block content
         div.section
             button.btn.btn-primary.submit#submit(type="submit")= lang.submit_btn.text
 
-    script(src="/scripts/lib/bootstrap-fileinput/js/fileinput.js")
 block footer
-    include ./public/footer
+    .navbar.navbar-default.footer
+        p Copyright@2016 Raymond Guo.All rights reserved

@@ -1,4 +1,4 @@
-extends public/layout
+extends layout
 
 block content
     form.form-horizontal(method="post", role="form", action="login")
@@ -36,4 +36,5 @@ block content
                         p#error= err
 
 block footer
-    include ./public/footerfixed
+    .navbar.navbar-default.navbar-fixed-bottom.footer
+        p Copyright@2016 Raymond Guo.All rights reserved

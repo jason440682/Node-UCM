@@ -1,0 +1,10 @@
+extends ../index
+
+block styles
+    link(rel='stylesheet' href='/styles/users/public/footer.css')
+    link(rel='stylesheet' href='/styles/users/' + key + '.css')
+    block ownStyles
+
+block scripts
+    block ownScripts
+    script(type="text/javascript" src="/scripts/user/" + key + ".js")

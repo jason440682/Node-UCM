@@ -6,8 +6,7 @@ html(lang= language)
         meta(name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no")
         title= lang.title
         link(rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css")
-        link(rel='stylesheet' href='/styles/users/public/footer.css')
-        link(rel='stylesheet' href='/styles/users/' + key + '.css')
+        block styles
 
     body
         div.container
@@ -17,4 +16,4 @@ html(lang= language)
 
         script(src="/scripts/lib/jquery/dist/jquery.min.js")
         script(src="/scripts/lib/bootstrap/dist/js/bootstrap.min.js")
-        script(type="text/javascript" src="/scripts/user/" + key + ".js")
+        block scripts
