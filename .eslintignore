@@ -1,0 +1,7 @@
+.idea/
+.vscode/
+bower_components/
+build/
+dist/
+dist_node/
+node_modules/
