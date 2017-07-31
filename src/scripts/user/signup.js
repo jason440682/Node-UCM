@@ -102,18 +102,23 @@ $('#submit').click(() => {
     validateForm().then((data) => {
         console.log(data)
         Promise.all([uploadLogo(data.formdata), signUp(data.data)]).then((datas) => {
+            console.log('datas')
             console.log(datas)
-            const uploaded = datas[0] === 'uploaded'
-            const registered = datas[1] === 'Sign Up Successfully'
-            if (uploaded && registered) location.assign('/accounts')
+            const uploaded = datas[0].response === 'uploaded'
+            const registered = datas[1].response === 'Sign Up Successfully'
+            if (uploaded && registered) {
+                alert('注册成功！')
+                location.assign('/accounts')
+            }
         }, (error) => {
             console.log(error)
-            if (error.xmlHttpRequest.status === 503) {
+            if (error.xhr.status === 503) {
                 alert('该用户已存在！请重新输入')
                 showError($('#username'), '该用户已存在！请重新输入')
             }
         })
     }, (errorDOM) => {
+        console.log('error dom!')
         errorDOM.focus()
     })
 
