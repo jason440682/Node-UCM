@@ -28,7 +28,7 @@ function removeError($target) {
 }
 
 $upload.fileinput({
-    upload: false,
+    showUpload: false,
     previewFileType: 'any',
 })
 
@@ -75,9 +75,7 @@ $input.blur((e) => {
 // 验证表单
 function validateForm() {
     $input.trigger('blur')
-    const $logo = $('#upload-logo')
-    const data = {}
-    const formdata = new FormData()
+    const [$logo, data, formdata] = [$('#upload-logo'), {}, new FormData()]
     return new Promise((resolve, reject) => {
         const $requiredInputs = $('form .has-error')
         if ($requiredInputs.length > 0) reject($requiredInputs[0])
@@ -119,6 +117,7 @@ $('#submit').click(() => {
         })
     }, (errorDOM) => {
         console.log('error dom!')
+        console.log(errorDOM)
         errorDOM.focus()
     })
 
