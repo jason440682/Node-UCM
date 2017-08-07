@@ -30,7 +30,6 @@ module.exports = {
             "props": false
         }],
         "no-underscore-dangle": 1,
-        "no-undef": 1,
         "prefer-const": 1,
         "quotes": [
             "error",
