@@ -47,7 +47,9 @@ block content
 
             div.form-group
                 div.radio.col-sm-5
-                    span.label-text.col-sm-7= lang.auto_login.text
+                    span.label-text.col-sm-7
+                        span.highlight *
+                        = lang.auto_login.text
                     div.col-sm-5
                         label.col-sm-6
                             input(type="radio", name="enable2FactorAuthenticationLogin", value="1" checked)
@@ -96,11 +98,9 @@ block content
                     input.form-control.required#phone-number(type="tel", name="phoneNumber", placeholder= lang.mobile_num.placeholder)
 
             div.form-group
-                label.col-sm-4(for="other-phone")
-                    span.highlight *
-                    = lang.other_num.text
+                label.col-sm-4(for="other-phone")= lang.other_num.text
                 div.col-sm-5
-                    input.form-control.required#other-phone(type="tel", name="otherPhone", placeholder= lang.other_num.placeholder)
+                    input.form-control#other-phone(type="tel", name="otherPhone", placeholder= lang.other_num.placeholder)
 
         div.section
             div.form-group
@@ -108,68 +108,54 @@ block content
                     span.highlight *
                     = lang.business_name.text
                 div.col-sm-5
-                    input.form-control.required#businessName(type="text", name="businessName", placeholder= lang.business_name.placeholder)
+                    input.form-control#businessName(type="text", name="businessName", placeholder= lang.business_name.placeholder)
 
             div.form-group
-                label.col-sm-4(for="businessType")
-                    span.highlight *
-                    = lang.business_type.text
+                label.col-sm-4(for="businessType")= lang.business_type.text
                 div.col-sm-5
-                    select.form-control.required#businessType(name="businessTypeId")
+                    select.form-control#businessType(name="businessTypeId")
                         for type in businessTypes
                             option(value=type.businessTypeId)= type.businessType
 
             div.form-group
-                label.col-sm-4(for="timeZone")
-                    span.highlight *
-                    = lang.time_zone.text
+                label.col-sm-4(for="timeZone")= lang.time_zone.text
                 div.col-sm-5
-                    select.form-control.required#timeZone(name="businessTimeZoneId")
+                    select.form-control#timeZone(name="businessTimeZoneId")
                         for zone in timezones
                             option(value=zone.timeZoneId)= zone.timeZoneLocation + '\t' + zone.gmt
 
             div.form-group
-                label.col-sm-4(for="businessEmail")
-                    span.highlight *
-                    = lang.business_email.text
+                label.col-sm-4(for="businessEmail")= lang.business_email.text
                 div.col-sm-5
-                    input.form-control.required#businessEmail(type="email", name="businessEMail", placeholder= lang.business_email.placeholder)
+                    input.form-control#businessEmail(type="email", name="businessEMail", placeholder= lang.business_email.placeholder)
 
             div.form-group
-                label.col-sm-4(for="businessPhone")
-                    span.highlight *
-                    = lang.business_phone.text
+                label.col-sm-4(for="businessPhone")= lang.business_phone.text
                 div.col-sm-5
-                    input.form-control.required#businessPhone(type="number", name="businessPhoneNumber", placeholder= lang.business_phone.placeholder)
+                    input.form-control#businessPhone(type="number", name="businessPhoneNumber", placeholder= lang.business_phone.placeholder)
 
             div.form-group
-                label.col-sm-4(for="addStreet")
-                    span.highlight *
-                    = lang.business_address.text
+                label.col-sm-4(for="addStreet")= lang.business_address.text
                 div.col-sm-5.country
-                    input.form-control.required#addStreet(type="text", name="businessAddressStreet", placeholder= lang.business_address.placeholder.street)
+                    input.form-control#addStreet(type="text", name="businessAddressStreet", placeholder= lang.business_address.placeholder.street)
                     div
-                        input.form-control.required(type="text", name="businessAddressCity", placeholder= lang.business_address.placeholder.city)
-                        input.form-control.required(type="text", name="businessAddressStateProvince", placeholder= lang.business_address.placeholder.state)
+                        input.form-control(type="text", name="businessAddressCity", placeholder= lang.business_address.placeholder.city)
+                        input.form-control(type="text", name="businessAddressStateProvince", placeholder= lang.business_address.placeholder.state)
                     div
-                        input.form-control.required(type="text", name="zipCode", placeholder= lang.business_address.placeholder.zip_code)
+                        input.form-control(type="text", name="zipCode", placeholder= lang.business_address.placeholder.zip_code)
                         select.form-control(name="businessCountryId")
                             for country in countries
                                 option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
-                label.col-sm-4(for="businessDescription")
-                    span.highlight *
-                    = lang.business_description.text
+                label.col-sm-4(for="businessDescription")= lang.business_description.text
                 div.col-sm-5
-                    textarea.form-control.required#businessDescription(name="businessDescription", placeholder= lang.business_description.placeholder)
+                    textarea.form-control#businessDescription(name="businessDescription", placeholder= lang.business_description.placeholder)
 
             div.form-group
-                label.col-sm-4(for="logo")
-                    span.highlight *
-                    = lang.logo.text
+                label.col-sm-4(for="logo")= lang.logo.text
                 div.col-sm-5
-                    input.required#upload-logo(placeholder= lang.logo.placeholder, type="file", class="file", data-preview-file-type="text")
+                    input#upload-logo(placeholder= lang.logo.placeholder, type="file", class="file", data-preview-file-type="text")
 
         div.section
             button.btn.btn-primary.submit#submit(type="submit")= lang.submit_btn.text

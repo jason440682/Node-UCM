@@ -1,7 +1,7 @@
 import { uploadLogo, signUp } from '../plugins/api'
 
 const $ = window.jQuery
-const $input = $('form :input.required')
+const $required = $('form :input.required')
 const $upload = $('#upload-logo')
 
 function showError($target, message) {
@@ -32,16 +32,7 @@ $upload.fileinput({
     previewFileType: 'any',
 })
 
-$upload.on('change', () => {
-    const $fileInput = $('.file-caption-name')
-    if ($fileInput.text() === '') {
-        showError($fileInput.parent().parent().parent(), '请上传公司 Logo！')
-    } else {
-        removeError($fileInput.parent().parent().parent())
-    }
-})
-
-$input.blur((e) => {
+$required.blur((e) => {
     const $this = $(e.target)
     $this.parent().toggleClass('has-error', $this.val() === '')
 
@@ -74,17 +65,11 @@ $input.blur((e) => {
 
 // 验证表单
 function validateForm() {
-    $input.trigger('blur')
-    const [$logo, data, formdata] = [$('#upload-logo'), {}, new FormData()]
+    $required.trigger('blur')
+    const [data, formdata] = [{}, new FormData()]
     return new Promise((resolve, reject) => {
         const $requiredInputs = $('form .has-error')
         if ($requiredInputs.length > 0) reject($requiredInputs[0])
-        if ($logo[0].files.length === 0) {
-            showError($logo.parent().parent().parent().parent(), '请上传公司 Logo！')
-            reject($logo[0])
-        } else {
-            removeError($logo.parent().parent().parent().parent())
-        }
 
         $('form').serializeArray().forEach((element) => {
             data[element.name] = element.value
@@ -116,7 +101,6 @@ $('#submit').click(() => {
             }
         })
     }, (errorDOM) => {
-        console.log('error dom!')
         console.log(errorDOM)
         errorDOM.focus()
     })
