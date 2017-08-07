@@ -1,7 +1,7 @@
 import { uploadLogo, signUp } from '../plugins/api'
 
 const $ = window.jQuery
-const $required = $('form :input.required')
+const $input = $('form :input')
 const $upload = $('#upload-logo')
 
 function showError($target, message) {
@@ -32,9 +32,11 @@ $upload.fileinput({
     previewFileType: 'any',
 })
 
-$required.blur((e) => {
+$input.blur((e) => {
     const $this = $(e.target)
-    $this.parent().toggleClass('has-error', $this.val() === '')
+    if ($this.hasClass('required')) {
+        $this.parent().toggleClass('has-error', $this.val() === '')
+    }
 
     if ($this.is('#confirm')) {
         if ($this.val() !== $('#password').val()) {
@@ -43,33 +45,33 @@ $required.blur((e) => {
             // 重新填写 Confirm Password 的逻辑
             removeError($this)
         }
-    }
-
-    if ($this.is('#email') || $this.is('#businessEmail')) {
+    } else if ($this.is('#email') || $this.is('#businessEmail')) {
         if (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test($this.val())) {
             showError($this, '输入的邮箱格式不正确！请重新输入')
         } else {
             removeError($this)
         }
-    }
-
-    if ($this.is('#phone-number') || $this.is('#other-phone')) {
+    } else if ($this.is('#phone-number') || $this.is('#other-phone')) {
         if (!/^1[3|4|5|8][0-9]\d{4,8}$/.test($this.val())) {
             showError($this, '手机号码的格式不正确！请重新输入')
         } else {
             removeError($this)
         }
     }
+
+    if (($this.is('#businessEmail') && $this.val() === '') || ($this.is('#other-phone') && $this.val() === '')) {
+        removeError($this)
+    }
 })
 
 
 // 验证表单
 function validateForm() {
-    $required.trigger('blur')
+    $input.trigger('blur')
     const [data, formdata] = [{}, new FormData()]
     return new Promise((resolve, reject) => {
-        const $requiredInputs = $('form .has-error')
-        if ($requiredInputs.length > 0) reject($requiredInputs[0])
+        const $errorInputs = $('form .has-error')
+        if ($errorInputs.length > 0) reject($errorInputs[0])
 
         $('form').serializeArray().forEach((element) => {
             data[element.name] = element.value
