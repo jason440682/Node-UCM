@@ -71,26 +71,29 @@ POST 的数据：
 ## 创建员工用户（Create Staff User）的接口：
 POST 的数据：
 ```
+url: 'http://54.169.159.192:8080/UCM/CreateStaffUser'
 {
-    username:                   String,
-    password:                   String,
-    security_question:          String,
-    security_question_answer:   String,
-    enable_auth_login:          Boolean,
-    send_passcode_to:           String (CheckBox，只有 Mobile Phone 和 Email 两个选项，可以考虑换成 Int 或其他),
-    first_name:                 String,
-    last_name:                  String,
-    email:                      String,
-    mobile_phone:               Int,
-    other_phone:                Int,
-    job_title:                  String,
-    department_or_division:     String (CheckBox，选项值暂时未定),
-    work_time_zone:             Int (时间戳),
-    work_email:                 String,
-    office_phone_number:        Int,
-    office_address:             String,
-    user_note:                  String (内容可能比较多，为 Textarea 区域),
-    personal_photo_file:        File ( Logo 的附件文件),
+    userName:                                 String,
+	hashedPassword:                           String,
+	securityQuestion:                         String,
+	securityQuestionAnswer:                   String,
+	enable2FactorAuthenticationLogin:         int,
+	sendPasscodeToDeviceId:                   int,
+	firstName:                                String,
+	lastName:                                 String,
+	eMailAddress:                             String,
+	phoneNumber:                              String,
+	jobTitle:                                 String,
+	businessDepartmentId:                     int,
+	workTimeZone:                             int,
+	workEmail:                                String,
+	officePhone:                              String,
+	officeAddressStreet:                      String,
+	officeAddressCity:                        String,
+	officeAddressStateProvince:               String,
+	officeAddressCountry:                     int,
+	userNote:                                 String, 
+    （logo上传暂用之前的接口）
 }
 ```
 POST 返回的数据：
