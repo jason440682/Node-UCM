@@ -73,8 +73,8 @@ POST 的数据：
 ```
 url: 'http://54.169.159.192:8080/UCM/CreateStaffUser'
 {
-    userName:                                 String,
-	hashedPassword:                           String,
+      userName:                                 String,（已登录的user)
+	hashedPassword:                           String,（正在创建的staff user）
 	securityQuestion:                         String,
 	securityQuestionAnswer:                   String,
 	enable2FactorAuthenticationLogin:         int,
@@ -93,7 +93,7 @@ url: 'http://54.169.159.192:8080/UCM/CreateStaffUser'
 	officeAddressStateProvince:               String,
 	officeAddressCountry:                     int,
 	userNote:                                 String, 
-    （logo上传暂用之前的接口）
+      （logo上传暂用之前的接口）
 }
 ```
 POST 返回的数据：
