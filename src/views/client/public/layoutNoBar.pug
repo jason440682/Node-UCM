@@ -10,10 +10,8 @@ html(lang= language)
     link(rel='stylesheet' href='/styles/client/public/footer.css')
     link(rel='stylesheet' href='/styles/client/' + key + '.css')
   body
-    include navbar
     div.container
       block content
-      include footnavbar
     block footer
 
     script(src="/scripts/lib/jquery/dist/jquery.min.js")

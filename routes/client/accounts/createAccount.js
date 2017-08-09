@@ -1,22 +1,17 @@
-var express = require('express');
-var router = express.Router();
+'use strict'
+import { Router } from 'express'
+const router = Router();
 
-router.use('/', function (req, res, next) {
-    var data = {
-        key: 'accounts/createAccount',
-
-        language: 'en',
-        lang: require('./lang/en/createAccount'),
-        nav: require('../public/lang/en/navbar'),
-        footnavbar: require('../public/lang/en/footbavbar')
+router.get('/', (req, res) => {
+    let lang = req.lang ? req.lang : 'en';
+    let data = {
+        key: 'accounts/clientAccounts',
+        language: lang,
+        lang: require(`./lang/${lang}/createAccount`),
+        nav: require(`../public/lang/${lang}/navbar`),
+        footnavbar: require(`../public/lang/${lang}/footbavbar`)
     };
 
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/createAccount');
-        data.nav = require('../public/lang/zh-cn/navbar');
-        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
-    }
     res.render('client/accounts/createAccount', data);
 });
 

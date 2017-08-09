@@ -1,0 +1,31 @@
+{
+  "name": "ucm",
+  "description": "A USA client manage platform",
+  "main": "./build/dev-server",
+  "authors": [
+    "GYMing",
+    "Kilims",
+    "Kaibin"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "UCM"
+  ],
+  "homepage": "https://github.com/UCMProjectTeam/Node-UCM",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "bootstrap-daterangepicker": "^2.1.25",
+    "bootstrap3-wysihtml5-bower": "^0.3.3",
+    "requirejs": "^2.3.3",
+    "bootstrap-fileinput": "^4.4.2"
+  }
+}

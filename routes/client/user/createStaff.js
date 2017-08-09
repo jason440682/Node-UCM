@@ -1,26 +1,29 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
+import requests from '../../plugins/requests'
 
-router.get('/', function (req, res, next) {
-    var data = {
+const router = Router()
+
+router.get('/', (req, res) => {
+    let lang = req.lang ? req.lang : 'en'
+    let data = {
         key: 'user/createStaff',
-
-        language: 'en',
-        lang: require('./lang/en/createStaff')
-    };
-
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/createStaff');
+        language: lang,
+        lang: require(`./lang/${lang}/createStaff`)
     }
 
-    res.render('client/user/createStaff', data);
-});
+    Promise.all([requests.getBusinessTypes(), requests.getTimezones()]).then((list) => {
+        console.log('success')
+        data.businessTypes = list[0].body
+        data.timezones = list[1].body
+    })
 
-router.post('/', function (req, res, next) {
+    res.render('client/user/createStaff', data)
+})
+
+router.post('/', (req, res) => {
     // 这里写数据页面 POST 数据过来时要处理的逻辑
-    console.log('Post Create Staff!');
-    res.redirect('accounts');
-});
+    console.log('Post Create Staff!')
+    res.redirect('accounts')
+})
 
-module.exports = router;
+module.exports = router

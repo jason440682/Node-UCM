@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+'use strict'
+import { Router } from 'express'
+const router = Router();
 
-var data_eg = [
+const data_eg = [
     {
         id: 'accounts1',
         number: '000382',
@@ -55,24 +56,16 @@ var data_eg = [
     }
 ];
 
-router.get('/', function (req, res, next) {
-    var data = {
+router.get('/', (req, res) => {
+    let lang = req.lang ? req.lang : 'en';
+    let data = {
         key: 'accounts/clientAccounts',
-
-        language: 'en',
-        lang: require('./lang/en/clientAccounts'),
-        nav: require('../public/lang/en/navbar'),
-        footnavbar: require('../public/lang/en/footbavbar'),
-
+        language: lang,
+        lang: require(`./lang/${lang}/clientAccounts`),
+        nav: require(`../public/lang/${lang}/navbar`),
+        footnavbar: require(`../public/lang/${lang}/footbavbar`),
         accounts: data_eg
     };
-
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/clientAccounts');
-        data.nav = require('../public/lang/zh-cn/navbar');
-        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
-    }
 
     res.render('client/accounts/clientAccounts', data);
 });
