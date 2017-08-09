@@ -34,33 +34,32 @@ $upload.fileinput({
 
 $input.blur((e) => {
     const $this = $(e.target)
+    const value = $this.val()
     if ($this.hasClass('required')) {
         $this.parent().toggleClass('has-error', $this.val() === '')
     }
 
-    if ($this.is('#confirm')) {
-        if ($this.val() !== $('#password').val()) {
-            showError($this, '两次密码输入错误！请重新输入')
-        } else if ($this.val() !== '') {
-            // 重新填写 Confirm Password 的逻辑
-            removeError($this)
+    if (value !== '') {
+        if ($this.is('#confirm')) {
+            if (value !== $('#password').val()) {
+                showError($this, '两次密码输入错误！请重新输入')
+            } else if (value !== '') {
+                // 重新填写 Confirm Password 的逻辑
+                removeError($this)
+            }
+        } else if ($this.is('#email') || $this.is('#businessEmail')) {
+            if (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(value)) {
+                showError($this, '输入的邮箱格式不正确！请重新输入')
+            } else {
+                removeError($this)
+            }
+        } else if ($this.is('#phone-number') || $this.is('#other-phone')) {
+            if (value.length > 15) {
+                showError($this, '手机号码的格式不正确！请重新输入')
+            } else {
+                removeError($this)
+            }
         }
-    } else if ($this.is('#email') || $this.is('#businessEmail')) {
-        if (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test($this.val())) {
-            showError($this, '输入的邮箱格式不正确！请重新输入')
-        } else {
-            removeError($this)
-        }
-    } else if ($this.is('#phone-number') || $this.is('#other-phone')) {
-        if (!/^1[3|4|5|8][0-9]\d{4,8}$/.test($this.val())) {
-            showError($this, '手机号码的格式不正确！请重新输入')
-        } else {
-            removeError($this)
-        }
-    }
-
-    if (($this.is('#businessEmail') && $this.val() === '') || ($this.is('#other-phone') && $this.val() === '')) {
-        removeError($this)
     }
 })
 
