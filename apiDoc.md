@@ -175,28 +175,25 @@ GET 传递的 Query 和值：user_id
 
 GET 返回的数据：
 ```
-{
-    files: [
-        // 包含了文件的对象
-        {
-            type: String,   // 文件的类型，folder 或者 file
-            name: String,   // 文件或者文件夹的名字
-            list: [         // 如果是文件夹，则有个 list 字段，包含了一个数组，内容和 files 是一样的，下面是一个例子
-                {
-                    type: 'folder', 
-                    name: 'file1-1', 
-                    list: [
-                        {type: 'file', name: 'file1-1-1'},
-                        {type: 'file', name: 'file1-1-2'},
-                        {type: 'file', name: 'file1-1-3'},
-                        {type: 'file', name: 'file1-1-4'}
-                    ]
-                },
-                ...
-        ]},
-        ...
-    ]
-}
+[
+    {                   // 包含了文件的对象
+        type: String,   // 文件的类型，folder 或者 file
+        name: String,   // 文件或者文件夹的名字
+        list: [         // 如果是文件夹，则有个 list 字段，包含了一个数组，内容和 files 是一样的，下面是一个例子
+            {
+                type: 'folder', 
+                name: 'file1-1', 
+                list: [
+                    {type: 'file', name: 'file1-1-1'},
+                    {type: 'file', name: 'file1-1-2'},
+                    {type: 'file', name: 'file1-1-3'},
+                    {type: 'file', name: 'file1-1-4'}
+                ]
+            },
+            ...
+    ]},
+    ...
+]
 ```
 
 ## 查看、修改客户账户（View/Modify Client Account）的接口：
