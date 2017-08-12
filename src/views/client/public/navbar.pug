@@ -7,7 +7,7 @@ nav.navbar.navbar-default.navbar-static-top(role="navigation")
                 span.icon-bar
                 span.icon-bar
             div.visible-xs-inline
-                span.user.user-left.dropdown-toggle(data-toggle="dropdown") Username
+                span.user.user-left.dropdown-toggle(data-toggle="dropdown")= user
                 ul.dropdown-menu(role="menu")
                     li
                         a(href="createStaff")= nav.user.management
@@ -28,7 +28,7 @@ nav.navbar.navbar-default.navbar-static-top(role="navigation")
                                         a(href=data.url)= data.title
 
         div.nav.navbar-right.col-sm-1.hidden-xs.user-div
-            a.user.dropdown-toggle(href="#", data-toggle="dropdown") Username
+            a.user.dropdown-toggle(href="#", data-toggle="dropdown")= user
             ul.dropdown-menu(role="menu")
                 li
                     a(href="createStaff")= nav.user.management

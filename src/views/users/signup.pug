@@ -132,7 +132,7 @@ block content
             div.form-group
                 label.col-sm-4(for="businessPhone")= lang.business_phone.text
                 div.col-sm-5
-                    input.form-control#businessPhone(type="number", name="businessPhoneNumber", placeholder= lang.business_phone.placeholder)
+                    input.form-control#businessPhone(type="tel", name="businessPhoneNumber", placeholder= lang.business_phone.placeholder)
 
             div.form-group
                 label.col-sm-4(for="addStreet")= lang.business_address.text
@@ -156,6 +156,17 @@ block content
                 label.col-sm-4(for="logo")= lang.logo.text
                 div.col-sm-5
                     input#upload-logo(placeholder= lang.logo.placeholder, type="file", class="file", data-preview-file-type="text")
+
+            div.form-group
+                label.col-sm-4(for="verification-code")
+                    span.highlight *
+                    = lang.validate.text
+                div.col-sm-5
+                    input.form-control.required#verification-code(type="password", name="verificationCode", placeholder= 'validate code')
+
+            div.form-group
+                div.col-sm-4.col-sm-offset-4.verification-code
+                    img#verification-code-image(src='/api/validate', alt="validate code")
 
         div.section
             button.btn.btn-primary.submit#submit(type="submit")= lang.submit_btn.text

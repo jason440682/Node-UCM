@@ -1,4 +1,10 @@
-extends ../public/layout
+extends ../layout
+
+block ownStyles
+    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
+
+block navbar
+    include ../public/navbar
 
 block content
     div.section.clearfix.hidden-xs
@@ -103,5 +109,7 @@ block content
 
     script(type='text/javascript' src='/scripts/lib/My97DatePicker/WdatePicker.js')
 
+    include ../public/footnavbar
+
 block footer
-    include ../public/footerfixed
+    include ../public/footer

@@ -1,4 +1,10 @@
-extends ../public/layout
+extends ../layout
+
+block ownStyles
+    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
+
+block navbar
+    include ../public/navbar
 
 mixin files_group(files)
     for file in files
@@ -108,3 +114,7 @@ block content
 
         div.panel-group(role="tablist", id="accordion2", aria-multiselectable="true")
             +files_group_mobile(files)
+    include ../public/footnavbar
+
+block footer
+    include ../public/footer
