@@ -26,7 +26,7 @@ module.exports = {
         const data = { userName: username, hashedPassword: password }
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '/api/login',
+                url: '/api/user/login',
                 type: 'POST',
                 data,
             }).then(
