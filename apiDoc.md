@@ -105,45 +105,44 @@ POST 返回的数据：
 }
 ```
 
-## 客户账户（Client Accounts）的接口：
+## 获取create client account相关显示信息的接口：
 
-GET 传递的 Query 和值：user_id
+GET 
+获取assign to下拉框 ： http://54.169.159.192:8080/UCM/staffUsers/{userName}
+获取account status下拉框http://54.169.159.192:8080/UCM/getCustomerAccountTypes/{userName}
+获取Email Group下拉框http://54.169.159.192:8080/UCM/getCustomerEmailGroups/{userName}
 
-GET 返回的数据：
-```
-[
-    {
-        id:                     Int, //用户的 ID
-        number:                 Int,
-        client:                 String,
-        assigned_staff:         Staff,
-        account_status:         String (可以考虑换成 Int ),
-        contact:                String,
-        email:                  String,
-        phone:                  Int
-    },
-    ...
-]
 ```
 
 ## 创建客户账户（Create Client Account）的接口：
 POST 的数据：
 ```
 {
-    account_type:               String (Checkbox, 值为 Personal 或者 Business),
-    account_name:               String,
-    account_status:             String (Checkbox),
-    assigned_to:                String (Checkbox),
-    contact_first_name:         String,
-    contact_last_name:          String,
-    email:                      String,
-    phone_number:               String,
-    mailing_address:            String,
-    billing_address:            String,
-    account_notes:              String (Textarea),
-    email_group:                String (Checkbox),
-    notification_preference:    String,
-    client_portal:              String (Checkbox)
+    userName:                          String(已登录的用户userName),
+    customerAccountType:               String (选Personal传1 选Business传2),
+    firstName:                         String(若customerAccountType选1则填),
+    lastName:                          String(若customerAccountType选1则填),
+    businessName:                      Stting(若customerAccountType选2则填)，   
+    customerAccountStatus:             String,
+    assignedStaffUser:                 String,
+    cFirstName:                        String,（我看ui设计图里这里是contact first name）
+    cLastName:                         String,
+    emailAddress:                      String,
+    mobilePhone:                       String,
+    mailingAddressStreet:              String,
+    mailingAddressRoomNumber:          String,
+    mailingAddressCity:                String,
+    mailingAddressStateProvince:       String,
+    mailingAddressCountry:             String,
+    billingAddressStreet:              String,
+    billingAddressRoomNumber:          String,
+    billingAddressCity:                String,
+    billingAddressStateProvince:       String,
+    billingAddressCountry:             String,
+    customerNote:                      String,
+    emailGroup:                        String,
+    notificationPreference:            String,
+    enableClientPortal:                String(enable传1 disable传2),
 }
 ```
 POST 返回的数据：
