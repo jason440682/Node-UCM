@@ -106,7 +106,7 @@ POST 返回的数据：
 ```
 
 ## 获取create client account相关显示信息的接口：
-
+```
 GET 
 获取assign to下拉框 ： http://54.169.159.192:8080/UCM/staffUsers/{userName}
 获取account status下拉框http://54.169.159.192:8080/UCM/getCustomerAccountTypes/{userName}
