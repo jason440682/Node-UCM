@@ -36,7 +36,7 @@ $input.blur((e) => {
     const $this = $(e.target)
     const value = $this.val()
     if ($this.hasClass('required')) {
-        $this.parent().toggleClass('has-error', $this.val() === '')
+        $this.parent().toggleClass('has-error', value === '')
     }
 
     if (value !== '') {
@@ -83,13 +83,15 @@ function validateForm() {
 }
 
 $('#submit').click(() => {
-    validateForm().then((data) => {
+    validateForm().then(({ data, formdata }) => {
         console.log(data)
-        Promise.all([uploadLogo(data.formdata), signUp(data.data)]).then((datas) => {
+        console.log(formdata)
+        Promise.all([uploadLogo(formdata), signUp(data)]).then(([upload, register]) => {
             console.log('datas')
-            console.log(datas)
-            const uploaded = datas[0].response === 'uploaded'
-            const registered = datas[1].response === 'Sign Up Successfully'
+            console.log(upload)
+            console.log(register)
+            const uploaded = upload.response === 'uploaded'
+            const registered = register.response === 'Sign Up Successfully'
             if (uploaded && registered) {
                 alert('注册成功！')
                 location.assign('/accounts')
