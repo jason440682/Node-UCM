@@ -16,6 +16,7 @@ module.exports = {
     ],
     "rules": {
         "comma-dangle": 1,
+        "consistent-return": 1,
         "global-require": 0,
         "import/no-dynamic-require": 0,
         "indent": [
