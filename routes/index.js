@@ -34,7 +34,7 @@ const userTable = {
 
 const apiTable = {
     // Api
-    login: require('./api/login'),
+    user: require('./api/user'),
     validate: require('./api/verificationCode'),
     test: require('./api/test'),
 }

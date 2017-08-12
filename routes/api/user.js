@@ -3,7 +3,7 @@ import { checkUser } from '../plugins/requests'
 
 const router = Router()
 
-router.post('/', (req, res) => {
+router.post('/login', (req, res) => {
     console.log('Post Login API')
     console.log(req.body)
     console.log(req.session.name)
