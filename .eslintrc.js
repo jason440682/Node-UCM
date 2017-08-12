@@ -29,7 +29,6 @@ module.exports = {
         "no-param-reassign": [2, {
             "props": false
         }],
-        "no-underscore-dangle": 1,
         "prefer-const": 1,
         "quotes": [
             "error",
