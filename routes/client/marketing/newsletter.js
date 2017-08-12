@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
 
-var data_eg = {
+const router = Router()
+
+const data_eg = {
     newsletters: [
         {
             id: '1',
@@ -11,7 +12,7 @@ var data_eg = {
             recipents: 'Recipents',
             send_time: 'Send Date/Time',
             status: 'Status',
-            manage: 'Manage'
+            manage: 'Manage',
         },
         {
             id: '2',
@@ -21,7 +22,7 @@ var data_eg = {
             recipents: 'Recipents',
             send_time: 'Send Date/Time',
             status: 'Status',
-            manage: 'Manage'
+            manage: 'Manage',
         },
         {
             id: '3',
@@ -31,35 +32,24 @@ var data_eg = {
             recipents: 'Recipents',
             send_time: 'Send Date/Time',
             status: 'Completed',
-            manage: 'Manage'
-        }
-    ]
-};
+            manage: 'Manage',
+        },
+    ],
+}
 
-router.get('/', function (req, res, next) {
-    var data = {
+router.get('/', (req, res) => {
+    const lang = req.lang ? req.lang : 'en'
+    const data = {
         key: 'marketing/newsletter',
-
-        language: 'en',
-        lang: require('./lang/en/newsletter'),
-        nav: require('../public/lang/en/navbar'),
-        footnavbar: require('../public/lang/en/footbavbar'),
-
-        newsletters: data_eg.newsletters
-    };
-
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/newsletter');
-        data.nav = require('../public/lang/zh-cn/navbar');
-        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
+        language: lang,
+        lang: require(`./lang/${lang}/newsletter`),
+        nav: require(`../public/lang/${lang}/navbar`),
+        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        newsletters: data_eg.newsletters,
+        user: req.session.userName,
     }
 
-    res.render('client/marketing/newsletter', data);
-});
+    res.render('client/marketing/newsletter', data)
+})
 
-router.post('/', function (req, res, next) {
-    //表单处理请求
-});
-
-module.exports = router;
+module.exports = router

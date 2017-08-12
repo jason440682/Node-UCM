@@ -1,12 +1,13 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
 
-var data_eg = {
+const router = Router()
+
+const data_eg = {
     client_names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],
     bill_info: {
         date: '2017/1/24',
         name: 'James Johnson',
-        address: '123 ABC Street,Good City,CA9001'
+        address: '123 ABC Street,Good City,CA9001',
     },
     invoices: [
         {
@@ -17,7 +18,7 @@ var data_eg = {
             duration: 'Duration',
             rate: 'Rate',
             subtotal: 'Subtotal',
-            work_status: 'Work Status'
+            work_status: 'Work Status',
         },
         {
             id: '2',
@@ -27,7 +28,7 @@ var data_eg = {
             duration: 'Duration',
             rate: 'Rate',
             subtotal: 'Subtotal',
-            work_status: 'Work Status'
+            work_status: 'Work Status',
         },
         {
             id: '3',
@@ -37,37 +38,26 @@ var data_eg = {
             duration: 'Duration',
             rate: 'Rate',
             subtotal: 'Subtotal',
-            work_status: 'Work Status'
-        }
-    ]
-};
+            work_status: 'Work Status',
+        },
+    ],
+}
 
-router.get('/', function (req, res, next) {
-    var data = {
+router.get('/', (req, res) => {
+    const lang = req.lang ? req.lang : 'en'
+    const data = {
         key: 'billingPayment/createInvoice',
-
-        language: 'en',
-        lang: require('./lang/en/createInvoice'),
-        nav: require('../public/lang/en/navbar'),
-        footnavbar: require('../public/lang/en/footbavbar'),
-
+        language: lang,
+        lang: require(`./lang/${lang}/createInvoice`),
+        nav: require(`../public/lang/${lang}/navbar`),
+        footnavbar: require(`../public/lang/${lang}/footbavbar`),
         client_names: data_eg.client_names,
         bill_info: data_eg.bill_info,
-        invoices: data_eg.invoices
-    };
-
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/createInvoice');
-        data.nav = require('../public/lang/zh-cn/navbar');
-        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
+        invoices: data_eg.invoices,
+        user: req.session.userName,
     }
 
-    res.render('client/billingPayment/createInvoice', data);
-});
+    res.render('client/billingPayment/createInvoice', data)
+})
 
-router.post('/', function (req, res, next) {
-    //表单处理请求
-});
-
-module.exports = router;
+module.exports = router

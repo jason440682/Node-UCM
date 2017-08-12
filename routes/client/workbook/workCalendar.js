@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
 
-var data_eg = {
+const router = Router()
+
+const data_eg = {
     names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],
     works: [
         {
@@ -13,7 +14,7 @@ var data_eg = {
             Wednesday: 'Wednesday',
             Thursday: 'Thursday',
             Friday: 'Friday',
-            Saturday: 'Saturday'
+            Saturday: 'Saturday',
         },
         {
             id: '3',
@@ -24,7 +25,7 @@ var data_eg = {
             Wednesday: 'Wednesday',
             Thursday: 'Thursday',
             Friday: 'Friday',
-            Saturday: 'Saturday'
+            Saturday: 'Saturday',
         },
         {
             id: '1',
@@ -35,37 +36,25 @@ var data_eg = {
             Wednesday: 'Wednesday',
             Thursday: 'Thursday',
             Friday: 'Friday',
-            Saturday: 'Saturday'
-        }
-    ]
-};
+            Saturday: 'Saturday',
+        },
+    ],
+}
 
-router.get('/', function (req, res, next) {
-    var data = {
+router.get('/', (req, res) => {
+    const lang = req.lang ? req.lang : 'en'
+    const data = {
         key: 'workbook/workCalendar',
-
-        language: 'en',
-        lang: require('./lang/en/workCalendar'),
-        nav: require('../public/lang/en/navbar'),
-        footnavbar: require('../public/lang/en/footbavbar'),
-
+        language: lang,
+        lang: require(`./lang/${lang}/workCalendar`),
+        nav: require(`../public/lang/${lang}/navbar`),
+        footnavbar: require(`../public/lang/${lang}/footbavbar`),
         names: data_eg.names,
-        works: data_eg.works
-    };
-
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/workCalendar');
-        data.nav = require('../public/lang/zh-cn/navbar');
-        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
+        works: data_eg.works,
+        user: req.session.userName,
     }
 
-    res.render('client/workbook/workCalendar', data);
+    res.render('client/workbook/workCalendar', data)
+})
 
-});
-
-router.post('/', function (req, res, next) {
-    //表单处理逻辑
-});
-
-module.exports = router;
+module.exports = router

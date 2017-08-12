@@ -1,6 +1,6 @@
-'use strict'
 import { Router } from 'express'
-const router = Router();
+
+const router = Router()
 
 const data_eg = [
     {
@@ -11,7 +11,7 @@ const data_eg = [
         accountstatus: 'New',
         contact: 'James Johnson',
         email: 'James@gmail.com',
-        phone: '222-222-2222'
+        phone: '222-222-2222',
     },
     {
         id: 'accounts2',
@@ -21,7 +21,7 @@ const data_eg = [
         accountstatus: 'Closed',
         contact: 'David Karey',
         email: 'D.K@hotmail.com',
-        phone: '123-456-7890'
+        phone: '123-456-7890',
     },
     {
         id: 'accounts3',
@@ -31,7 +31,7 @@ const data_eg = [
         accountstatus: 'Active',
         contact: 'Wayne Walker',
         email: 'Email',
-        phone: 'Phone'
+        phone: 'Phone',
     },
     {
         id: 'accounts4',
@@ -41,7 +41,7 @@ const data_eg = [
         accountstatus: 'Account Status',
         contact: 'Contact',
         email: 'Email',
-        phone: 'Phone'
+        phone: 'Phone',
     },
     {
         id: 'accounts5',
@@ -52,26 +52,26 @@ const data_eg = [
         contact: 'Contact',
         email: 'Email',
         phone: 'Phone',
-        manage: 'Manage'
-    }
-];
+        manage: 'Manage',
+    },
+]
 
 router.get('/', (req, res) => {
-    let lang = req.lang ? req.lang : 'en';
-    let data = {
+    console.log('Get Client Accounts')
+    console.log(req.session)
+    console.log(req.session.userName)
+    const lang = req.lang ? req.lang : 'en'
+    const data = {
         key: 'accounts/clientAccounts',
         language: lang,
         lang: require(`./lang/${lang}/clientAccounts`),
         nav: require(`../public/lang/${lang}/navbar`),
         footnavbar: require(`../public/lang/${lang}/footbavbar`),
-        accounts: data_eg
-    };
+        accounts: data_eg,
+        user: req.session.userName,
+    }
 
-    res.render('client/accounts/clientAccounts', data);
-});
+    res.render('client/accounts/clientAccounts', data)
+})
 
-router.post('/', function (req, res, next) {
-    // 这里写注册页面 POST 数据过来时要处理的逻辑
-});
-
-module.exports = router;
+module.exports = router
