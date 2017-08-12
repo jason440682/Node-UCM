@@ -75,27 +75,27 @@ url: 'http://54.169.159.192:8080/UCM/CreateStaffUser'
 {
     userName:                                 String,（已登录的user)
     staffUserName:                            String,（正在创建的staff user）
-	hashedPassword:                           String,
-	securityQuestion:                         String,
-	securityQuestionAnswer:                   String,
-	enable2FactorAuthenticationLogin:         int,
-	sendPasscodeToDeviceId:                   int,
-	firstName:                                String,
-	lastName:                                 String,
-	eMailAddress:                             String,
-	phoneNumber:                              String,
-    otherPhone:                               String,
-	jobTitle:                                 String,
-	businessDepartmentId:                     int,
-	workTimeZone:                             int,
-	workEmail:                                String,
-	officePhone:                              String,
-	officeAddressStreet:                      String,
-	officeAddressCity:                        String,
-	officeAddressStateProvince:               String,
-	officeAddressCountry:                     int,
-	userNote:                                 String, 
-      （logo上传暂用之前的接口）
+    hashedPassword:                           String,
+    securityQuestion:                         String,
+    securityQuestionAnswer:                   String,
+    enable2FactorAuthenticationLogin:         int,
+    sendPasscodeToDeviceId:                   int,
+    firstName:                                String,
+    lastName:                                 String,
+    eMailAddress:                             String,
+    phoneNumber:                              String,
+    otherPhone:                               String,
+    jobTitle:                                 String,
+    businessDepartmentId:                     int,
+    workTimeZone:                             int,
+    workEmail:                                String,
+    officePhone:                              String,
+    officeAddressStreet:                      String,
+    officeAddressCity:                        String,
+    officeAddressStateProvince:               String,
+    officeAddressCountry:                     int,
+    userNote:                                 String, 
+    (logo上传暂用之前的接口）
 }
 ```
 POST 返回的数据：
