@@ -13,7 +13,7 @@
 GET 返回的数据：
 ```
 {
-    url:        String,     // 验证码图片地址的 URL，值为字符串类型，下同
+    url:        String,     // 验证码图片地址的 URL，值为字符串类型，下同
     value:      String      // 验证码的值，传回给前端方便做校验
 }
 ```
@@ -57,7 +57,7 @@ POST 的数据：
     work_email:                 String,
     business_phone_number:      Int,
     business_address:           String,
-    business_description:       String (内容可能比较多，为 Textarea 区域),
+    business_description:       String (内容可能比较多，值为 Textarea 区域),
     business_logo_file:         File (Logo 的附件文件),
 }
 ```
@@ -108,9 +108,9 @@ POST 返回的数据：
 ## 获取create client account相关显示信息的接口：
 ```
 GET 
-获取assign to下拉框 ： http://54.169.159.192:8080/UCM/staffUsers/{userName}
-获取account status下拉框http://54.169.159.192:8080/UCM/getCustomerAccountTypes/{userName}
-获取Email Group下拉框http://54.169.159.192:8080/UCM/getCustomerEmailGroups/{userName}
+获取assign to下拉框              http://54.169.159.192:8080/UCM/staffUsers/{userName}
+获取account status下拉框         http://54.169.159.192:8080/UCM/getCustomerAccountTypes/{userName}
+获取Email Group下拉框            http://54.169.159.192:8080/UCM/getCustomerEmailGroups/{userName}
 
 ```
 
