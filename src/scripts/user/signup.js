@@ -1,4 +1,5 @@
-import { uploadLogo, signUp } from '../plugins/api'
+import { uploadLogo, signUp, login, sendValidateCode } from '../plugins/api'
+import { User } from '../plugins/db'
 
 const $ = window.jQuery
 const $input = $('form :input')
@@ -43,8 +44,7 @@ $input.blur((e) => {
         if ($this.is('#confirm')) {
             if (value !== $('#password').val()) {
                 showError($this, '两次密码输入错误！请重新输入')
-            } else if (value !== '') {
-                // 重新填写 Confirm Password 的逻辑
+            } else {
                 removeError($this)
             }
         } else if ($this.is('#email') || $this.is('#businessEmail')) {
@@ -54,15 +54,27 @@ $input.blur((e) => {
                 removeError($this)
             }
         } else if ($this.is('#phone-number') || $this.is('#other-phone')) {
-            if (value.length > 15) {
+            if (value.length > 15 || /[^\d]/.test(value)) {
                 showError($this, '手机号码的格式不正确！请重新输入')
             } else {
                 removeError($this)
             }
+        } else if ($this.is('#verification-code')) {
+            const code = $('#verification-code').val().toUpperCase()
+            sendValidateCode(code).then((data) => {
+                console.log(data)
+                if (data.response === 'error') {
+                    showError($this, '输入的验证码错误！请重新输入')
+                } else {
+                    removeError($this)
+                }
+            }, (error) => {
+                console.log(error)
+                $('#error').html('与服务器连接出现问题！请稍后再试').show()
+            })
         }
     }
 })
-
 
 // 验证表单
 function validateForm() {
@@ -74,7 +86,7 @@ function validateForm() {
 
         $('form').serializeArray().forEach((element) => {
             data[element.name] = element.value
-        }, this)
+        })
         formdata.append('userName', $('#username').val())
         formdata.append('formdata', $('#upload-logo')[0].files[0])
 
@@ -85,24 +97,33 @@ function validateForm() {
 $('#submit').click(() => {
     validateForm().then(({ data, formdata }) => {
         console.log(data)
-        console.log(formdata)
-        Promise.all([uploadLogo(formdata), signUp(data)]).then(([upload, register]) => {
-            console.log('datas')
-            console.log(upload)
-            console.log(register)
+        const userName = data.userName
+        const password = data.hashedPassword
+        const code = data.verificationCode.toUpperCase()
+        sendValidateCode(code).then(({ response }) => {
+            if (response !== 'ok') throw new Error('验证码输入错误！请重新输入')
+            return Promise.all([uploadLogo(formdata), signUp(data)])
+        }).then(([upload, register]) => {
             const uploaded = upload.response === 'uploaded'
             const registered = register.response === 'Sign Up Successfully'
-            if (uploaded && registered) {
-                alert('注册成功！')
-                location.assign('/accounts')
-            }
-        }, (error) => {
-            console.log(error)
-            if (error.xhr.status === 503) {
-                alert('该用户已存在！请重新输入')
-                showError($('#username'), '该用户已存在！请重新输入')
-            }
+            if (!uploaded) throw upload
+            if (!registered) throw register
+            return login(userName, password)
+        }).then(({ response }) => {
+            if (response !== 'Authenticated') throw new Error('账号或密码错误！')
+            User.set('userName', userName)
+            location.assign('/accounts')
         })
+            .catch((error) => {
+                console.log('error')
+                console.log(error)
+                if (typeof error.message === 'string') {
+                    alert(error.message)
+                } else if (error.xhr.status === 503) {
+                    alert('该用户已存在！请重新输入')
+                    showError($('#username'), '该用户已存在！请重新输入')
+                }
+            })
     }, (errorDOM) => {
         console.log(errorDOM)
         errorDOM.focus()
