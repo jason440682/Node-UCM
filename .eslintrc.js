@@ -16,6 +16,7 @@ module.exports = {
     ],
     "rules": {
         "comma-dangle": 1,
+        "consistent-return": 1,
         "global-require": 0,
         "import/no-dynamic-require": 0,
         "indent": [
@@ -29,7 +30,6 @@ module.exports = {
         "no-param-reassign": [2, {
             "props": false
         }],
-        "no-underscore-dangle": 1,
         "prefer-const": 1,
         "quotes": [
             "error",

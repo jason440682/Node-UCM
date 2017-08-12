@@ -3,15 +3,15 @@ module.exports = {
 
     username: {
         text: 'Username',
-        placeholder: 'Text'
+        placeholder: 'Text',
     },
 
     password: {
         text: 'Password',
-        placeholder: 'password here'
+        placeholder: 'password here',
     },
 
     submit_btn: 'Log In',
     tips: 'Forgot the password?',
-    signup: 'Sign Up'
-};
+    signup: 'Sign Up',
+}

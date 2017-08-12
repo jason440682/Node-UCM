@@ -1,4 +1,5 @@
 import { sendValidateCode, login } from '../plugins/api'
+import { User } from '../plugins/db'
 
 const $ = window.jQuery
 const $input = $('form :input.form-control')
@@ -12,17 +13,18 @@ function validateForm() {
         resolve({
             username: $('#username').val(),
             password: $('#password').val(),
-            code: $('#verification-code').val(),
+            code: $('#verification-code').val().toUpperCase(),
         })
     })
 }
 
 $input.blur((e) => {
     const $this = $(e.target)
-    $this.parent().toggleClass('has-error', $this.val() === '')
+    const value = $this.val()
+    $this.parent().toggleClass('has-error', value === '')
 
-    if ($this.is('#verification-code')) {
-        const code = $('#verification-code').val()
+    if (value && $this.is('#verification-code')) {
+        const code = $('#verification-code').val().toUpperCase()
         sendValidateCode(code).then((data) => {
             console.log(data)
             if (data.response === 'error') {
@@ -40,30 +42,24 @@ $input.blur((e) => {
 $('#submit').click(() => {
     validateForm().then(
         ({ username, password, code }) => {
-            Promise.all([sendValidateCode(code), login(username, password)]).then((datas) => {
-                const validateCorrect = datas[0].response === 'ok'
-                const logined = datas[1].response === 'Authenticated'
-
-                if (validateCorrect && logined) {
+            sendValidateCode(code).then(({ response }) => {
+                if (response !== 'ok') throw new Error('输入的验证码错误！请重新输入')
+                return login(username, password)
+            }).then(({ response }) => {
+                if (response === 'Authenticated') {
+                    User.set('userName', username)
                     location.assign('/accounts')
-                } else if (!validateCorrect) {
-                    $('#error').html('输入的验证码错误！请重新输入').show()
-                } else if (!logined) {
-                    $('#error').html('账号或密码输入错误！请重新输入').show()
+                } else if (response.status === 401) {
+                    throw new Error('账号或密码输入错误！请重新输入')
                 }
-            }, (error) => {
-                console.log(error)
-                if (error.xhr.status === 401) {
-                    $('#error').html('账号或密码输入错误！请重新输入').show()
-                } else {
-                    $('#error').html('与服务器连接出现问题！请稍后再试').show()
-                }
+            }).catch((error) => {
+                console.error(error)
+                $('#error').html(error.message).show()
             })
         }, (errorDOM) => {
             console.log(errorDOM)
             errorDOM.focus()
-        },
-    )
+        })
 
     return false
 })

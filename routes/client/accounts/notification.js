@@ -1,8 +1,8 @@
-'use strict'
 import { Router } from 'express'
-const router = Router();
 
-var data_eg = {
+const router = Router()
+
+const data_eg = {
     names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],
     notifications: [
         {
@@ -12,7 +12,7 @@ var data_eg = {
             description: 'Remind client of paying invoice.......',
             recipients: 'James Johnson',
             sendtime: '9am 12/10/2016',
-            status: 'Unsent'
+            status: 'Unsent',
         },
         {
             id: '2',
@@ -21,7 +21,7 @@ var data_eg = {
             description: 'Description',
             recipients: 'James Johnson',
             sendtime: '12am 12/10/2016',
-            status: 'Status'
+            status: 'Status',
         },
         {
             id: '3',
@@ -30,28 +30,25 @@ var data_eg = {
             description: 'Description',
             recipients: 'James Johnson',
             sendtime: 'Send Date/Time',
-            status: 'Status'
-        }
-    ]
-};
+            status: 'Status',
+        },
+    ],
+}
 
 router.get('/', (req, res) => {
-    let lang = req.lang ? req.lang : 'en';
-    let data = {
+    const lang = req.lang ? req.lang : 'en'
+    const data = {
         key: 'accounts/notification',
         language: lang,
         lang: require(`./lang/${lang}/notification`),
         nav: require(`../public/lang/${lang}/navbar`),
         footnavbar: require(`../public/lang/${lang}/footbavbar`),
-        names: data_eg_notification.names,
-        notifications: data_eg.notifications
-    };
+        names: data_eg.notification.names,
+        notifications: data_eg.notifications,
+        user: req.session.userName,
+    }
 
-    res.render('client/accounts/notification', data);
-});
+    res.render('client/accounts/notification', data)
+})
 
-router.post('/', function (req, res, next) {
-    //表单post过来的数据处理逻辑
-});
-
-module.exports = router;
+module.exports = router

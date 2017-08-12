@@ -1,0 +1,12 @@
+extends ../index
+
+block styles
+    link(rel='stylesheet' href='/styles/client/public/navbar.css')
+    link(rel='stylesheet' href='/styles/client/public/footer.css')
+    link(rel='stylesheet' href='/styles/client/public/public.css')
+    link(rel='stylesheet' href='/styles/client/' + key + '.css')
+    block ownStyles
+
+block scripts
+    block ownScripts
+    script(type="text/javascript" src="/scripts/client/" + key + ".js")

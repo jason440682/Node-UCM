@@ -1,4 +1,10 @@
-extends ../public/layout
+extends ../layout
+
+block ownStyles
+    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
+
+block navbar
+    include ../public/navbar
 
 block content
     form.form-horizontal(method="post", role="form")
@@ -129,6 +135,8 @@ block content
                     button.btn.btn-default.btn-info=lang.buttons.clear
                     button.btn.btn-default.btn-info=lang.buttons.add
                     button.btn.btn-default.btn-info=lang.buttons.save
+
+    include ../public/footnavbar
 
 block footer
     include ../public/footer

@@ -1,4 +1,10 @@
-extends ../public/layout
+extends ../layout
+
+block ownStyles
+    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
+
+block navbar
+    include ../public/navbar
 
 block content
     div.section.hidden-xs
@@ -77,6 +83,7 @@ block content
                             button.btn.btn-default.btn-info= lang.btn_modify
                             button.btn.btn-default.btn-info= lang.btn_resend
                             button.btn.btn-default.btn-info= lang.btn_delete
+    include ../public/footnavbar
 
 block footer
-    include ../public/footerfixed
+    include ../public/footer

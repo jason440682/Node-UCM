@@ -41,7 +41,7 @@ function babelWeb(input, output = './dist') {
     console.log(`${filename}: is added into babel task.`)
     return browserify({
         entries: [input],
-        transform: ['browserify-shim']
+        transform: ['browserify-shim'],
     })
         .transform(babelify)
         .bundle()
@@ -103,10 +103,10 @@ gulp.task('css', () => {
         autoprefixer({
             browsers: ['last 3 version'],
             cascade: false,
-            remove: false
+            remove: false,
         }), // 为CSS补全浏览器前缀
         cssnext, // 用下一代CSS书写方式兼容现在浏览器
-        cssgrace // 让CSS兼容旧版IE
+        cssgrace, // 让CSS兼容旧版IE
     ]
     return gulp.src('src/styles/**/*.less')
         .pipe(plumber())
@@ -123,7 +123,7 @@ gulp.task('lint', () =>
         .pipe(plumber())
         .pipe(eslint())
         .pipe(eslint.format())
-        .pipe(eslint.failOnError())
+        .pipe(eslint.failOnError()),
 )
 
 // 前端 JS 文件转换 ES6 并压缩，Dev 版本生成 Sourcemaps
@@ -160,9 +160,9 @@ gulp.task('server', ['build'], () => {
             'build/',
             'config/',
             'dist_node/',
-            'app.js'
+            'app.js',
         ],
-        env: { NODE_ENV: 'development' }
+        env: { NODE_ENV: 'development' },
     })
 
     nm.on('start', () => {
@@ -171,7 +171,7 @@ gulp.task('server', ['build'], () => {
                 open: true,
                 proxy: 'localhost:3333',
                 files: ['./src/views/**', './dist/**'],
-                port: 3331
+                port: 3331,
             })
             started = true
         }

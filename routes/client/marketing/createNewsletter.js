@@ -1,28 +1,19 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
 
-router.get('/', function (req, res, next) {
-    var data = {
+const router = Router()
+
+router.get('/', (req, res) => {
+    const lang = req.lang ? req.lang : 'en'
+    const data = {
         key: 'marketing/createNewsletter',
-
-        language: 'en',
-        lang: require('./lang/en/createNewsletter'),
-        nav: require('../public/lang/en/navbar'),
-        footnavbar: require('../public/lang/en/footbavbar')
-    };
-
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/createNewsletter');
-        data.nav = require('../public/lang/zh-cn/navbar');
-        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
+        language: lang,
+        lang: require(`./lang/${lang}/createNewsletter`),
+        nav: require(`../public/lang/${lang}/navbar`),
+        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        user: req.session.userName,
     }
 
-    res.render('client/marketing/createNewsletter', data);
-});
+    res.render('client/marketing/createNewsletter', data)
+})
 
-router.post('/', function (req, res, next) {
-    //表单处理逻辑
-});
-
-module.exports = router;
+module.exports = router

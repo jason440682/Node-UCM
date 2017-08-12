@@ -1,4 +1,10 @@
-extends ../public/layout
+extends ../layout
+
+block ownStyles
+    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
+
+block navbar
+    include ../public/navbar
 
 block content
     div.section.hidden-xs
@@ -87,6 +93,7 @@ block content
                                     a(href="notification")= lang.btn_notification
                                 button.btn.btn-default.btn-info
                                     a(href="docManager")= lang.btn_document
+    include ../public/footnavbar
 
 block footer
-    include ../public/footerfixed
+    include ../public/footer

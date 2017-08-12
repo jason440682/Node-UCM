@@ -1,21 +1,35 @@
-var router = require('express').Router();
-var requests = require('../plugins/requests');
+import { Router } from 'express'
+import { checkUser } from '../plugins/requests'
 
-router.get('/', function(req, res, next) {
+const router = Router()
+
+router.get('/', (req, res) => {
     console.log('Test: ')
-    console.log(req.headers);
-    console.log(req.body);
+    console.log(req.headers)
+    console.log(req.body)
     res.send({
         code: 200,
-        msg: 'success!'
+        msg: 'test success!',
     })
-});
+})
 
-router.post('/', function(req, res, next) {
+router.post('/', (req, res) => {
     console.log('Test: ')
-    console.log(req.headers);
-    console.log(req.body);
-    res.redirect('/');
-});
+    console.log(req.headers)
+    console.log(req.body)
+    checkUser(req.body.userName, req.body.password).then((data) => {
+        res.send({
+            code: 200,
+            msg: 'success!',
+            data,
+        })
+    }, (error) => {
+        res.send({
+            code: 500,
+            msg: error,
+            data: null,
+        })
+    })
+})
 
-module.exports = router;
+module.exports = router

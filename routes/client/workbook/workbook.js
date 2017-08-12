@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
 
-var data_eg = {
+const router = Router()
+
+const data_eg = {
     names: ['James Johnson', 'Payment Reminder', 'Payment Reminder2'],
     staffs: ['staff1', 'staff2', 'staff3', 'staff4', 'staff5'],
     works: [
@@ -18,7 +19,7 @@ var data_eg = {
             note: 'Note',
             billable: 'Billable',
             billingrate: 'Billingrate',
-            manage: 'Manage'
+            manage: 'Manage',
         },
         {
             id: '2',
@@ -33,7 +34,7 @@ var data_eg = {
             note: 'Note',
             billable: 'Billable',
             billingrate: 'Billingrate',
-            manage: 'Manage'
+            manage: 'Manage',
         },
         {
             id: '3',
@@ -48,37 +49,26 @@ var data_eg = {
             note: 'Note',
             billable: 'Billable',
             billingrate: 'Billingrate',
-            manage: 'Manage'
-        }
-    ]
-};
+            manage: 'Manage',
+        },
+    ],
+}
 
-router.get('/', function (req, res, next) {
-    var data = {
+router.get('/', (req, res) => {
+    const lang = req.lang ? req.lang : 'en'
+    const data = {
         key: 'workbook/workbook',
-
-        language: 'en',
-        lang: require('./lang/en/workbook'),
-        nav: require('../public/lang/en/navbar'),
-        footnavbar: require('../public/lang/en/footbavbar'),
-
+        language: lang,
+        lang: require(`./lang/${lang}/workbook`),
+        nav: require(`../public/lang/${lang}/navbar`),
+        footnavbar: require(`../public/lang/${lang}/footbavbar`),
         names: data_eg.names,
         staffs: data_eg.staffs,
-        works: data_eg.works
-    };
-
-    if (req.lang && req.lang == 'zh-cn') {
-        data.language = 'zh-cn';
-        data.lang = require('./lang/zh-cn/workbook');
-        data.nav = require('../public/lang/zh-cn/navbar');
-        data.footnavbar = require('../public/lang/zh-cn/footnavbar');
+        works: data_eg.works,
+        user: req.session.userName,
     }
 
-    res.render('client/workbook/workbook', data);
-});
+    res.render('client/workbook/workbook', data)
+})
 
-router.post('/', function (req, res, next) {
-    //表单处理逻辑
-});
-
-module.exports = router;
+module.exports = router
