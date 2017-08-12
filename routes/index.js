@@ -4,7 +4,7 @@ import lang from '../config/lang'
 const router = Router()
 const langs = Object.keys(lang)
 
-const routeTable = {
+const clientTable = {
     // Client
     accounts: require('./client/accounts/clientAccounts'),
     createAccount: require('./client/accounts/createAccount'),
@@ -24,7 +24,9 @@ const routeTable = {
     newsletter: require('./client/marketing/newsletter'),
     createNewsletter: require('./client/marketing/createNewsletter'),
     createStaff: require('./client/user/createStaff'),
+}
 
+const userTable = {
     // User
     login: require('./users/login'),
     register: require('./users/signup'),
@@ -32,6 +34,7 @@ const routeTable = {
 
 const apiTable = {
     // Api
+    login: require('./api/login'),
     validate: require('./api/verificationCode'),
     test: require('./api/test'),
 }
@@ -49,10 +52,19 @@ router.use('/:language', (req, res, next) => {
     }
 })
 
-Object.keys(routeTable).forEach((url) => {
-    router.use(`/:language/${url}`, routeTable[url])
+Object.keys(clientTable).forEach((url) => {
+    router.use(`/:language/${url}`, (req, res, next) => {
+        if (req.session.validation && req.session.userName) {
+            next()
+        } else {
+            res.redirect('/en/login')
+        }
+    }, clientTable[url])
 })
 
+Object.keys(userTable).forEach((url) => {
+    router.use(`/:language/${url}`, userTable[url])
+})
 
 router.get('/:language', (req, res) => {
     res.redirect(`/${req.params.language}/login`)
