@@ -57,7 +57,7 @@ Object.keys(clientTable).forEach((url) => {
         if (req.session.validation && req.session.userName) {
             next()
         } else {
-            res.redirect('/en/login')
+            res.redirect(`/${req.params.language}/login`)
         }
     }, clientTable[url])
 })
@@ -76,9 +76,9 @@ router.get('/:language', (req, res) => {
 
 router.get('/', (req, res) => {
     if (req.session.validation && req.session.userName) {
-        res.redirect(`/${req.params.language}/accounts`)
+        res.redirect('/en/accounts')
     } else {
-        res.redirect(`/${req.params.language}/login`)
+        res.redirect('/en/login')
     }
 })
 
