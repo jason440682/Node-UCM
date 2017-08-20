@@ -148,7 +148,7 @@ $('#submit').click(() => {
         createClientAccounts(data).then(({ response }) => {
             if (response === 'Create staff user Successfully') {
                 alert('添加成功！')
-                // location.assign('/accounts')
+                location.assign('/accounts')
             }
         }).catch((error) => {
             alert('出现错误！请查看 Console ！')
