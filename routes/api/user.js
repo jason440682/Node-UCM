@@ -16,4 +16,13 @@ router.post('/login', (req, res) => {
         .then(data => res.send(data))
 })
 
+router.get('/logout', (req, res) => {
+    console.log('Get Log out!')
+    delete req.session.userName
+    delete req.session.password
+    delete req.session.validation
+    console.log(req.session)
+    res.redirect('/login')
+})
+
 module.exports = router
