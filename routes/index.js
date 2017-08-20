@@ -67,11 +67,19 @@ Object.keys(userTable).forEach((url) => {
 })
 
 router.get('/:language', (req, res) => {
-    res.redirect(`/${req.params.language}/login`)
+    if (req.session.validation && req.session.userName) {
+        res.redirect(`/${req.params.language}/accounts`)
+    } else {
+        res.redirect(`/${req.params.language}/login`)
+    }
 })
 
 router.get('/', (req, res) => {
-    res.redirect('/en/login')
+    if (req.session.validation && req.session.userName) {
+        res.redirect(`/${req.params.language}/accounts`)
+    } else {
+        res.redirect(`/${req.params.language}/login`)
+    }
 })
 
 module.exports = router
