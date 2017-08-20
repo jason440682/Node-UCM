@@ -11,138 +11,162 @@ block content
         h1.title= lang.title
         div.section
             div.form-group
-                label.col-sm-2= lang.type
+                label.col-sm-3
+                    span.highlight *
+                    = lang.type
 
             div.form-group
                 label.col-sm-2
-                    input(type="radio",name="accounttype",value="1" checked)
+                    input(type="radio",name="customerAccountType",value="1" checked)
                     =lang.personal.text
-                div.col-sm-5
-                    span.col-sm-5=lang.personal.firstname
-                    div.col-sm-7
-                        input.form-control(placeholder = lang.personal.placeholder)
-                div.col-sm-5
-                    span.col-sm-4=lang.personal.lastname
-                    div.col-sm-8
-                        input.form-control(placeholder= lang.personal.placeholder)
+                div.col-sm-7
+                    span.col-sm-3=lang.personal.firstname
+                    div.col-sm-9
+                        input.form-control.required(name="firstName", placeholder = lang.personal.placeholder)
+            div.form-group
+                div.col-sm-7.col-sm-offset-2
+                    span.col-sm-3=lang.personal.lastname
+                    div.col-sm-9
+                        input.form-control.required(name="lastName", placeholder= lang.personal.placeholder)
 
             div.form-group
                 label.col-sm-2
-                    input(type="radio",name="accounttype",value="2" checked)
+                    input(type="radio",name="customerAccountType",value="2")
                     =lang.business.text
+                div.col-sm-7
+                    span.col-sm-3=lang.business.name
+                    div.col-sm-9
+                        input.form-control(name="businessName",placeholder= lang.business.placeholder, disabled)
+
+        div.section
+            div.form-group
+                label.col-sm-4(for="account-status")
+                    span.highlight *
+                    = lang.accountstatus.text
                 div.col-sm-5
-                    span.col-sm-5=lang.business.name
-                    div.col-sm-7
-                        input.form-control(name="businessName",placeholder= lang.business.placeholder)
+                    select.form-control#account-status(name="customerAccountStatus")
+                        for status in accountStatus
+                            option(value=status.customerAccountTypeId)= status.accountTypeName
+
+            div.form-group
+                label.col-sm-4(for="assign-to")
+                    span.highlight *
+                    = lang.assignto.text
+                div.col-sm-5
+                    select.form-control#assign-to(name="assignedStaffUser")
+                        for assign in assignTo
+                            option(value=assign.staffUserId)= assign.staffUserName
 
         div.section
             div.form-group
-                label.col-sm-3(for="accountstatus")= lang.accountstatus.text
-                div.col-sm-6
-                    select.form-control#accountstatus(name="accountstatus")
-                        for sta in lang.accountstatus.status
-                            option= sta
+                label.col-sm-4(for="contact-first-name")
+                    span.highlight *
+                    = lang.contact_first_name.text
+                div.col-sm-5
+                    input.form-control.required#contact-first-name(type="text", name="cFirstName", placeholder= lang.contact_first_name.placeholder)
 
             div.form-group
-                label.col-sm-3(for="assignto")= lang.assignto.text
-                div.col-sm-6
-                    select.form-control#assignto(name="assignto")
-                        for sta in lang.assignto.staff
-                            option= sta
-
-        div.section
-            div.form-group
-                label.col-sm-3(for="contact_first_name")= lang.contact_first_name.text
-                div.col-sm-6
-                    input.form-control#contact_first_name(type="text", name="contact_first_name", placeholder= lang.contact_first_name.placeholder)
+                label.col-sm-4(for="contact-last-name")
+                    span.highlight *
+                    = lang.contact_last_name.text
+                div.col-sm-5
+                    input.form-control.required#contact-last-name(type="text", name="cLastName", placeholder= lang.contact_last_name.placeholder)
 
             div.form-group
-                label.col-sm-3(for="contact_last_name")= lang.contact_last_name.text
-                div.col-sm-6
-                    input.form-control#contact_last_name(type="text", name="contact_last_name", placeholder= lang.contact_last_name.placeholder)
+                label.col-sm-4(for="email")
+                    span.highlight *
+                    = lang.email_address.text
+                div.col-sm-5
+                    input.form-control.required#email(type="email", name="emailAddress", placeholder= lang.email_address.placeholder)
 
             div.form-group
-                label.col-sm-3(for="email")= lang.email_address.text
-                div.col-sm-6
-                    input.form-control#email(type="email", name="email", placeholder= lang.email_address.placeholder)
+                label.col-sm-4(for="mobile-num")
+                    span.highlight *
+                    = lang.mobile_num.text
+                div.col-sm-5
+                    input.form-control.required#mobile-num(type="tel", name="mobilePhone", placeholder= lang.mobile_num.placeholder)
 
             div.form-group
-                label.col-sm-3(for="mobileNum")= lang.mobile_num.text
-                div.col-sm-6
-                    input.form-control#mobileNum(type="tel", name="mobileNum", placeholder= lang.mobile_num.placeholder)
-
-            div.form-group
-                label.col-sm-3(for="mailing_address")= lang.mailing_address.text
-                div.col-sm-6.country
-                    input.form-control#mailing_address(type="text", name="street", placeholder= lang.mailing_address.placeholder.street)
+                label.col-sm-4(for="mailing-address")
+                    span.highlight *
+                    = lang.mailing_address.text
+                div.col-sm-5.country
+                    input.form-control.required#mailing-address(type="text", name="mailingAddressStreet", placeholder= lang.mailing_address.placeholder.street)
                     div
-                        input.form-control(type="text", name="city", placeholder= lang.mailing_address.placeholder.city)
-                        input.form-control(type="text", name="state", placeholder= lang.mailing_address.placeholder.state)
+                        input.form-control.required(type="text", name="mailingAddressCity", placeholder= lang.mailing_address.placeholder.city)
+                        input.form-control.required(type="text", name="mailingAddressStateProvince", placeholder= lang.mailing_address.placeholder.state)
                     div
-                        input.form-control(type="text", name="zip-code", placeholder= lang.mailing_address.placeholder.zip_code)
-                        select.form-control(name="country")
-                            for country in lang.mailing_address.country
-                                option= country
+                        input.form-control.required(type="text", name="mailing-zip-code", placeholder= lang.mailing_address.placeholder.zip_code)
+                        select.form-control(name="mailingAddressCountry")
+                            for country in countries
+                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
-                div.col-sm-3
-                    label.address(for="billing_address")= lang.billing_address.text
+                div.col-sm-4
+                    label.address(for="billing_address")
+                        span.highlight *
+                        = lang.billing_address.text
                     label
                         input#same(type="checkbox")
                         =lang.billing_address.issame
-                div.col-sm-6.country
-                    input.form-control#billing_address(type="text", name="street", placeholder= lang.billing_address.placeholder.street)
+                div.col-sm-5.country
+                    input.form-control.required#billing_address(type="text", name="billingAddressStreet", placeholder= lang.billing_address.placeholder.street)
                     div
-                        input.form-control(type="text", name="city", placeholder= lang.billing_address.placeholder.city)
-                        input.form-control(type="text", name="state", placeholder= lang.billing_address.placeholder.state)
+                        input.form-control.required(type="text", name="billingAddressCity", placeholder= lang.billing_address.placeholder.city)
+                        input.form-control.required(type="text", name="billingAddressStateProvince", placeholder= lang.billing_address.placeholder.state)
                     div
-                        input.form-control(type="text", name="zip-code", placeholder= lang.billing_address.placeholder.zip_code)
-                        select.form-control(name="country")
-                            for country in lang.billing_address.country
-                                option= country
+                        input.form-control.required(type="text", name="billing-zip-code", placeholder= lang.billing_address.placeholder.zip_code)
+                        select.form-control(name="billingAddressCountry")
+                            for country in countries
+                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
-                label.col-sm-3(for="account_note")= lang.account_note.text
-                div.col-sm-6
-                    textarea.form-control#account_note(placeholder= lang.account_note.placeholder)
+                label.col-sm-4(for="account-note")= lang.account_note.text
+                div.col-sm-5
+                    textarea.form-control#account-note(name="customerNote", placeholder= lang.account_note.placeholder)
 
             div.form-group
-                label.col-sm-3(for)= lang.email_group.text
-                div.col-sm-6
-                    select.form-control(name="group")
-                        for group in lang.email_group.groups
-                            option= group
+                label.col-sm-4(for="email-group")
+                    span.highlight *
+                    = lang.email_group.text
+                div.col-sm-5
+                    select.form-control#email-group(name="emailGroup")
+                        for group in emailGroup
+                            option(value=group.emailGroupId)= group.emailGroupName
 
             div.form-group
-                label.col-sm-3= lang.notification.text
+                label.col-sm-4
+                    span.highlight *
+                    = lang.notification.text
                 div.col-sm-6
                     label.col-sm-4
-                        input#nemail(type="checkbox",name="nemail")
+                        input#nemail(type="checkbox", name="notificationPreference", value="email")
                         =lang.notification.email
                     label.col-sm-4
-                        input#nphone(type="checkbox",name="nphone")
+                        input#nphone(type="checkbox", name="notificationPreference", value="phone")
                         =lang.notification.phone
                     label.col-sm-4
-                        input#nsms(type="checkbox",name="nsms")
+                        input#nsms(type="checkbox", name="notificationPreference", value="sms")
                         =lang.notification.sms
 
             div.form-group
-                label.col-sm-3(for)= lang.client_portal.text
-                div.col-sm-4
+                label.col-sm-4
+                    span.highlight *
+                    = lang.client_portal.text
+                div.col-sm-6
                     label.col-sm-6
-                        input(type="radio", name="client_portal", value="enable" checked)
+                        input(type="radio", name="enableClientPortal", value="1" checked)
                         = lang.client_portal.enable
                     label.col-sm-6
-                        input(type="radio", name="client_portal", value="disable")
+                        input(type="radio", name="enableClientPortal", value="2")
                         = lang.client_portal.disable
-
                 div.col-sm-2
                     button.btn.btn-default.btn-info= lang.client_portal.btn_text
 
         div.section
             div.form-group
                 div.col-sm-3
-                button.submit.btn.btn-default.btn-info= lang.submit_btn
+                button#submit.btn.btn-default.btn-info= lang.submit_btn
     include ../public/footnavbar
 
 block footer

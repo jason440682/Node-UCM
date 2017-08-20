@@ -6,43 +6,43 @@ module.exports = {
         text: 'Personal',
         firstname: 'First Name',
         lastname: 'Last Name',
-        placeholder: 'Text'
+        placeholder: 'Text',
     },
 
     business: {
         text: 'Business',
         name: 'Business Name',
-        placeholder: 'Text'
+        placeholder: 'Text',
     },
 
     accountstatus: {
         text: 'Account Status',
-        status: ['new', 'out of date']
+        status: ['new', 'out of date'],
     },
 
     assignto: {
         text: 'Assign To',
-        staff: ['Staff A', 'Staff B']
+        staff: ['Staff A', 'Staff B'],
     },
 
     contact_first_name: {
-        text: 'First Name',
-        placeholder: 'First Name'
+        text: 'Contact First Name',
+        placeholder: 'First Name',
     },
 
     contact_last_name: {
-        text: 'Last Name',
-        placeholder: 'Last Name'
+        text: 'Contact Last Name',
+        placeholder: 'Last Name',
     },
 
     email_address: {
         text: 'Email Address',
-        placeholder: 'Your Email Address'
+        placeholder: 'Your Email Address',
     },
 
     mobile_num: {
         text: 'Mobile Phone Number',
-        placeholder: 'xxx-xxx-xxxx'
+        placeholder: 'xxx-xxx-xxxx',
     },
 
     mailing_address: {
@@ -51,15 +51,15 @@ module.exports = {
             street: 'Street',
             city: 'City',
             state: 'State',
-            zip_code: 'Zip Code'
+            zip_code: 'Zip Code',
         },
         country: [
             'China 1',
             'China 2',
             'China 3',
             'China 4',
-            'China 5'
-        ]
+            'China 5',
+        ],
     },
 
     billing_address: {
@@ -69,40 +69,40 @@ module.exports = {
             street: 'Street',
             city: 'City',
             state: 'State',
-            zip_code: 'Zip Code'
+            zip_code: 'Zip Code',
         },
         country: [
             'China 1',
             'China 2',
             'China 3',
             'China 4',
-            'China 5'
-        ]
+            'China 5',
+        ],
     },
 
     account_note: {
         text: 'Account Note',
-        placeholder: 'Text'
+        placeholder: 'Text',
     },
 
     email_group: {
         text: 'Email Group',
-        groups: ['email group 1', 'email group 2']
+        groups: ['email group 1', 'email group 2'],
     },
 
     notification: {
         text: 'Notification Preference',
         email: 'Email',
         phone: 'Phone',
-        sms: 'SMS'
+        sms: 'SMS',
     },
 
     client_portal: {
         text: 'Client Portal',
         enable: 'Enable',
         disable: 'Disable',
-        btn_text: 'Send Portal Invitation'
+        btn_text: 'Send Portal Invitation',
     },
 
-    submit_btn: 'Create Client Account'
-};
+    submit_btn: 'Create Client Account',
+}

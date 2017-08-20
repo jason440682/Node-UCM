@@ -4,10 +4,23 @@ const host = 'http://54.169.159.192:8080/UCM'
 const server = {
     getVerificationCode: `${host}/getVerificationCode`,
     checkVerificationCode: `${host}/checkVerificationCode`,
+    login: `${host}/LogIn`,
+
+    //
     getBusinessTypes: `${host}/getBusinessTypes`,
     getCountries: `${host}/getCountries`,
     getTimezones: `${host}/getTimezones`,
-    login: `${host}/LogIn`,
+
+    // Create Client Account
+    getAccountStatus(userName) {
+        return `${host}/getCustomerAccountTypes/${userName}`
+    },
+    getAssign(userName) {
+        return `${host}/staffUsers/${userName}`
+    },
+    getEmailGroup(userName) {
+        return `${host}/getCustomerEmailGroups/${userName}`
+    },
 
     test: 'http://localhost:3331/en/test',
 }
@@ -46,6 +59,16 @@ function request(method, url, { data = undefined, cookie = undefined } = {}) {
 }
 
 module.exports = {
+    getAccountStatus(userName) {
+        return request('GET', server.getAccountStatus(userName))
+    },
+    getAssign(userName) {
+        return request('GET', server.getAssign(userName))
+    },
+    getEmailGroup(userName) {
+        return request('GET', server.getEmailGroup(userName))
+    },
+
     getBusinessTypes() {
         return request('GET', server.getBusinessTypes)
     },

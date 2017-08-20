@@ -1,6 +1,17 @@
 const $ = window.jQuery
 
 module.exports = {
+    createClientAccounts(data) {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: 'http://54.169.159.192:8080/UCM/CreateCustomerAccount',
+                type: 'POST',
+                data,
+            }).then(
+                (response, status, xhr) => resolve({ response, status, xhr }),
+                (xhr, status, error) => reject({ xhr, status, error }))
+        })
+    },
     createStaffUser(data) {
         return new Promise((resolve, reject) => {
             $.ajax({
