@@ -109,7 +109,7 @@ POST 返回的数据：
 ```
 GET 
 获取assign to下拉框              http://54.169.159.192:8080/UCM/staffUsers/{userName}
-获取account status下拉框         http://54.169.159.192:8080/UCM/getCustomerAccountTypes/{userName}
+获取account status下拉框         http://54.169.159.192:8080/UCM/getCustomerAccountStatuss/{userName}
 获取Email Group下拉框            http://54.169.159.192:8080/UCM/getCustomerEmailGroups/{userName}
 
 ```
