@@ -154,7 +154,7 @@ gulp.task('server', ['build'], () => {
     let started = false
     const nm = nodemon({
         restartable: 'rs',
-        script: 'build/dev-server.js',
+        script: 'build/www.js',
         ext: 'js',
         watch: [
             'build/',

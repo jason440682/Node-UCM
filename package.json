@@ -4,7 +4,7 @@
   "description": "A USA client manage platform",
   "main": "./build/dev-server",
   "scripts": {
-    "start": "gulp build && node ./build/dev-server",
+    "start": "gulp build && node ./build/www",
     "build": "gulp build",
     "dev": "gulp server --env=dev"
   },
