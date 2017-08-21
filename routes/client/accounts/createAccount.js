@@ -32,6 +32,9 @@ router.get('/', (req, res) => {
         data.emailGroup = emailGroup.body
         data.countries = countries.body
         res.render('client/accounts/createAccount', data)
+    }).catch((error) => {
+        console.log(error)
+        res.redirect('/accounts')
     })
 })
 

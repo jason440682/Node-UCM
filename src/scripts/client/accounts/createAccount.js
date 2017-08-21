@@ -75,6 +75,14 @@ function validateForm() {
         data.userName = User.get('userName')
         data.mailingAddressRoomNumber = 'NA'
 
+        // 填充被 Disabled 值为空的字段
+        if (data.customerAccountType === '1') {
+            data.businessName = ''
+        } else {
+            data.firstName = ''
+            data.lastName = ''
+        }
+
         resolve(data)
     })
 }
@@ -87,6 +95,7 @@ function checkedEvent(disabled, required) {
             $selector.attr('disabled', true)
             $selector.attr('placeholder', value)
             $selector.removeClass('required')
+            $selector.parent().removeClass('has-error')
         })
     }
 
@@ -118,6 +127,7 @@ $('#same').change((e) => {
     }
     const [disabled, required] = e.target.checked ? [billing, null] : [null, billing]
     checkedEvent(disabled, required)
+    $('[name=billingAddressCountry]').val($('[name=mailingAddressCountry]').val())
 })
 
 $input.blur((e) => {
