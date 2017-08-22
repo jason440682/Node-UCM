@@ -198,23 +198,15 @@ GET 返回的数据：
 
 ## 查看、修改客户账户（View/Modify Client Account）的接口：
 
-GET 传递的 Query 和值：account_id
+GET 获取              http://54.169.159.192:8080/UCM/clients/{userName} (获取首页显示的client信息)
 
-GET 返回的数据：
-```
-{
-    business_name:              String,
-    account_status:             String (Checkbox),
-    assigned_to:                String (Checkbox),
-    contact_first_name:         String,
-    contact_last_name:          String,
-    email:                      String,
-    phone_number:               String,
-    mailing_address:            String,
-    billing_address:            String,
-    account_notes:              String (Textarea),
-    email_group:                String (Checkbox),
-    notification_preference:    String,
-    client_portal:              String (Checkbox)
-}
-```
+列名             ->        对用返回的字段
+number           ->       customerId
+client           ->       firstName+LastName(accountType为1)
+                          businessName(accountType为2)
+assigned staff   ->       assignedStaff
+account Status   ->       customerAccountStatus
+contact          ->       cFirstName+cLastName
+email            ->       emailAddress
+phone            ->       mobilePhone
+
