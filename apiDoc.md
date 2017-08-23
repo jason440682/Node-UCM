@@ -232,6 +232,7 @@ POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修
      billingAddressCity:                String,    
      billingAddressStateProvince:       String,    
      billingAddressCountry:             String,    
+     emailGroup:                        String,(这个属于设计缺漏，应添加回这个下拉框)
      customerNote:                      String,    
      notificationPreference:            String,    
      enableClientPortal:                String(enable传1 disable传2),
