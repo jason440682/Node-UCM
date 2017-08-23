@@ -210,3 +210,29 @@ contact          ->       cFirstName+cLastName
 email            ->       emailAddress
 phone            ->       mobilePhone
 
+POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修改页面的save change按钮接口)
+
+{    userName:                          String(已登录的用户userName),    
+     customerAccountType:               String (Personal传1 Business传2),    
+     firstName:                         String,    
+     lastName:                          String,    
+     businessName:                      Stting，（如果我没理解错这里应该是personal和business有各自显示的页面，区别只是第一行显示的信息不同）      customerAccountStatus:             String,    
+     assignedStaffUser:                 String,    
+     cFirstName:                        String,（这里是contact first name）    
+     cLastName:                         String,    
+     emailAddress:                      String,    
+     mobilePhone:                       String,    
+     mailingAddressStreet:              String,    
+     mailingAddressRoomNumber:          String,    
+     mailingAddressCity:                String,    
+     mailingAddressStateProvince:       String,    
+     mailingAddressCountry:             String,    
+     billingAddressStreet:              String,    
+     billingAddressRoomNumber:          String,    
+     billingAddressCity:                String,    
+     billingAddressStateProvince:       String,    
+     billingAddressCountry:             String,    
+     customerNote:                      String,    
+     notificationPreference:            String,    
+     enableClientPortal:                String(enable传1 disable传2),
+}
