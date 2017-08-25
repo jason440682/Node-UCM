@@ -98,12 +98,13 @@ url: 'http://54.169.159.192:8080/UCM/CreateStaffUser'
     (logo上传暂用之前的接口）
 }
 ```
-POST 返回的数据：
+
+POST             http://54.169.159.192:8080/UCM/GetStaffUser (获取staff user信息based on Id)
 ```
 {
-    // 暂时返回注册是否成功即可
+     userName:                            String,
+     staffUserId:                         String,
 }
-```
 
 ## 获取create client account相关显示信息的接口：
 ```
@@ -210,6 +211,13 @@ contact          ->       cFirstName+cLastName
 email            ->       emailAddress
 phone            ->       mobilePhone
 ```
+
+POST             http://54.169.159.192:8080/UCM/GetClient (获取client信息based on Id)
+```
+{    
+    userName:                            String,
+    customerId:                          String,
+}
 
 POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修改页面的save change按钮接口)
 ```
