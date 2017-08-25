@@ -199,7 +199,7 @@ GET 返回的数据：
 ## 查看、修改客户账户（View/Modify Client Account）的接口：
 
 GET 获取              http://54.169.159.192:8080/UCM/clients/{userName} (获取首页显示的client信息)
-
+```
 列名             ->        对用返回的字段
 number           ->       customerId
 client           ->       firstName+LastName(accountType为1)
@@ -209,9 +209,10 @@ account Status   ->       customerAccountStatus
 contact          ->       cFirstName+cLastName
 email            ->       emailAddress
 phone            ->       mobilePhone
+```
 
 POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修改页面的save change按钮接口)
-
+```
 {    userName:                          String(已登录的用户userName),    
      customerAccountType:               String (Personal传1 Business传2),    
      firstName:                         String,    
@@ -237,3 +238,4 @@ POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修
      notificationPreference:            String,    
      enableClientPortal:                String(enable传1 disable传2),
 }
+```
