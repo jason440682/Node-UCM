@@ -1,25 +1,37 @@
 import superagent from 'superagent'
 
+const METHOD_GET = 1
+const METHOD_POST = 2
+const METHOD_PUT = 3
+const METHOD_DELETE = 4
+
 const host = 'http://54.169.159.192:8080/UCM'
 const server = {
     getVerificationCode: `${host}/getVerificationCode`,
     checkVerificationCode: `${host}/checkVerificationCode`,
     login: `${host}/LogIn`,
 
-    //
+    // Public
     getBusinessTypes: `${host}/getBusinessTypes`,
     getCountries: `${host}/getCountries`,
     getTimezones: `${host}/getTimezones`,
+    getClient: `${host}/GetClient`,
+    getStaffUser: `${host}/GetStaffUser`,
 
     // Create Client Account
     getAccountStatus(userName) {
-        return `${host}/getCustomerAccountTypes/${userName}`
+        return `${host}/getCustomerAccountStatuss/${userName}`
     },
-    getAssign(userName) {
+    getStaffUsers(userName) {
         return `${host}/staffUsers/${userName}`
     },
-    getEmailGroup(userName) {
+    getEmailGroups(userName) {
         return `${host}/getCustomerEmailGroups/${userName}`
+    },
+
+    // Modify Client Account
+    getClientAccounts(userName) {
+        return `${host}/clients/${userName}`
     },
 
     test: 'http://localhost:3331/en/test',
@@ -28,13 +40,12 @@ const server = {
 
 function request(method, url, { data = undefined, cookie = undefined } = {}) {
     let req = superagent(method, url)
-    const Method = method.toUpperCase()
 
-    if (Method === 'GET') {
+    if (method === METHOD_GET) {
         req = superagent.get(url)
         if (data !== undefined) req.query(data)
     } else {
-        if (Method !== 'POST') data._method = Method // eslint-disable-line
+        if (method !== METHOD_POST) data._method = Method // eslint-disable-line
         req = superagent.post(url)
             .set('Content-Type', 'application/x-www-form-urlencoded')
             .send(data)
@@ -44,10 +55,10 @@ function request(method, url, { data = undefined, cookie = undefined } = {}) {
 
     console.log('\n----------- Request -----------')
     console.log(`url: ${url}`)
-    console.log(`method: ${Method}`)
+    console.log(`method: ${method}`)
     console.log(`header: ${JSON.stringify(req.header)}`)
     console.log(`cookie: ${cookie}`)
-    if (req._data) console.log(`data: ${JSON.stringify(req._data)}`) // eslint-disable-line
+    if (method === METHOD_POST) console.log(`data: ${JSON.stringify(req._data)}`) // eslint-disable-line
     console.log('-------------------------------')
 
     return new Promise((resolve, reject) => {
@@ -59,39 +70,55 @@ function request(method, url, { data = undefined, cookie = undefined } = {}) {
 }
 
 module.exports = {
-    getAccountStatus(userName) {
-        return request('GET', server.getAccountStatus(userName))
-    },
-    getAssign(userName) {
-        return request('GET', server.getAssign(userName))
-    },
-    getEmailGroup(userName) {
-        return request('GET', server.getEmailGroup(userName))
-    },
-
     getBusinessTypes() {
-        return request('GET', server.getBusinessTypes)
+        return request(METHOD_GET, server.getBusinessTypes)
     },
 
     getCountries() {
-        return request('GET', server.getCountries)
+        return request(METHOD_GET, server.getCountries)
     },
 
     getTimezones() {
-        return request('GET', server.getTimezones)
+        return request(METHOD_GET, server.getTimezones)
     },
 
     getVerificationCode() {
-        return request('GET', server.getVerificationCode)
-    },
-
-    checkUser(username, password) {
-        const data = { userName: username, hashedPassword: password }
-        return request('POST', server.login, { data })
+        return request(METHOD_GET, server.getVerificationCode)
     },
 
     checkVerificationCode(code, cookie) {
         const data = { code }
-        return request('POST', server.checkVerificationCode, { data, cookie })
+        return request(METHOD_POST, server.checkVerificationCode, { data, cookie })
+    },
+
+    checkUser(username, password) {
+        const data = { userName: username, hashedPassword: password }
+        return request(METHOD_POST, server.login, { data })
+    },
+
+    getClientInfo(userName, customerId) {
+        const data = { userName, customerId }
+        return request(METHOD_POST, server.getClient, { data })
+    },
+
+    getStaffUserInfo(userName, staffUserId) {
+        const data = { userName, staffUserId }
+        return request(METHOD_POST, server.getStaffUser, { data })
+    },
+
+    getAccountStatus(userName) {
+        return request(METHOD_GET, server.getAccountStatus(userName))
+    },
+
+    getStaffUsers(userName) {
+        return request(METHOD_GET, server.getStaffUsers(userName))
+    },
+
+    getEmailGroups(userName) {
+        return request(METHOD_GET, server.getEmailGroups(userName))
+    },
+
+    getClientAccounts(userName) {
+        return request(METHOD_GET, server.getClientAccounts(userName))
     },
 }
