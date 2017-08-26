@@ -138,14 +138,11 @@ block content
                 label.col-sm-4(for="addStreet")= lang.office_address.text
                 div.col-sm-5.country
                     input.form-control#addStreet(type="text", name="officeAddressStreet", placeholder= lang.office_address.placeholder.street)
-                    div
-                        input.form-control(type="text", name="officeAddressCity", placeholder= lang.office_address.placeholder.city)
-                        input.form-control(type="text", name="officeAddressStateProvince", placeholder= lang.office_address.placeholder.state)
-                    div
-                        input.form-control(type="text", name="zip-code", placeholder= lang.office_address.placeholder.zip_code)
-                        select.form-control(name="officeAddressCountry")
-                            for country in countries
-                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
+                    input.form-control(type="text", name="officeAddressCity", placeholder= lang.office_address.placeholder.city)
+                    input.form-control(type="text", name="officeAddressStateProvince", placeholder= lang.office_address.placeholder.state)
+                    select.form-control(name="officeAddressCountry")
+                        for country in countries
+                            option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
                 label.col-sm-4(for="userNote")= lang.user_note.text

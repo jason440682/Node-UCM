@@ -1,11 +1,10 @@
 import { uploadLogo, createStaffUser } from '../../plugins/api'
-import { User } from '../../plugins/db'
+import { getCookie } from '../../plugins/db'
 
+const lang = /^\/(.*?)\//.exec(location.pathname)[1]
 const $ = window.jQuery
 const $input = $('form :input')
 const $upload = $('#upload-logo')
-const username = User.get('userName')
-console.log(`username: ${username}`)
 
 function showError($target, message) {
     const $parent = $target.parent()
@@ -84,22 +83,20 @@ function validateForm() {
 
 $('#submit').click(() => {
     validateForm().then(({ data, formdata }) => {
-        data.userName = User.get('userName')
+        data.userName = getCookie('userName')
         console.log(data)
-        Promise.all([uploadLogo(formdata), createStaffUser(data)]).then((datas) => {
-            console.log('datas')
-            console.log(datas)
-            console.log(datas[0])
-            console.log(datas[1])
-            const uploaded = datas[0].response === 'uploaded'
-            const registered = datas[1].response === 'Create staff user Successfully'
-            if (uploaded && registered) {
-                alert('添加成功！')
-                location.assign('/accounts')
-            }
-        }, (error) => {
-            console.log(error)
-        })
+        Promise.all([uploadLogo(formdata), createStaffUser(data)])
+            .then(([upload, register]) => {
+                console.log('datas')
+                console.log(upload)
+                console.log(register)
+                if (upload.response === 'uploaded' && register.response === 'Create staff user Successfully') {
+                    alert('添加成功！')
+                    location.assign(`/${lang}/accounts`)
+                }
+            }, (error) => {
+                console.log(error)
+            })
     }, (errorDOM) => {
         console.log(errorDOM)
         errorDOM.focus()

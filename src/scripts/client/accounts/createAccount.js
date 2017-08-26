@@ -1,6 +1,7 @@
 import { createClientAccounts } from '../../plugins/api'
-import { User } from '../../plugins/db'
+import { getCookie } from '../../plugins/db'
 
+const lang = /^\/(.*?)\//.exec(location.pathname)[1]
 const $ = window.jQuery
 const $input = $('form :input')
 const placeHolder = {
@@ -51,7 +52,6 @@ function validateForm() {
     const data = {}
     return new Promise((resolve, reject) => {
         const $errorInputs = $('form .has-error')
-        const np = $('[name=notificationPreference]:checkbox')
         if ($errorInputs.length > 0) reject($errorInputs[0])
 
         $('form').serializeArray().forEach((element) => {
@@ -67,12 +67,12 @@ function validateForm() {
         }
 
         let value = ''
-        np.each((index, element) => {
-            value += element.checked ? 1 : 0
+        $('[name=notificationPreference]:checkbox').each((index, element) => {
+            value += element.checked ? '1' : '0'
         })
 
         data.notificationPreference = value
-        data.userName = User.get('userName')
+        data.userName = getCookie('userName')
         data.mailingAddressRoomNumber = 'NA'
 
         // 填充被 Disabled 值为空的字段
@@ -158,7 +158,7 @@ $('#submit').click(() => {
         createClientAccounts(data).then(({ response }) => {
             if (response === 'Create staff user Successfully') {
                 alert('添加成功！')
-                location.assign('/accounts')
+                location.assign(`/${lang}/accounts`)
             }
         }).catch((error) => {
             alert('出现错误！请查看 Console ！')

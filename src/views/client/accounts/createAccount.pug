@@ -46,7 +46,7 @@ block content
                 div.col-sm-5
                     select.form-control#account-status(name="customerAccountStatus")
                         for status in accountStatus
-                            option(value=status.customerAccountTypeId)= status.accountTypeName
+                            option(value=status.customerAccountStatusId)= status.accountStatusName
 
             div.form-group
                 label.col-sm-4(for="assign-to")
@@ -55,7 +55,7 @@ block content
                 div.col-sm-5
                     select.form-control#assign-to(name="assignedStaffUser")
                         for assign in assignTo
-                            option(value=assign.staffUserId)= assign.staffUserName
+                            option(value=assign.staffUserId)= assign.userName
 
         div.section
             div.form-group
@@ -92,14 +92,11 @@ block content
                     = lang.mailing_address.text
                 div.col-sm-5.country
                     input.form-control.required#mailing-address(type="text", name="mailingAddressStreet", placeholder= lang.mailing_address.placeholder.street)
-                    div
-                        input.form-control.required(type="text", name="mailingAddressCity", placeholder= lang.mailing_address.placeholder.city)
-                        input.form-control.required(type="text", name="mailingAddressStateProvince", placeholder= lang.mailing_address.placeholder.state)
-                    div
-                        input.form-control.required(type="text", name="mailing-zip-code", placeholder= lang.mailing_address.placeholder.zip_code)
-                        select.form-control(name="mailingAddressCountry")
-                            for country in countries
-                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
+                    input.form-control.required(type="text", name="mailingAddressCity", placeholder= lang.mailing_address.placeholder.city)
+                    input.form-control.required(type="text", name="mailingAddressStateProvince", placeholder= lang.mailing_address.placeholder.state)
+                    select.form-control(name="mailingAddressCountry")
+                        for country in countries
+                            option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
                 div.col-sm-4
@@ -111,14 +108,11 @@ block content
                         =lang.billing_address.issame
                 div.col-sm-5.country
                     input.form-control.required#billing_address(type="text", name="billingAddressStreet", placeholder= lang.billing_address.placeholder.street)
-                    div
-                        input.form-control.required(type="text", name="billingAddressCity", placeholder= lang.billing_address.placeholder.city)
-                        input.form-control.required(type="text", name="billingAddressStateProvince", placeholder= lang.billing_address.placeholder.state)
-                    div
-                        input.form-control.required(type="text", name="billing-zip-code", placeholder= lang.billing_address.placeholder.zip_code)
-                        select.form-control(name="billingAddressCountry")
-                            for country in countries
-                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
+                    input.form-control.required(type="text", name="billingAddressCity", placeholder= lang.billing_address.placeholder.city)
+                    input.form-control.required(type="text", name="billingAddressStateProvince", placeholder= lang.billing_address.placeholder.state)
+                    select.form-control(name="billingAddressCountry")
+                        for country in countries
+                            option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
                 label.col-sm-4(for="account-note")= lang.account_note.text
