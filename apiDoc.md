@@ -8,7 +8,7 @@
 整个 API 文档可能写的不是很好，Kevin 有问题可以在群上问，我看到后会立即回复的！
 
 ## 验证码的接口：
-注：验证码的接口之前没做过，不知道一般是不是这样子做的？如果不是的话就按照你们做的方式来吧，这个是我自己推测的验证码的接口，可能安全和性能方面不是这样子考虑的。。
+注：验证码的接口之前没做过，不知道一般是不是这样子做的？如果不是的话就按照你们做的方式来吧，这个是我自己推测的验证码的接口，可能安全和性能方面不是这样子考虑的。。
 
 GET 返回的数据：
 ```
@@ -62,9 +62,9 @@ POST 的数据：
 }
 ```
 GET               http://54.169.159.192:8080/UCM/GetMasterUser/{userName} (获取master user信息)
-       
-```
+
 POST              http://54.169.159.192:8080/UCM/ModifyMasterUser (修改master user信息)
+```
 {    
     userName                                   String,
     firstName                                  String,
@@ -273,8 +273,10 @@ POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修
     notificationPreference:            String,    
     enableClientPortal:                String （enable传1 disable传2）,
 }
+```
 
 POST           http://54.169.159.192:8080/UCM/DeleteClient (修改页面的delete按钮接口)
+```
 {
     userName:                            String,
     customerId:                          String,
