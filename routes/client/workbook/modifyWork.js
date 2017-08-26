@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
         language: lang,
         lang: require(`./lang/${lang}/modifyWork`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         title: 'View/Modify Work',
         user: req.session.userName,
     }

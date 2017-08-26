@@ -61,7 +61,7 @@ router.get('/', (req, res) => {
         language: lang,
         lang: require(`./lang/${lang}/workbook`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         names: data_eg.names,
         staffs: data_eg.staffs,
         works: data_eg.works,

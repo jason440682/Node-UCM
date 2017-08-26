@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
         language: lang,
         lang: require(`./lang/${lang}/workCalendar`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         names: data_eg.names,
         works: data_eg.works,
         user: req.session.userName,
