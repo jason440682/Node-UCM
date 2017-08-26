@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getAccountStatus, getAssign, getCountries, getEmailGroup } from '../../plugins/requests'
+import { getAccountStatus, getStaffUsers, getCountries, getEmailGroups } from '../../plugins/requests'
 
 const router = Router()
 
@@ -12,21 +12,16 @@ router.get('/', (req, res) => {
         language: lang,
         lang: require(`./lang/${lang}/createAccount`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         user: userName,
     }
 
     Promise.all([
         getAccountStatus(userName),
-        getAssign(userName),
-        getEmailGroup(userName),
+        getStaffUsers(userName),
+        getEmailGroups(userName),
         getCountries(),
     ]).then(([accountStatus, assign, emailGroup, countries]) => {
-        console.log(accountStatus.body)
-        console.log(assign.body)
-        console.log(emailGroup.body)
-        console.log(countries.body)
-
         data.accountStatus = accountStatus.body
         data.assignTo = assign.body
         data.emailGroup = emailGroup.body

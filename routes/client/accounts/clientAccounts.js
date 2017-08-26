@@ -1,77 +1,55 @@
 import { Router } from 'express'
+import { getClientAccounts, getAccountStatus, getStaffUsers } from '../../plugins/requests'
 
 const router = Router()
-
-const data_eg = [
-    {
-        id: 'accounts1',
-        number: '000382',
-        client: 'James Johnson',
-        assignstaff: 'Assign Staff C',
-        accountstatus: 'New',
-        contact: 'James Johnson',
-        email: 'James@gmail.com',
-        phone: '222-222-2222',
-    },
-    {
-        id: 'accounts2',
-        number: '000385',
-        client: 'Maria Karey',
-        assignstaff: 'Assign Staff A',
-        accountstatus: 'Closed',
-        contact: 'David Karey',
-        email: 'D.K@hotmail.com',
-        phone: '123-456-7890',
-    },
-    {
-        id: 'accounts3',
-        number: '000391',
-        client: 'WWW Biz',
-        assignstaff: 'Assign Staff D',
-        accountstatus: 'Active',
-        contact: 'Wayne Walker',
-        email: 'Email',
-        phone: 'Phone',
-    },
-    {
-        id: 'accounts4',
-        number: '100000',
-        client: 'Client',
-        assignstaff: 'Assign Staff',
-        accountstatus: 'Account Status',
-        contact: 'Contact',
-        email: 'Email',
-        phone: 'Phone',
-    },
-    {
-        id: 'accounts5',
-        number: '111111',
-        client: 'Client',
-        assignstaff: 'Assign Staff',
-        accountstatus: 'Account Status',
-        contact: 'Contact',
-        email: 'Email',
-        phone: 'Phone',
-        manage: 'Manage',
-    },
-]
 
 router.get('/', (req, res) => {
     console.log('Get Client Accounts')
     console.log(req.session)
     console.log(req.session.userName)
     const lang = req.lang ? req.lang : 'en'
+    const userName = req.session.userName
     const data = {
         key: 'accounts/clientAccounts',
         language: lang,
         lang: require(`./lang/${lang}/clientAccounts`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
-        accounts: data_eg,
-        user: req.session.userName,
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
+        user: userName,
     }
 
-    res.render('client/accounts/clientAccounts', data)
+    Promise.all([getClientAccounts(userName), getAccountStatus(userName), getStaffUsers(userName)])
+        .then(([{ body: accounts }, { body: status }, { body: staffUsers }]) => {
+            const [Status, Staff] = [{}, {}]
+            status.forEach((stat) => {
+                Status[stat.customerAccountStatusId] = stat.accountStatusName
+            })
+
+            staffUsers.forEach((user) => {
+                Staff[user.staffUserId] = user.userName
+            })
+
+            accounts.map((account) => {
+                account.accountStatusName = Status[account.customerAccountStatus]
+                account.staffUserName = Staff[account.assignedStaffUser]
+
+                return account
+            })
+
+            console.log(accounts)
+            data.accounts = accounts
+            res.render('client/accounts/clientAccounts', data)
+        }).catch((error) => {
+            console.log('error')
+            console.log(error)
+            if (error.status === 500) {
+                data.error = '与服务器断开连接，请稍后再试！'
+            } else {
+                data.error = error
+            }
+            data.accounts = []
+            res.render('client/accounts/clientAccounts', data)
+        })
 })
 
 module.exports = router

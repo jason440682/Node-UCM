@@ -42,7 +42,7 @@ router.get('/', (req, res) => {
         language: lang,
         lang: require(`./lang/${lang}/notification`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         names: data_eg.notification.names,
         notifications: data_eg.notifications,
         user: req.session.userName,

@@ -51,7 +51,7 @@ router.get('/', (req, res) => {
         language: lang,
         lang: require(`./lang/${lang}/modifyInvoice`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         client_names: data_eg.client_names,
         bill_info: data_eg.bill_info,
         invoices: data_eg.invoices,

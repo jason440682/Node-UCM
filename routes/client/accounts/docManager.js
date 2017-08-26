@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
         language: lang,
         lang: require(`./lang/${lang}/docManager`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         names: data_eg.names,
         files: data_eg.files,
         user: req.session.userName,

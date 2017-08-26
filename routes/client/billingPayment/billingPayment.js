@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
         language: 'en',
         lang: require(`./lang/${lang}/billingPayment`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
         names: data_eg.names,
         invoices: data_eg.invoices,
         user: req.session.userName,
