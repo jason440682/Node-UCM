@@ -5,85 +5,85 @@ module.exports = {
             list: [
                 {
                     title: 'Client Accounts',
-                    url: './accounts'
+                    url: './accounts',
                 },
                 {
                     title: 'Create Client Account',
-                    url: './createaccount'
+                    url: './createAccount',
                 }, {
                     title: 'Notification Manager',
-                    url: './notification'
+                    url: './notification',
                 }, {
                     title: 'Document Manager',
-                    url: './docManager'
-                }
-            ]
+                    url: './docManager',
+                },
+            ],
         },
         {
             title: 'Work Book',
             list: [
                 {
                     title: 'Work Book',
-                    url: './workbook'
+                    url: './workbook',
                 },
                 {
                     title: 'Create New Work',
-                    url: './creatework'
+                    url: './creatework',
                 }, {
                     title: 'Work Calendar',
-                    url: './workcalendar'
+                    url: './workcalendar',
                 }, {
                     title: 'Work Template',
-                    url: './worktemplate'
-                }
-            ]
+                    url: './worktemplate',
+                },
+            ],
         },
         {
             title: 'Billing & Payment',
             list: [
                 {
                     title: 'Billing & Payment',
-                    url: './billingpayment'
+                    url: './billingpayment',
                 },
                 {
                     title: 'Create New Invoice',
-                    url: './createinvoice'
+                    url: './createinvoice',
                 }, {
                     title: 'Invoices',
-                    url: './invoices'
+                    url: './invoices',
                 }, {
                     title: 'Payments',
-                    url: './payment'
-                }
-            ]
+                    url: './payment',
+                },
+            ],
         },
         {
             title: 'Marketing',
             list: [
                 {
                     title: 'Marketing',
-                    url: './newsletter'
+                    url: './newsletter',
                 },
                 {
                     title: 'Create Newsletter',
-                    url: './createnewsletter'
-                }
-            ]
+                    url: './createnewsletter',
+                },
+            ],
         },
         {
             title: 'Reports',
             list: [
                 {
                     title: 'Reports',
-                    url: '#'
-                }
-            ]
-        }
+                    url: '#',
+                },
+            ],
+        },
     ],
 
     user: {
         management: 'User Management',
         plan: 'Plan and Billing',
-        logout: 'Log Out'
-    }
-};
+        logout: 'Log Out',
+    },
+}
