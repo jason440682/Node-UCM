@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
         res.render('client/accounts/createAccount', data)
     }).catch((error) => {
         console.log(error)
-        res.redirect('/accounts')
+        res.redirect(`${lang}/accounts`)
     })
 })
 

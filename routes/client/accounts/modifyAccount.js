@@ -5,7 +5,6 @@ const router = Router()
 
 router.get('/:id', (req, res) => {
     console.log('Get Modify Account')
-    console.log(req.params)
     const lang = req.lang ? req.lang : 'en'
     const userName = req.session.userName
     const id = req.params.id
@@ -30,12 +29,11 @@ router.get('/:id', (req, res) => {
         data.emailGroup = emailGroup.body
         data.countries = countries.body
         data.userInfo = userInfo.body
-        console.log(data.assignTo)
         console.log(data.userInfo)
         res.render('client/accounts/modifyAccount', data)
     }).catch((error) => {
         console.log(error)
-        res.redirect('/accounts')
+        res.redirect(`${lang}/accounts`)
     })
 })
 

@@ -5,8 +5,6 @@ const router = Router()
 
 router.get('/', (req, res) => {
     console.log('Get Client Accounts')
-    console.log(req.session)
-    console.log(req.session.userName)
     const lang = req.lang ? req.lang : 'en'
     const userName = req.session.userName
     const data = {
@@ -36,7 +34,6 @@ router.get('/', (req, res) => {
                 return account
             })
 
-            console.log(accounts)
             data.accounts = accounts
             res.render('client/accounts/clientAccounts', data)
         }).catch((error) => {
