@@ -61,13 +61,35 @@ POST 的数据：
     business_logo_file:         File (Logo 的附件文件),
 }
 ```
-返回的数据：
+GET               http://54.169.159.192:8080/UCM/GetMasterUser/{userName} (获取master user信息)
+       
 ```
-{
-    // 暂时返回注册是否成功即可
+POST              http://54.169.159.192:8080/UCM/ModifyMasterUser (修改master user信息)
+{    
+    userName                                   String,
+    firstName                                  String,
+    lastName                                   String,
+    eMailAddress                               String,
+    phoneNumber                                String,
+    otherPhone                                 String,
+    enable2FactorAuthenticationLogin           String,
+    sendPasscodeToDeviceId                     String,
+    masterUserBusinessId                       String,
+    businessName                               String,
+    businessTypeId                             String,
+    businessTimeZoneId                         String,
+    businessEMail                              String,
+    businessPhoneNumber                        String,
+    busineseFaxNumber                          String,
+    businessAddressStreet                      String,
+    businessRoomNumber                         String,
+    businessAddressCity                        String,
+    businessAddressStateProvince               String,
+    businessCountryId                          String,
+    businessDescription                        String,
 }
 ```
-
+ 
 ## 创建员工用户（Create Staff User）的接口：
 POST 的数据：
 ```
@@ -224,7 +246,8 @@ POST             http://54.169.159.192:8080/UCM/GetClient (获取client信
 POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修改页面的save change按钮接口)
 ```
 {
-    userName:                          String,（已登录的用户userName）,    
+    userName:                          String,（已登录的用户userName）, 
+    customerId:                        String,
     customerAccountType:               String,（Personal传1 Business传2）,    
     firstName:                         String,    
     lastName:                          String,    
@@ -249,5 +272,11 @@ POST             http://54.169.159.192:8080/UCM/ModifyCustomerAccount (修
     customerNote:                      String,    
     notificationPreference:            String,    
     enableClientPortal:                String （enable传1 disable传2）,
+}
+
+POST           http://54.169.159.192:8080/UCM/DeleteClient (修改页面的delete按钮接口)
+{
+    userName:                            String,
+    customerId:                          String,
 }
 ```
