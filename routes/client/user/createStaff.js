@@ -21,11 +21,4 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
-    // 这里写数据页面 POST 数据过来时要处理的逻辑
-    console.log('Post Create Staff!')
-    const lang = req.lang ? req.lang : 'en'
-    res.redirect(`/${lang}/accounts`)
-})
-
 module.exports = router
