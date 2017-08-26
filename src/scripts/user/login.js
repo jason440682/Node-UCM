@@ -1,6 +1,7 @@
 import { sendValidateCode, login } from '../plugins/api'
 import { User } from '../plugins/db'
 
+const lang = /^\/(.*?)\//.exec(location.pathname)[1]
 const $ = window.jQuery
 const $input = $('form :input.form-control')
 
@@ -28,7 +29,7 @@ $input.blur((e) => {
         sendValidateCode(code).then((data) => {
             console.log(data)
             if (data.response === 'error') {
-                $('#error').html('输入的验证码错误！请重新输入').show()
+                $('#error').html(`输入的验证码错误！请重新输入(${code})`).show()
             } else if ($('#error').html() === '输入的验证码错误！请重新输入') {
                 $('#error').hide()
             }
@@ -43,12 +44,12 @@ $('#submit').click(() => {
     validateForm().then(
         ({ username, password, code }) => {
             sendValidateCode(code).then(({ response }) => {
-                if (response !== 'ok') throw new Error('输入的验证码错误！请重新输入')
+                if (response !== 'ok') throw new Error(`输入的验证码错误！请重新输入(${code})`)
                 return login(username, password)
             }).then(({ response }) => {
                 if (response === 'Authenticated') {
                     User.set('userName', username)
-                    location.assign('/accounts')
+                    location.assign(`/${lang}/accounts`)
                 } else if (response.status === 401) {
                     throw new Error('账号或密码输入错误！请重新输入')
                 }
