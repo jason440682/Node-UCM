@@ -1,5 +1,4 @@
 import { uploadLogo, signUp, login, sendValidateCode } from '../plugins/api'
-import { User } from '../plugins/db'
 
 const $ = window.jQuery
 const $input = $('form :input')
@@ -101,17 +100,14 @@ $('#submit').click(() => {
         const password = data.hashedPassword
         const code = data.verificationCode.toUpperCase()
         sendValidateCode(code).then(({ response }) => {
-            if (response !== 'ok') throw new Error('验证码输入错误！请重新输入')
+            if (response !== 'ok') throw new Error(`验证码输入错误！请重新输入(${code})`)
             return Promise.all([uploadLogo(formdata), signUp(data)])
         }).then(([upload, register]) => {
-            const uploaded = upload.response === 'uploaded'
-            const registered = register.response === 'Sign Up Successfully'
-            if (!uploaded) throw upload
-            if (!registered) throw register
+            if (!(upload.response === 'uploaded')) throw upload
+            if (!(register.response === 'Sign Up Successfully')) throw register
             return login(userName, password)
         }).then(({ response }) => {
             if (response !== 'Authenticated') throw new Error('账号或密码错误！')
-            User.set('userName', userName)
             location.assign('/accounts')
         })
             .catch((error) => {
