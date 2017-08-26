@@ -17,6 +17,24 @@ class Storage {
     }
 }
 
+function getCookie(name) {
+    const cookie = document.cookie
+    const cookieName = `${encodeURIComponent(name)}=`
+    const cookieStart = cookie.indexOf(cookieName)
+    let cookieValue = null
+
+    if (cookieStart > -1) {
+        let cookieEnd = cookie.indexOf(';', cookieStart)
+        if (cookieEnd === -1) cookieEnd = cookie.length
+        cookieValue = cookie.substring(cookieStart + cookieName.length, cookieEnd)
+        cookieValue = decodeURIComponent(cookieValue)
+    }
+
+    return cookieValue
+}
+
 module.exports = {
     User: new Storage('user'),
+    ClientAccount: new Storage('client account'),
+    getCookie,
 }
