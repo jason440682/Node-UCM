@@ -32,13 +32,16 @@ block content
                         each account in accounts
                             tr
                                 td
-                                    a(href="modifyAccount")= account.number
-                                td= account.client
-                                td= account.assignstaff
-                                td= account.accountstatus
-                                td= account.contact
-                                td= account.email
-                                td= account.phone
+                                    a(href="modifyAccount/" + account.customerId)= account.customerId
+                                if account.customerAccountType === 1
+                                    td= account.firstName + ' ' + account.lastName
+                                else
+                                    td= account.businessName
+                                td= account.staffUserName
+                                td= account.accountStatusName
+                                td= account.cFirstName + ' ' + account.cLastName
+                                td= account.emailAddress
+                                td= account.mobilePhone
                                 td
                                     button.btn.btn-default.btn-info
                                         a(href="workbook")= lang.btn_work
@@ -61,27 +64,27 @@ block content
         div.panel-group#accordion(role="tablist", aria-multiselectable="true")
             each account in accounts
                 div.panel.panel-default
-                    div.panel-heading(role="tab", id=account.id)
+                    div.panel-heading(role="tab", id=account.customerId)
                         h4.panel-title
                             a(role="button",
                             data-toggle="collapse",
                             data-parent="#accordion",
-                            href="#collapse-" + account.id,
+                            href="#collapse-" + account.customerId,
                             aria-expanded="false",
-                            aria-controls="collapse-" + account.id)
-                                span= lang.thead.number + ': ' + account.number
+                            aria-controls="collapse-" + account.customerId)
+                                span= lang.thead.number + ': ' + account.customerId
                                 span &nbsp&nbsp&nbsp&nbsp
-                                span= lang.thead.client + ': ' + account.client
+                                span= lang.thead.client + ': ' + account.firstName + ' ' + account.lastName
                     div.panel-collapse.collapse(
-                    id="collapse-" + account.id,
+                    id="collapse-" + account.customerId,
                     role="tabpanel",
-                    aria-labelledby=account.id)
+                    aria-labelledby=account.customerId)
                         div.panel-body
-                            p= lang.thead.assignstaff + ': ' + account.assignstaff
-                            p= lang.thead.accountstatus + ': ' + account.accountstatus
-                            p= lang.thead.contact + ': ' + account.contact
-                            p= lang.thead.email + ': ' + account.email
-                            p= lang.thead.phone + ': ' + account.phone
+                            p= lang.thead.assignstaff + ': ' + account.staffUserName
+                            p= lang.thead.accountstatus + ': ' + account.accountStatusName
+                            p= lang.thead.contact + ': ' + account.cFirstName + ' ' + account.cLastName
+                            p= lang.thead.email + ': ' + account.emailAddress
+                            p= lang.thead.phone + ': ' + account.mobilePhone
                             div.button-box
                                 button.btn.btn-default.btn-info
                                     a(href="modifyAccounts")= lang.btn_update
