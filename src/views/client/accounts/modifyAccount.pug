@@ -12,122 +12,221 @@ block content
             div.form-group
                 div.col-sm-4
                     span.label-text= lang.account_num
-                    span= account.num
+                    span= userInfo.customerId
                 div.col-sm-4.col-sm-offset-1
                     span.label-text= lang.account_type
-                    span= account.type
-            div.form-group
-                div.col-sm-3
-                    label(for="business-name")= lang.business_name
-                div.col-sm-6
-                    input.form-control#business-name(type="text", name="business-name", placeholder= lang.business_placeholder)
+                    span= userInfo.customerAccountType === 1 ? 'Personal' : 'Business'
 
         div.section
             div.form-group
-                div.col-sm-3
-                    label(for="account-status")= lang.account_status
-                div.col-sm-6
-                    select.form-control#account-status(name="account-status")
-                        for status in lang.status
-                            option= status
+                label.col-sm-3
+                    span.highlight *
+                    = lang.type
 
-            div.form-group
-                div.col-sm-3
-                    label(for="assigned")= lang.assigned_to
-                div.col-sm-6
-                    select.form-control#assigned(name="assigned")
-                        for assign in lang.assigns
-                            option= assign
+            if userInfo.customerAccountType === 1
+                div.form-group
+                    label.col-sm-2
+                        input(type="radio",name="customerAccountType",value="1" checked)
+                        =lang.personal.text
+                    div.col-sm-7
+                        span.col-sm-3=lang.personal.firstname
+                        div.col-sm-9
+                            input.form-control.required(name="firstName", value=userInfo.firstName, placeholder = lang.personal.placeholder)
+                div.form-group
+                    div.col-sm-7.col-sm-offset-2
+                        span.col-sm-3=lang.personal.lastname
+                        div.col-sm-9
+                            input.form-control.required(name="lastName", value=userInfo.lastName, placeholder= lang.personal.placeholder)
 
+                div.form-group
+                    label.col-sm-2
+                        input(type="radio", name="customerAccountType", value="2")
+                        =lang.business.text
+                    div.col-sm-7
+                        span.col-sm-3=lang.business.name
+                        div.col-sm-9
+                            input.form-control(name="businessName",placeholder= lang.business.placeholder, disabled)
+            else
+                div.form-group
+                    label.col-sm-2
+                        input(type="radio", name="customerAccountType", value="1")
+                        =lang.personal.text
+                    div.col-sm-7
+                        span.col-sm-3=lang.personal.firstname
+                        div.col-sm-9
+                            input.form-control(name="firstName", placeholder = lang.personal.placeholder, disabled)
+                div.form-group
+                    div.col-sm-7.col-sm-offset-2
+                        span.col-sm-3=lang.personal.lastname
+                        div.col-sm-9
+                            input.form-control(name="lastName", placeholder= lang.personal.placeholder, disabled)
+
+                div.form-group
+                    label.col-sm-2
+                        input(type="radio", name="customerAccountType", value="2", checked)
+                        =lang.business.text
+                    div.col-sm-7
+                        span.col-sm-3=lang.business.name
+                        div.col-sm-9
+                            input.form-control.required(name="businessName", value=userInfo.businessName, placeholder= lang.business.placeholder)
 
         div.section
             div.form-group
-                label.col-sm-3(for="contact_first_name")= lang.contact_first_name.text
-                div.col-sm-6
-                    input.form-control#contact_first_name(type="text", name="contact_first_name", placeholder= lang.contact_first_name.placeholder)
+                label.col-sm-4(for="account-status")
+                    span.highlight *
+                    = lang.accountstatus.text
+                div.col-sm-5
+                    select.form-control#account-status(name="customerAccountStatus")
+                        for status in accountStatus
+                            if status.customerAccountStatusId === userInfo.customerAccountStatus
+                                option(value=status.customerAccountStatusId, selected)= status.accountStatusName
+                            else
+                                option(value=status.customerAccountStatusId)= status.accountStatusName
 
             div.form-group
-                label.col-sm-3(for="contact_last_name")= lang.contact_last_name.text
-                div.col-sm-6
-                    input.form-control#contact_last_name(type="text", name="contact_last_name", placeholder= lang.contact_last_name.placeholder)
+                label.col-sm-4(for="assign-to")
+                    span.highlight *
+                    = lang.assignto.text
+                div.col-sm-5
+                    select.form-control#assign-to(name="assignedStaffUser", value=userInfo)
+                        for staffUser in assignTo
+                            if staffUser.staffUserId === userInfo.assignedStaffUser
+                                option(value=staffUser.staffUserId, selected)= staffUser.userName
+                            else
+                                option(value=staffUser.staffUserId)= staffUser.userName
+        div.section
+            div.form-group
+                label.col-sm-4(for="contact-first-name")
+                    span.highlight *
+                    = lang.contact_first_name.text
+                div.col-sm-5
+                    input.form-control.required#contact-first-name(type="text", name="cFirstName", value=userInfo.cFirstName, placeholder= lang.contact_first_name.placeholder)
 
             div.form-group
-                label.col-sm-3(for="email")= lang.email_address.text
-                div.col-sm-6
-                    input.form-control#email(type="email", name="email", placeholder= lang.email_address.placeholder)
+                label.col-sm-4(for="contact-last-name")
+                    span.highlight *
+                    = lang.contact_last_name.text
+                div.col-sm-5
+                    input.form-control.required#contact-last-name(type="text", name="cLastName", value=userInfo.cLastName, placeholder= lang.contact_last_name.placeholder)
 
             div.form-group
-                label.col-sm-3(for="mobileNum")= lang.mobile_num.text
-                div.col-sm-6
-                    input.form-control#mobileNum(type="tel", name="mobileNum", placeholder= lang.mobile_num.placeholder)
+                label.col-sm-4(for="email")
+                    span.highlight *
+                    = lang.email_address.text
+                div.col-sm-5
+                    input.form-control.required#email(type="email", name="emailAddress", value=userInfo.emailAddress, placeholder= lang.email_address.placeholder)
 
             div.form-group
-                label.col-sm-3(for="mailing_address")= lang.mailing_address.text
-                div.col-sm-6.country
-                    input.form-control#mailing_address(type="text", name="street", placeholder= lang.mailing_address.placeholder.street)
-                    div
-                        input.form-control(type="text", name="city", placeholder= lang.mailing_address.placeholder.city)
-                        input.form-control(type="text", name="state", placeholder= lang.mailing_address.placeholder.state)
-                    div
-                        input.form-control(type="text", name="zip-code", placeholder= lang.mailing_address.placeholder.zip_code)
-                        select.form-control(name="country")
-                            for country in lang.mailing_address.country
-                                option= country
+                label.col-sm-4(for="mobile-num")
+                    span.highlight *
+                    = lang.mobile_num.text
+                div.col-sm-5
+                    input.form-control.required#mobile-num(type="tel", name="mobilePhone", value=userInfo.mobilePhone, placeholder= lang.mobile_num.placeholder)
 
             div.form-group
-                div.col-sm-3
-                    label.address(for="billing_address")= lang.billing_address.text
+                label.col-sm-4(for="mailing-address")
+                    span.highlight *
+                    = lang.mailing_address.text
+                div.col-sm-5.country
+                    input.form-control.required#mailing-address(type="text", name="mailingAddressStreet", value=userInfo.mailingAddressStreet, placeholder= lang.mailing_address.placeholder.street)
+                    input.form-control.required(type="text", name="mailingAddressCity", value=userInfo.mailingAddressCity, placeholder= lang.mailing_address.placeholder.city)
+                    input.form-control.required(type="text", name="mailingAddressStateProvince", value=userInfo.mailingAddressStateProvince, placeholder= lang.mailing_address.placeholder.state)
+                    //- input.form-control.required(type="text", name="mailingZipCode", value=userInfo.mailingZipCode, placeholder= lang.mailing_address.placeholder.zip_code)
+                    select.form-control(name="mailingAddressCountry", value=userInfo.mailingAddressCountry)
+                        for country in countries
+                            if country.countryId === userInfo.mailingAddressCountry
+                                option(value=country.countryId, selected)= country.countryCode + "\t(" + country.countryName + ")"
+                            else
+                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
+
+            div.form-group
+                div.col-sm-4
+                    label.address(for="billing_address")
+                        span.highlight *
+                        = lang.billing_address.text
                     label
                         input#same(type="checkbox")
                         =lang.billing_address.issame
-                div.col-sm-6.country
-                    input.form-control#billing_address(type="text", name="street", placeholder= lang.billing_address.placeholder.street)
-                    div
-                        input.form-control(type="text", name="city", placeholder= lang.billing_address.placeholder.city)
-                        input.form-control(type="text", name="state", placeholder= lang.billing_address.placeholder.state)
-                    div
-                        input.form-control(type="text", name="zip-code", placeholder= lang.billing_address.placeholder.zip_code)
-                        select.form-control(name="country")
-                            for country in lang.billing_address.country
-                                option= country
+                div.col-sm-5.country
+                    input.form-control.required#billing_address(type="text", name="billingAddressStreet", value=userInfo.billingAddressStreet, placeholder= lang.billing_address.placeholder.street)
+                    input.form-control.required(type="text", name="billingAddressCity", value=userInfo.billingAddressCity, placeholder= lang.billing_address.placeholder.city)
+                    input.form-control.required(type="text", name="billingAddressStateProvince", value=userInfo.billingAddressStateProvince, placeholder= lang.billing_address.placeholder.state)
+                    //- input.form-control.required(type="text", name="billingZipCode", value=userInfo.billingZipCode, placeholder= lang.billing_address.placeholder.zip_code)
+                    select.form-control(name="billingAddressCountry")
+                        for country in countries
+                            if country.countryId === userInfo.billingAddressCountry
+                                option(value=country.countryId, selected)= country.countryCode + "\t(" + country.countryName + ")"
+                            else
+                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
-                label.col-sm-3(for="account_note")= lang.account_note.text
-                div.col-sm-6
-                    textarea.form-control#account_note(placeholder= lang.account_note.placeholder)
+                label.col-sm-4(for="account-note")= lang.account_note.text
+                div.col-sm-5
+                    textarea.form-control#account-note(name="customerNote", value=userInfo.constomerNote, placeholder= lang.account_note.placeholder)
 
             div.form-group
-                label.col-sm-3= lang.notification.text
+                label.col-sm-4(for="email-group")
+                    span.highlight *
+                    = lang.email_group.text
+                div.col-sm-5
+                    select.form-control#email-group(name="emailGroup", value=userInfo.emailGroup)
+                        for group in emailGroup
+                            if group.emailGroupId === userInfo.emailGroup
+                                option(value=group.emailGroupId, selected)= group.emailGroupName
+                            else
+                                option(value=group.emailGroupId)= group.emailGroupName
+            div.form-group
+                label.col-sm-4
+                    span.highlight *
+                    = lang.notification.text
                 div.col-sm-6
                     label.col-sm-4
-                        input#nemail(type="checkbox",name="nemail")
+                        if String(userInfo.notificationPreference)[0] === '1'
+                            input#nemail(type="checkbox", name="notificationPreference", value="1", checked='checked')
+                        else
+                            input#nemail(type="checkbox", name="notificationPreference", value="1")
                         =lang.notification.email
                     label.col-sm-4
-                        input#nphone(type="checkbox",name="nphone")
+                        if String(userInfo.notificationPreference)[1] === '1'
+                            input#nphone(type="checkbox", name="notificationPreference", value="1", checked)
+                        else
+                            input#nphone(type="checkbox", name="notificationPreference", value="1")
                         =lang.notification.phone
                     label.col-sm-4
-                        input#nsms(type="checkbox",name="nsms")
+                        if String(userInfo.notificationPreference)[2] === '1'
+                            input#nsms(type="checkbox", name="notificationPreference", value="1", checked)
+                        else
+                            input#nsms(type="checkbox", name="notificationPreference", value="1")
                         =lang.notification.sms
 
             div.form-group
-                label.col-sm-3(for)= lang.client_portal.text
-                div.col-sm-4
-                    label.col-sm-6
-                        input(type="radio", name="client_portal", value="enable" checked)
-                        = lang.client_portal.enable
-                    label.col-sm-6
-                        input(type="radio", name="client_portal", value="disable")
-                        = lang.client_portal.disable
-
-                div.col-sm-2
+                label.col-sm-4
+                    span.highlight *
+                    = lang.client_portal.text
+                div.col-sm-5
+                    if userInfo.enableClientPortal === '1'
+                        label.col-sm-6
+                            input(type="radio", name="enableClientPortal", value="1", checked)
+                            = lang.client_portal.enable
+                        label.col-sm-6
+                            input(type="radio", name="enableClientPortal", value="2")
+                            = lang.client_portal.disable
+                    else
+                        label.col-sm-6
+                            input(type="radio", name="enableClientPortal", value="1")
+                            = lang.client_portal.enable
+                        label.col-sm-6
+                            input(type="radio", name="enableClientPortal", value="2", checked)
+                            = lang.client_portal.disable
+                div.col-sm-3
                     button.btn.btn-default.btn-info= lang.client_portal.btn_text
 
         div.section
             div.form-group
                 div.buttons.col-sm-9.col-sm-offset-3.col-xs-12
-                    button.btn.btn-default.btn-info=lang.buttons.save
-                    button.btn.btn-default.btn-info=lang.buttons.archive
-                    button.btn.btn-default.btn-info=lang.buttons.delete
+                    button#save.btn.btn-default.btn-info=lang.buttons.save
+                    button#archive.btn.btn-default.btn-info=lang.buttons.archive
+                    button#delete.btn.btn-default.btn-info=lang.buttons.delete
 
         div.list-fixed.hidden-xs
             ul.list-group

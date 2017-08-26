@@ -1,27 +1,42 @@
 import { Router } from 'express'
+import { getAccountStatus, getStaffUsers, getCountries, getEmailGroups, getClientInfo } from '../../plugins/requests'
 
 const router = Router()
 
-const data_eg = {
-    account: {
-        num: '000391',
-        type: 'Business',
-    },
-}
-
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
+    console.log('Get Modify Account')
+    console.log(req.params)
     const lang = req.lang ? req.lang : 'en'
+    const userName = req.session.userName
+    const id = req.params.id
     const data = {
         key: 'accounts/modifyAccount',
         language: lang,
         lang: require(`./lang/${lang}/modifyAccount`),
         nav: require(`../public/lang/${lang}/navbar`),
-        footnavbar: require(`../public/lang/${lang}/footbavbar`),
-        account: data_eg.account,
-        user: req.session.userName,
+        footnavbar: require(`../public/lang/${lang}/footnavbar`),
+        user: userName,
     }
 
-    res.render('client/accounts/modifyAccount', data)
+    Promise.all([
+        getAccountStatus(userName),
+        getStaffUsers(userName),
+        getEmailGroups(userName),
+        getCountries(),
+        getClientInfo(userName, id),
+    ]).then(([accountStatus, assign, emailGroup, countries, userInfo]) => {
+        data.accountStatus = accountStatus.body
+        data.assignTo = assign.body
+        data.emailGroup = emailGroup.body
+        data.countries = countries.body
+        data.userInfo = userInfo.body
+        console.log(data.assignTo)
+        console.log(data.userInfo)
+        res.render('client/accounts/modifyAccount', data)
+    }).catch((error) => {
+        console.log(error)
+        res.redirect('/accounts')
+    })
 })
 
 module.exports = router
