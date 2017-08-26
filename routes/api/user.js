@@ -11,6 +11,7 @@ router.post('/login', (req, res) => {
     checkUser(userName, password).then((response) => {
         req.session.userName = userName
         req.session.password = password
+        res.cookie('userName', userName)
         return response.text
     }, error => error)
         .then(data => res.send(data))
