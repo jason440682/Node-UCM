@@ -1,5 +1,5 @@
 module.exports = {
-    title: 'Create Stuff User',
+    title: 'Create Staff User',
 
     username: {
         text: 'Username',
