@@ -1,5 +1,5 @@
 import { saveClientChange, deleteClient } from '../../plugins/api'
-import { getCookie, ClientAccount } from '../../plugins/db'
+import { getCookie, ArchiveAccount } from '../../plugins/db'
 
 const lang = /^\/(.*?)\//.exec(location.pathname)[1]
 const userName = getCookie('userName')
@@ -154,7 +154,7 @@ $input.blur((e) => {
 })
 
 $(document).ready(() => {
-    const data = ClientAccount.get(clientId)
+    const data = ArchiveAccount.get(clientId)
     if (data) {
         Object.keys(data).forEach((name) => {
             $(`[name=${name}`).val(data[name])
@@ -170,12 +170,11 @@ $('#save').click(() => {
             console.log(response)
             if (response === 'Modify client Successfully') {
                 alert('修改成功！')
+                ArchiveAccount.remove(clientId)
                 location.assign(`/${lang}/accounts`)
             }
-        }).catch((xhr, status, error) => {
+        }).catch((error) => {
             alert('出现错误！请查看 Console ！')
-            console.log(xhr)
-            console.log(status)
             console.log(error)
         })
     }, (errorDOM) => {
@@ -192,7 +191,7 @@ $('#archive').click(() => {
         data[element.name] = element.value
     }, this)
 
-    ClientAccount.set(clientId, data)
+    ArchiveAccount.set(clientId, data)
     alert('保存成功！数据会暂时保存在本地浏览器！')
     location.assign(`/${lang}/accounts`)
     return false
