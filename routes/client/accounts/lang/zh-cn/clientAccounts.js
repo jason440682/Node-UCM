@@ -1,7 +1,3 @@
-/**
- * Created by kg on 17/1/20.
- */
-
 module.exports = {
     title: '客户账户',
     search: '高级搜索',

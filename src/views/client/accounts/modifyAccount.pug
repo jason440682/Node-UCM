@@ -150,7 +150,7 @@ block content
                 div.col-sm-6
                     label.col-sm-4
                         if String(userInfo.notificationPreference)[0] === '1'
-                            input#nemail(type="checkbox", name="notificationPreference", value="1", checked='checked')
+                            input#nemail(type="checkbox", name="notificationPreference", value="1", checked)
                         else
                             input#nemail(type="checkbox", name="notificationPreference", value="1")
                         =lang.notification.email

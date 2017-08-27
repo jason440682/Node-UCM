@@ -1,7 +1,3 @@
-/**
- * Created by kg on 17/1/20.
- */
-
 module.exports = {
     title: 'Client Accounts',
     search: 'Advanced Search',
@@ -16,12 +12,12 @@ module.exports = {
         contact: 'Contact',
         email: 'Email',
         phone: 'Phone',
-        manage: 'Manage'
+        manage: 'Manage',
     },
 
     btn_update: 'Update account',
     btn_work: 'Work',
     btn_billing: 'Billing',
     btn_notification: 'Notification',
-    btn_document: 'Document'
-};
+    btn_document: 'Document',
+}
