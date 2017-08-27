@@ -12,8 +12,14 @@ class Storage {
     }
 
     get(key) {
+        if (!sessionStorage[this.name]) return undefined
         const data = JSON.parse(sessionStorage[this.name])
         return data[key]
+    }
+
+    remove(key) {
+        delete this.data[key]
+        sessionStorage[this.name] = JSON.stringify(this.data)
     }
 }
 
@@ -35,6 +41,6 @@ function getCookie(name) {
 
 module.exports = {
     User: new Storage('user'),
-    ClientAccount: new Storage('client account'),
+    ArchiveAccount: new Storage('archiveAccount'),
     getCookie,
 }
