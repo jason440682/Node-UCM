@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
         res.render('client/accounts/modifyAccount', data)
     }).catch((error) => {
         console.log(error)
-        res.redirect(`${lang}/accounts`)
+        res.redirect(`/${lang}/accounts`)
     })
 })
 

@@ -5,85 +5,87 @@ module.exports = {
             list: [
                 {
                     title: '客户账户',
-                    url: './accounts'
+                    url: '/cn/accounts',
                 },
                 {
                     title: '新建账户',
-                    url: './createAccount'
+                    url: '/cn/createAccount',
                 }, {
                     title: '通知管理',
-                    url: './notification'
+                    url: '/cn/notification',
                 }, {
                     title: '文件管理',
-                    url: './docManager'
-                }
-            ]
+                    url: '/cn/docManager',
+                },
+            ],
         },
         {
             title: '工作簿',
             list: [
                 {
                     title: '工作簿',
-                    url: './workbook'
+                    url: '/cn/workbook',
                 },
                 {
                     title: '新建工作簿',
-                    url: './createWork'
+                    url: '/cn/createWork',
                 }, {
                     title: '工作日程',
-                    url: './workCalendar'
+                    url: '/cn/workCalendar',
                 }, {
                     title: '工作模板',
-                    url: './workTemplate'
-                }
-            ]
+                    url: '/cn/workTemplate',
+                },
+            ],
         },
         {
             title: '计费与支付',
             list: [
                 {
                     title: '计费与支付',
-                    url: './billingPayment'
+                    url: '/cn/billingPayment',
                 },
                 {
                     title: '新建发票',
-                    url: './createInvoice'
+                    url: '/cn/createInvoice',
                 }, {
                     title: '发票',
-                    url: './invoices'
+                    url: '/cn/invoices',
                 }, {
                     title: '付款项',
-                    url: './payment'
-                }
-            ]
+                    url: '/cn/payment',
+                },
+            ],
         },
         {
             title: '营销通信/通知组',
             list: [
                 {
                     title: '营销通信/通知组',
-                    url: './newsletter'
+                    url: '/cn/newsletter',
                 },
                 {
                     title: '新建通信组',
-                    url: './createNewsletter'
-                }
-            ]
+                    url: '/cn/createNewsletter',
+                },
+            ],
         },
         {
             title: '报告',
             list: [
                 {
                     title: '报告',
-                    url: '#'
-                }
-            ]
-        }
+                    url: '#',
+                },
+            ],
+        },
     ],
 
-    user: {
-        management: '用户管理',
-        plan: '收费计划',
-        logout: '用户注销'
-    }
-};
+    user_list: [
+        { title: '更改账户信息', url: '/cn/modifyMaster' },
+        { title: '查看员工', url: '/cn/staffUser' },
+        { title: '创建新员工', url: '/cn/createStaff' },
+        { title: '收费计划', url: '#' },
+        { title: '用户注销', url: '/api/user/logout' },
+    ],
+}

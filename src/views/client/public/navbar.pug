@@ -9,12 +9,9 @@ nav.navbar.navbar-default.navbar-static-top(role="navigation")
             div.visible-xs-inline
                 span.user.user-left.dropdown-toggle(data-toggle="dropdown")= user
                 ul.dropdown-menu(role="menu")
-                    li
-                        a(href="createStaff")= nav.user.management
-                    li
-                        a(href="#")= nav.user.plan
-                    li
-                        a(href="/")= nav.user.logout
+                    for user in nav.user_list
+                        li
+                            a(href=user.url)= user.title
 
         div.collapse.navbar-collapse.col-sm-10#nav-list
             ul.nav.navbar-nav
@@ -30,9 +27,6 @@ nav.navbar.navbar-default.navbar-static-top(role="navigation")
         div.nav.navbar-right.col-sm-1.hidden-xs.user-div
             a.user.dropdown-toggle(href="#", data-toggle="dropdown")= user
             ul.dropdown-menu(role="menu")
-                li
-                    a(href="createStaff")= nav.user.management
-                li
-                    a(href="#")= nav.user.plan
-                li
-                    a(href="/api/user/logout")= nav.user.logout
+                for user in nav.user_list
+                    li
+                        a(href=user.url)= user.title
