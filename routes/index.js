@@ -11,18 +11,24 @@ const clientTable = {
     notification: require('./client/accounts/notification'),
     docManager: require('./client/accounts/docManager'),
     modifyAccount: require('./client/accounts/modifyAccount'),
+
     workbook: require('./client/workbook/workbook'),
     createWork: require('./client/workbook/createWork'),
     workCalendar: require('./client/workbook/workCalendar'),
     workTemplate: require('./client/workbook/workTemplate'),
     modifyWork: require('./client/workbook/modifyWork'),
+
     billingPayment: require('./client/billingPayment/billingPayment'),
     createInvoice: require('./client/billingPayment/createInvoice'),
     invoices: require('./client/billingPayment/invoices'),
     payment: require('./client/billingPayment/payment'),
     modifyInvoice: require('./client/billingPayment/modifyInvoice'),
+
     newsletter: require('./client/marketing/newsletter'),
     createNewsletter: require('./client/marketing/createNewsletter'),
+
+    modifyMaster: require('./client/user/modifyMaster'),
+    staffUser: require('./client/user/staffUser'),
     createStaff: require('./client/user/createStaff'),
 }
 
@@ -36,6 +42,7 @@ const apiTable = {
     // Api
     user: require('./api/user'),
     validate: require('./api/verificationCode'),
+    logo: require('./api/logo'),
     test: require('./api/test'),
 }
 
