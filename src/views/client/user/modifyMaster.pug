@@ -163,7 +163,7 @@ block content
             div.form-group
                 label.col-sm-4= lang.uploaded_logo.text
                 div.col-sm-5
-                    img#uploaded-logo(src='http://54.169.159.192:8080/UCM/Logo/' + userInfo.userName, alt=userInfo.userName + "'s logo'")
+                    img#uploaded-logo(src='/api/Logo/' + userInfo.userName, alt=userInfo.userName + "'s logo'")
 
             div.form-group
                 label.col-sm-4(for="logo")= lang.logo.text
