@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getAccountStatus, getStaffUsers, getCountries, getEmailGroups } from '../../plugins/requests'
+import { getAccountStatus, getStaffUsers, getCountries, getEmailGroups, getMasterUser } from '../../plugins/requests'
 
 const router = Router()
 
@@ -21,9 +21,12 @@ router.get('/', (req, res) => {
         getStaffUsers(userName),
         getEmailGroups(userName),
         getCountries(),
-    ]).then(([accountStatus, assign, emailGroup, countries]) => {
+        getMasterUser(userName),
+    ]).then(([accountStatus, assign, emailGroup, countries, userInfo]) => {
+        data.assignTo = assign.body.length !== 0 ? assign.body : [
+            { staffUserId: userInfo.body.masterUserId, userName },
+        ]
         data.accountStatus = accountStatus.body
-        data.assignTo = assign.body
         data.emailGroup = emailGroup.body
         data.countries = countries.body
         res.render('client/accounts/createAccount', data)
