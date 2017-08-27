@@ -1,5 +1,6 @@
 import { uploadLogo, signUp, login, sendValidateCode } from '../plugins/api'
 
+const lang = /^\/(.*?)\//.exec(location.pathname)[1]
 const $ = window.jQuery
 const $input = $('form :input')
 const $upload = $('#upload-logo')
@@ -108,7 +109,8 @@ $('#submit').click(() => {
             return login(userName, password)
         }).then(({ response }) => {
             if (response !== 'Authenticated') throw new Error('账号或密码错误！')
-            location.assign('/accounts')
+            alert('注册成功！')
+            location.assign(`/${lang}/accounts`)
         })
             .catch((error) => {
                 console.log('error')
