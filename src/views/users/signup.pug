@@ -138,14 +138,12 @@ block content
                 label.col-sm-4(for="addStreet")= lang.business_address.text
                 div.col-sm-5.country
                     input.form-control#addStreet(type="text", name="businessAddressStreet", placeholder= lang.business_address.placeholder.street)
-                    div
-                        input.form-control(type="text", name="businessAddressCity", placeholder= lang.business_address.placeholder.city)
-                        input.form-control(type="text", name="businessAddressStateProvince", placeholder= lang.business_address.placeholder.state)
-                    div
-                        input.form-control(type="text", name="zipCode", placeholder= lang.business_address.placeholder.zip_code)
-                        select.form-control(name="businessCountryId")
-                            for country in countries
-                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
+                    input.form-control(type="text", name="businessAddressCity", placeholder= lang.business_address.placeholder.city)
+                    input.form-control(type="text", name="businessAddressStateProvince", placeholder= lang.business_address.placeholder.state)
+                    input.form-control(type="text", name="businessAddressZipCode", placeholder= lang.business_address.placeholder.zip_code)
+                    select.form-control(name="businessCountryId")
+                        for country in countries
+                            option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
 
             div.form-group
                 label.col-sm-4(for="businessDescription")= lang.business_description.text
@@ -162,7 +160,7 @@ block content
                     span.highlight *
                     = lang.validate.text
                 div.col-sm-5
-                    input.form-control.required#verification-code(type="password", name="verificationCode", placeholder= 'validate code')
+                    input.form-control.required#verification-code(type="text", name="verificationCode", placeholder= 'validate code')
 
             div.form-group
                 div.col-sm-4.col-sm-offset-4.verification-code

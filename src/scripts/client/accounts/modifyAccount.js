@@ -66,6 +66,7 @@ function validateForm() {
             data.billingAddressCity = data.mailingAddressCity
             data.billingAddressStateProvince = data.mailingAddressStateProvince
             data.billingAddressCountry = data.mailingAddressCountry
+            data.billingAddressZipCode = data.mailingAddressZipCode
         }
 
         let value = ''
@@ -73,6 +74,7 @@ function validateForm() {
             value += element.checked ? 1 : 0
         })
 
+        data.customerAccountType = $('#account-type').attr('type')
         data.notificationPreference = value
         data.userName = userName
         data.mailingAddressRoomNumber = 'NA'
@@ -125,6 +127,7 @@ $('#same').change((e) => {
         '[name=billingAddressCity]': $('[name=mailingAddressCity]').val(),
         '[name=billingAddressStateProvince]': $('[name=mailingAddressStateProvince]').val(),
         '[name=billingAddressCountry]': $('[name=mailingAddressCountry]').val(),
+        '[name=billingAddressZipCode]': $('[name=mailingAddressZipCode]').val(),
     }
     const [disabled, required] = e.target.checked ? [billing, null] : [null, billing]
     checkedEvent(disabled, required)

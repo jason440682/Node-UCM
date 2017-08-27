@@ -15,7 +15,8 @@ block content
                     span= userInfo.customerId
                 div.col-sm-4.col-sm-offset-1
                     span.label-text= lang.account_type
-                    span= userInfo.customerAccountType === 1 ? 'Personal' : 'Business'
+                    span#account-type(type=userInfo.customerAccountType)
+                        = userInfo.customerAccountType === 1 ? 'Personal' : 'Business'
 
         div.section
             if userInfo.customerAccountType === 1
@@ -101,6 +102,7 @@ block content
                     input.form-control.required#mailing-address(type="text", name="mailingAddressStreet", value=userInfo.mailingAddressStreet, placeholder= lang.mailing_address.placeholder.street)
                     input.form-control.required(type="text", name="mailingAddressCity", value=userInfo.mailingAddressCity, placeholder= lang.mailing_address.placeholder.city)
                     input.form-control.required(type="text", name="mailingAddressStateProvince", value=userInfo.mailingAddressStateProvince, placeholder= lang.mailing_address.placeholder.state)
+                    input.form-control.required(type="text", name="mailingAddressZipCode", value=userInfo.mailingAddressStateProvince, placeholder= lang.mailing_address.placeholder.zip_code)
                     select.form-control(name="mailingAddressCountry", value=userInfo.mailingAddressCountry)
                         for country in countries
                             if country.countryId === userInfo.mailingAddressCountry
@@ -120,6 +122,7 @@ block content
                     input.form-control.required#billing_address(type="text", name="billingAddressStreet", value=userInfo.billingAddressStreet, placeholder= lang.billing_address.placeholder.street)
                     input.form-control.required(type="text", name="billingAddressCity", value=userInfo.billingAddressCity, placeholder= lang.billing_address.placeholder.city)
                     input.form-control.required(type="text", name="billingAddressStateProvince", value=userInfo.billingAddressStateProvince, placeholder= lang.billing_address.placeholder.state)
+                    input.form-control.required(type="text", name="billingAddressZipCode", value=userInfo.billingAddressZipCode, placeholder= lang.billing_address.placeholder.zip_code)
                     select.form-control(name="billingAddressCountry")
                         for country in countries
                             if country.countryId === userInfo.billingAddressCountry
@@ -130,7 +133,8 @@ block content
             div.form-group
                 label.col-sm-4(for="account-note")= lang.account_note.text
                 div.col-sm-5
-                    textarea.form-control#account-note(name="customerNote", value=userInfo.constomerNote, placeholder= lang.account_note.placeholder)
+                    textarea.form-control#account-note(name="customerNote", placeholder= lang.account_note.placeholder)
+                        = userInfo.customerNote
 
             div.form-group
                 label.col-sm-4(for="email-group")

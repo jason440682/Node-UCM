@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getStaffUsers, getLogo } from '../../plugins/requests'
+import { getStaffUsers } from '../../plugins/requests'
 
 const router = Router()
 
@@ -19,13 +19,6 @@ router.get('/', (req, res) => {
     getStaffUsers(userName).then(({ body: staffUsers }) => {
         console.log(staffUsers)
         data.staffUsers = staffUsers
-        const tasks = staffUsers.map(user => getLogo(user.userName))
-        console.log('tasks: ')
-        console.log(tasks)
-        return Promise.all(tasks)
-    }).then((results) => {
-        console.log('results')
-        console.log(results)
         res.render('client/user/staffUser', data)
     }).catch((error) => {
         console.log('error')
