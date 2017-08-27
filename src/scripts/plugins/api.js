@@ -76,4 +76,11 @@ module.exports = {
             data,
         })
     },
+    saveMasterChange(data) {
+        return ajax({
+            url: 'http://54.169.159.192:8080/UCM/ModifyMasterUser',
+            type: 'POST',
+            data,
+        })
+    },
 }
