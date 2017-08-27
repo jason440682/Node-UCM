@@ -1,9 +1,13 @@
-import { uploadLogo, signUp, login, sendValidateCode } from '../plugins/api'
+import { uploadLogo, saveMasterChange } from '../../plugins/api'
+import { ArchiveAccount, getCookie } from '../../plugins/db'
 
 const lang = /^\/(.*?)\//.exec(location.pathname)[1]
+const userName = getCookie('userName')
+
 const $ = window.jQuery
 const $input = $('form :input')
 const $upload = $('#upload-logo')
+const clientId = $('#master-id').html()
 
 function showError($target, message) {
     const $parent = $target.parent()
@@ -59,19 +63,6 @@ $input.blur((e) => {
             } else {
                 removeError($this)
             }
-        } else if ($this.is('#verification-code')) {
-            const code = $('#verification-code').val().toUpperCase()
-            sendValidateCode(code).then((data) => {
-                console.log(data)
-                if (data.response === 'error') {
-                    showError($this, '输入的验证码错误！请重新输入')
-                } else {
-                    removeError($this)
-                }
-            }, (error) => {
-                console.log(error)
-                $('#error').html('与服务器连接出现问题！请稍后再试').show()
-            })
         }
     }
 })
@@ -87,39 +78,54 @@ function validateForm() {
         $('form').serializeArray().forEach((element) => {
             data[element.name] = element.value
         })
-        formdata.append('userName', $('#username').val())
+        formdata.append('userName', userName)
         formdata.append('formdata', $('#upload-logo')[0].files[0])
+
+        data.userName = userName
+        data.masterUserBusinessId = $('#business-id').html()
+        data.businessRoomNumber = 'NA'
+        data.businessFaxNumber = 'NA'
 
         resolve({ data, formdata })
     })
 }
 
-$('#submit').click(() => {
+$(document).ready(() => {
+    const data = ArchiveAccount.get(clientId)
+    if (data) {
+        Object.keys(data).forEach((name) => {
+            if (name === 'enable2FactorAuthenticationLogin' || name === 'sendPasscodeToDeviceId') {
+                $(`[name=${name}]`).removeAttr('checked')
+                $(`[name=${name}][value=${data[name]}]`).attr('checked', true)
+            } else {
+                $(`[name=${name}`).val(data[name])
+            }
+        })
+    }
+})
+
+$('#save').click(() => {
     validateForm().then(({ data, formdata }) => {
         console.log(data)
-        const userName = data.userName
-        const password = data.hashedPassword
-        const code = data.verificationCode.toUpperCase()
-        sendValidateCode(code).then(({ response }) => {
-            if (response !== 'ok') throw new Error(`验证码输入错误！请重新输入(${code})`)
-            return Promise.all([uploadLogo(formdata), signUp(data)])
-        }).then(([upload, register]) => {
-            if (!(upload.response === 'uploaded')) throw upload
-            if (!(register.response === 'Sign Up Successfully')) throw register
-            return login(userName, password)
-        }).then(({ response }) => {
-            if (response !== 'Authenticated') throw new Error('账号或密码错误！')
-            alert('注册成功！')
-            location.assign(`/${lang}/accounts`)
-        })
-            .catch((error) => {
-                console.log('error')
+        Promise.all([uploadLogo(formdata), saveMasterChange(data)])
+            .then(([upload, modifyMaster]) => {
+                console.log(upload)
+                console.log(modifyMaster)
+                if (!(upload.response === 'uploaded')) throw upload
+                if (!(modifyMaster.response === 'Modify master user Successfully')) throw modifyMaster
+                alert('修改成功！')
+                ArchiveAccount.remove(clientId)
+                location.assign(`/${lang}/accounts`)
+            }).catch((error) => {
                 console.log(error)
+                alert('出现错误！请查看 Console ！')
                 if (typeof error.message === 'string') {
                     alert(error.message)
                 } else if (error.xhr.status === 503) {
                     alert('该用户已存在！请重新输入')
                     showError($('#username'), '该用户已存在！请重新输入')
+                } else if (error.status === 500) {
+                    alert('数据传送时出现问题！请检查格式！')
                 }
             })
     }, (errorDOM) => {
@@ -127,5 +133,17 @@ $('#submit').click(() => {
         errorDOM.focus()
     })
 
+    return false
+})
+
+$('#archive').click(() => {
+    const data = {}
+    $('form').serializeArray().forEach((element) => {
+        data[element.name] = element.value
+    })
+
+    ArchiveAccount.set(clientId, data)
+    alert('保存成功！注意：上传的图片不能被缓存，请您提交时重新上传 Logo！')
+    location.assign(`/${lang}/accounts`)
     return false
 })

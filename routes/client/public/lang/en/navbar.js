@@ -3,87 +3,50 @@ module.exports = {
         {
             title: 'Client Accounts',
             list: [
-                {
-                    title: 'Client Accounts',
-                    url: './accounts',
-                },
-                {
-                    title: 'Create Client Account',
-                    url: './createAccount',
-                }, {
-                    title: 'Notification Manager',
-                    url: './notification',
-                }, {
-                    title: 'Document Manager',
-                    url: './docManager',
-                },
+                { title: 'Client Accounts', url: '/en/accounts' },
+                { title: 'Create Client Account', url: '/en/createAccount' },
+                { title: 'Notification Manager', url: '/en/notification' },
+                { title: 'Document Manager', url: '/en/docManager' },
             ],
         },
         {
             title: 'Work Book',
             list: [
-                {
-                    title: 'Work Book',
-                    url: './workbook',
-                },
-                {
-                    title: 'Create New Work',
-                    url: './creatework',
-                }, {
-                    title: 'Work Calendar',
-                    url: './workcalendar',
-                }, {
-                    title: 'Work Template',
-                    url: './worktemplate',
-                },
+                { title: 'Work Book', url: '/en/workbook' },
+                { title: 'Create New Work', url: '/en/creatework' },
+                { title: 'Work Calendar', url: '/en/workcalendar' },
+                { title: 'Work Template', url: '/en/worktemplate' },
             ],
         },
         {
             title: 'Billing & Payment',
             list: [
-                {
-                    title: 'Billing & Payment',
-                    url: './billingpayment',
-                },
-                {
-                    title: 'Create New Invoice',
-                    url: './createinvoice',
-                }, {
-                    title: 'Invoices',
-                    url: './invoices',
-                }, {
-                    title: 'Payments',
-                    url: './payment',
-                },
+                { title: 'Billing & Payment', url: '/en/billingpayment' },
+                { title: 'Create New Invoice', url: '/en/createinvoice' },
+                { title: 'Invoices', url: '/en/invoices' },
+                { title: 'Payments', url: '/en/payment' },
             ],
         },
         {
             title: 'Marketing',
             list: [
-                {
-                    title: 'Marketing',
-                    url: './newsletter',
-                },
-                {
-                    title: 'Create Newsletter',
-                    url: './createnewsletter',
-                },
+                { title: 'Marketing', url: '/en/newsletter' },
+                { title: 'Create Newsletter', url: '/en/createnewsletter' },
             ],
         },
         {
             title: 'Reports',
             list: [
-                {
-                    title: 'Reports',
-                    url: '#',
-                },
+                { title: 'Reports', url: '#' },
             ],
         },
     ],
 
-    user: {
-        management: 'User Management',
-        plan: 'Plan and Billing',
-        logout: 'Log Out',
-    },
+    user_list: [
+        { title: 'Modify Master User', url: '/en/modifyMaster' },
+        { title: 'Staff User', url: '/en/staffUser' },
+        { title: 'Create Staff User', url: '/en/createStaff' },
+        { title: 'Plan and Billing', url: '#' },
+        { title: 'Log Out', url: '/api/user/logout' },
+    ],
 }

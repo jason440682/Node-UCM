@@ -2,8 +2,6 @@ import superagent from 'superagent'
 
 const METHOD_GET = 1
 const METHOD_POST = 2
-const METHOD_PUT = 3
-const METHOD_DELETE = 4
 
 const host = 'http://54.169.159.192:8080/UCM'
 const server = {
@@ -34,6 +32,14 @@ const server = {
         return `${host}/clients/${userName}`
     },
 
+    getMasterUser(userName) {
+        return `${host}/GetMasterUser/${userName}`
+    },
+
+    getLogo(userName) {
+        return `${host}/Logo/${userName}`
+    },
+
     test: 'http://localhost:3331/en/test',
 }
 
@@ -45,7 +51,7 @@ function request(method, url, { data = undefined, cookie = undefined } = {}) {
         req = superagent.get(url)
         if (data !== undefined) req.query(data)
     } else {
-        if (method !== METHOD_POST) data._method = Method // eslint-disable-line
+        if (method !== METHOD_POST) data._method = method // eslint-disable-line
         req = superagent.post(url)
             .set('Content-Type', 'application/x-www-form-urlencoded')
             .send(data)
@@ -120,5 +126,13 @@ module.exports = {
 
     getClientAccounts(userName) {
         return request(METHOD_GET, server.getClientAccounts(userName))
+    },
+
+    getMasterUser(userName) {
+        return request(METHOD_GET, server.getMasterUser(userName))
+    },
+
+    getLogo(userName) {
+        return request(METHOD_GET, server.getLogo(userName))
     },
 }

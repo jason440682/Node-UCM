@@ -1,0 +1,101 @@
+extends ../layout
+
+block ownStyles
+    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
+
+block navbar
+    include ../public/navbar
+
+block content
+    div.section.hidden-xs
+        div.form-group.clearfix
+            div.col-sm-3.search
+                input.form-control.search-input(type="text", placeholder= lang.search_bar)
+            div.col-sm-3.search
+                a(href='#')=lang.search
+            div.col-sm-3.col-sm-offset-3
+                button.btn.btn-default.btn-info
+                    a(href="createAccount")=lang.create_account
+        div.table-style.col-sm-12
+            table.table.table-bordered.table-striped.table-condensed
+                thead
+                    th= lang.thead.number
+                    th= lang.thead.staff_user_name
+                    th= lang.thead.staff_name
+                    th= lang.thead.job_title
+                    th= lang.thead.email
+                    th= lang.thead.phone
+                    th= lang.thead.manage
+                tbody
+                    if staffUsers.length > 0
+                        each user in staffUsers
+                            tr
+                                td
+                                    a(href="modifyStaffUser/" + user.staffUserId)= user.staffUserId
+                                td= user.userName
+                                td= user.firstName + ' ' + user.lastName
+                                td= user.jobTitle
+                                td= user.eMailAddress
+                                td= user.mobilePhone
+                                td
+                                    button.btn.btn-default.btn-info
+                                        a(href="workbook")= lang.btn_work
+                                    button.btn.btn-default.btn-info
+                                        a(href="billingPayment")= lang.btn_billing
+                                    button.btn.btn-default.btn-info
+                                        a(href="notification")= lang.btn_notification
+                                    button.btn.btn-default.btn-info
+                                        a(href="docManager")= lang.btn_document
+                    else
+                        p= lang.no_staff_users
+    div.visible-xs
+        div.search-bar.container
+            div.search-box
+                input.form-control.search-input(type="text", placeholder= lang.search_bar)
+            div.search-box
+                button.btn.btn-default.btn-info.btn-sm
+                    a(href='#')=lang.search
+            div.search-box
+                button.btn.btn-info.btn-sm
+                    a(href="createAccount")= lang.create_account
+        div.panel-group#accordion(role="tablist", aria-multiselectable="true")
+            if staffUsers.length > 0
+                each user in staffUsers
+                    div.panel.panel-default
+                        div.panel-heading(role="tab", id=user.staffUserId)
+                            h4.panel-title
+                                a(role="button",
+                                data-toggle="collapse",
+                                data-parent="#accordion",
+                                href="#collapse-" + user.staffUserId,
+                                aria-expanded="false",
+                                aria-controls="collapse-" + user.staffUserId)
+                                    span= lang.thead.number + ': ' + user.staffUserId
+                                    span &nbsp&nbsp&nbsp&nbsp
+                                    span= lang.thead.staff_user_name + ': ' + user.userName
+                        div.panel-collapse.collapse(
+                        id="collapse-" + user.staffUserId,
+                        role="tabpanel",
+                        aria-labelledby=user.staffUserId)
+                            div.panel-body
+                                p= lang.thead.staff_name + ': ' + user.firstName + ' ' + user.lastName
+                                p= lang.thead.job_title + ': ' + user.jobTitle
+                                p= lang.thead.email + ': ' + user.eMailAddress
+                                p= lang.thead.phone + ': ' + user.mobilePhone
+                                div.button-box
+                                    button.btn.btn-default.btn-info
+                                        a(href="modifyStaffUser/" + user.staffUserId)= lang.btn_update
+                                    button.btn.btn-default.btn-info
+                                        a(href="workbook")= lang.btn_work
+                                    button.btn.btn-default.btn-info
+                                        a(href="billingPayment")= lang.btn_billing
+                                    button.btn.btn-default.btn-info
+                                        a(href="notification")= lang.btn_notification
+                                    button.btn.btn-default.btn-info
+                                        a(href="docManager")= lang.btn_document
+            else
+                p= lang.no_staff_users
+    include ../public/footnavbar
+
+block footer
+    include ../public/footer

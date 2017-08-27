@@ -1,0 +1,188 @@
+extends ../layout
+
+block ownStyles
+    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
+    link(type="text/css", rel="stylesheet", href="/scripts/lib/bootstrap-fileinput/css/fileinput.min.css")
+
+block ownScripts
+    script(src="/scripts/lib/bootstrap-fileinput/js/fileinput.js")
+
+block navbar
+    include ../public/navbar
+
+block content
+    form.form-horizontal#form(method="post", role="form", action="register")
+        h1.title= lang.title
+        div.section
+            div.form-group
+                div.col-sm-4
+                    span.label-text= lang.user_id
+                    span#master-id= userInfo.masterUserId
+
+                div.col-sm-4
+                    span.label-text= lang.business_id
+                    span#business-id= userInfo.masterUserBusinessId
+
+                div.col-sm-4
+                    span.label-text= lang.username.text
+                    span#user-name= userInfo.userName
+
+        div.section
+            div.form-group
+                div.radio
+                    span.label-text.col-sm-4
+                        span.highlight *
+                        = lang.auto_login.text
+                    div.col-sm-5
+                        if userInfo.enable2FactorAuthenticationLogin === 1
+                            label.col-sm-6
+                                input(type="radio", name="enable2FactorAuthenticationLogin", value="1", checked)
+                                = lang.auto_login.yes
+                            label.col-sm-6
+                                input(type="radio", name="enable2FactorAuthenticationLogin", value="0")
+                                = lang.auto_login.no
+                        else
+                            label.col-sm-6
+                                input(type="radio", name="enable2FactorAuthenticationLogin", value="1")
+                                = lang.auto_login.yes
+                            label.col-sm-6
+                                input(type="radio", name="enable2FactorAuthenticationLogin", value="0", checked)
+                                = lang.auto_login.no
+
+            div.form-group
+                div.radio
+                    span.label-text.col-sm-4= lang.send_code.text
+                    div.col-sm-5
+                        if userInfo.sendPasscodeToDeviceId === 1
+                            label.col-sm-6
+                                input(type="radio", name="sendPasscodeToDeviceId", value="1", checked)
+                                = lang.send_code.mobile
+                            label.col-sm-6
+                                input(type="radio", name="sendPasscodeToDeviceId", value="2")
+                                = lang.send_code.email
+                        else
+                            label.col-sm-6
+                                input(type="radio", name="sendPasscodeToDeviceId", value="1")
+                                = lang.send_code.mobile
+                            label.col-sm-6
+                                input(type="radio", name="sendPasscodeToDeviceId", value="2", checked)
+                                = lang.send_code.email
+
+        div.section
+            div.form-group
+                label.col-sm-4(for="first-name")
+                    span.highlight *
+                    = lang.first_name.text
+                div.col-sm-5
+                    input.form-control.required#first-name(type="text", name="firstName", value=userInfo.firstName, placeholder= lang.first_name.placeholder)
+
+            div.form-group
+                label.col-sm-4(for="last-name")
+                    span.highlight *
+                    = lang.last_name.text
+                div.col-sm-5
+                    input.form-control.required#last-name(type="text", name="lastName", value=userInfo.lastName, placeholder= lang.last_name.placeholder)
+
+            div.form-group
+                label.col-sm-4(for="email")
+                    span.highlight *
+                    = lang.email_address.text
+                div.col-sm-5
+                    input.form-control.required#email(type="email", name="eMailAddress", value=userInfo.eMailAddress, placeholder= lang.email_address.placeholder)
+
+            div.form-group
+                label.col-sm-4(for="phone-number")
+                    span.highlight *
+                    = lang.mobile_num.text
+                div.col-sm-5
+                    input.form-control.required#phone-number(type="tel", name="phoneNumber", value=userInfo.phoneNumber, placeholder= lang.mobile_num.placeholder)
+
+            div.form-group
+                label.col-sm-4(for="other-phone")= lang.other_num.text
+                div.col-sm-5
+                    input.form-control#other-phone(type="tel", name="otherPhone", value=userInfo.otherPhone, placeholder= lang.other_num.placeholder)
+
+        div.section
+            div.form-group
+                label.col-sm-4(for="businessName")
+                    span.highlight *
+                    = lang.business_name.text
+                div.col-sm-5
+                    input.form-control.required#businessName(type="text", name="businessName", value=userInfo.businessName, placeholder= lang.business_name.placeholder)
+
+            div.form-group
+                label.col-sm-4(for="businessType")= lang.business_type.text
+                div.col-sm-5
+                    select.form-control#businessType(name="businessTypeId")
+                        for businessType in businessTypes
+                            if businessType.businessTypeId === userInfo.businessTypeId
+                                option(value=businessType.businessTypeId, selected)= businessType.businessType
+                            else
+                                option(value=businessType.businessTypeId)= businessType.businessType
+
+            div.form-group
+                label.col-sm-4(for="timeZone")= lang.time_zone.text
+                div.col-sm-5
+                    select.form-control#timeZone(name="businessTimeZoneId")
+                        for zone in timezones
+                            if zone.timeZoneId === userInfo.businessTimeZoneId
+                                option(value=zone.timeZoneId, selected)= zone.timeZoneLocation + '\t' + zone.gmt
+                            else
+                                option(value=zone.timeZoneId)= zone.timeZoneLocation + '\t' + zone.gmt
+
+            div.form-group
+                label.col-sm-4(for="businessEmail")= lang.business_email.text
+                div.col-sm-5
+                    input.form-control#businessEmail(type="email", name="businessEMail", value=userInfo.businessEMail, placeholder= lang.business_email.placeholder)
+
+            div.form-group
+                label.col-sm-4(for="businessPhone")= lang.business_phone.text
+                div.col-sm-5
+                    input.form-control#businessPhone(type="tel", name="businessPhoneNumber", value=userInfo.businessPhoneNumber, placeholder= lang.business_phone.placeholder)
+
+            div.form-group
+                label.col-sm-4(for="addStreet")= lang.business_address.text
+                div.col-sm-5.country
+                    input.form-control#addStreet(type="text", name="businessAddressStreet", value=userInfo.businessAddressStreet, placeholder= lang.business_address.placeholder.street)
+                    input.form-control(type="text", name="businessAddressCity", value=userInfo.businessAddressCity, placeholder= lang.business_address.placeholder.city)
+                    input.form-control(type="text", name="businessAddressStateProvince", value=userInfo.businessAddressStateProvince, placeholder= lang.business_address.placeholder.state)
+                    input.form-control(type="text", name="businessAddressZipCode", value=userInfo.businessAddressZipCode, placeholder= lang.business_address.placeholder.zip_code)
+                    select.form-control(name="businessCountryId")
+                        for country in countries
+                            if country.countryId === userInfo.businessCountryId
+                                option(value=country.countryId, selected)= country.countryCode + "\t(" + country.countryName + ")"
+                            else
+                                option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
+
+            div.form-group
+                label.col-sm-4(for="businessDescription")= lang.business_description.text
+                div.col-sm-5
+                    textarea.form-control#businessDescription(name="businessDescription", placeholder= lang.business_description.placeholder)
+                        = userInfo.businessDescription
+
+            div.form-group
+                label.col-sm-4= lang.uploaded_logo.text
+                div.col-sm-5
+                    img#uploaded-logo(src='http://54.169.159.192:8080/UCM/Logo/' + userInfo.userName, alt=userInfo.userName + "'s logo'")
+
+            div.form-group
+                label.col-sm-4(for="logo")= lang.logo.text
+                div.col-sm-5
+                    input#upload-logo(placeholder= lang.logo.placeholder, type="file", class="file", data-preview-file-type="text")
+
+        div.section
+            div.form-group
+                div.buttons.col-sm-8.col-sm-offset-4.col-xs-12
+                    button#save.btn.btn-default.btn-info=lang.buttons.save
+                    button#archive.btn.btn-default.btn-info=lang.buttons.archive
+
+        div.list-fixed.hidden-xs
+            ul.list-group
+                for item in lang.list_group
+                    li.list-group-item
+                        a(href= item.link)= item.text
+
+    include ../public/footnavbar
+
+block footer
+    include ../public/footer

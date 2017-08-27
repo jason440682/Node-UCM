@@ -8,10 +8,9 @@ const placeHolder = {
     '[name=firstName]': $('[name=firstName]').attr('placeholder'),
     '[name=lastName]': $('[name=lastName]').attr('placeholder'),
     '[name=businessName]': $('[name=businessName]').attr('placeholder'),
-    '[name=billingAddressStreet': $('[name=billingAddressStreet]').attr('placeholder'),
+    '[name=billingAddressStreet]': $('[name=billingAddressStreet]').attr('placeholder'),
     '[name=billingAddressCity]': $('[name=billingAddressCity]').attr('placeholder'),
     '[name=billingAddressStateProvince]': $('[name=billingAddressStateProvince]').attr('placeholder'),
-    '[name=billing-zip-code]': $('[name=billing-zip-code]').attr('placeholder'),
     '[name=billingAddressCountry]': $('[name=billingAddressCountry]').attr('placeholder'),
 }
 
@@ -62,8 +61,8 @@ function validateForm() {
             data.billingAddressStreet = data.mailingAddressStreet
             data.billingAddressCity = data.mailingAddressCity
             data.billingAddressStateProvince = data.mailingAddressStateProvince
-            data['billing-zip-code'] = data['mailing-zip-code']
             data.billingAddressCountry = data.mailingAddressCountry
+            data.billingAddressZipCode = data.mailingAddressZipCode
         }
 
         let value = ''
@@ -119,11 +118,11 @@ $('[name=customerAccountType]').change((e) => {
 
 $('#same').change((e) => {
     const billing = {
-        '[name=billingAddressStreet': $('[name=mailingAddressStreet]').val(),
+        '[name=billingAddressStreet]': $('[name=mailingAddressStreet]').val(),
         '[name=billingAddressCity]': $('[name=mailingAddressCity]').val(),
         '[name=billingAddressStateProvince]': $('[name=mailingAddressStateProvince]').val(),
-        '[name=billing-zip-code]': $('[name=mailing-zip-code]').val(),
         '[name=billingAddressCountry]': $('[name=mailingAddressCountry]').val(),
+        '[name=billingAddressZipCode]': $('[name=mailingAddressZipCode]').val(),
     }
     const [disabled, required] = e.target.checked ? [billing, null] : [null, billing]
     checkedEvent(disabled, required)

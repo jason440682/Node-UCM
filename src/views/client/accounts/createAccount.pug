@@ -94,6 +94,7 @@ block content
                     input.form-control.required#mailing-address(type="text", name="mailingAddressStreet", placeholder= lang.mailing_address.placeholder.street)
                     input.form-control.required(type="text", name="mailingAddressCity", placeholder= lang.mailing_address.placeholder.city)
                     input.form-control.required(type="text", name="mailingAddressStateProvince", placeholder= lang.mailing_address.placeholder.state)
+                    input.form-control.required(type="text", name="mailingAddressZipCode", placeholder= lang.mailing_address.placeholder.zip_code)
                     select.form-control(name="mailingAddressCountry")
                         for country in countries
                             option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"
@@ -110,6 +111,7 @@ block content
                     input.form-control.required#billing_address(type="text", name="billingAddressStreet", placeholder= lang.billing_address.placeholder.street)
                     input.form-control.required(type="text", name="billingAddressCity", placeholder= lang.billing_address.placeholder.city)
                     input.form-control.required(type="text", name="billingAddressStateProvince", placeholder= lang.billing_address.placeholder.state)
+                    input.form-control.required(type="text", name="billingAddressZipCode", placeholder= lang.billing_address.placeholder.zip_code)
                     select.form-control(name="billingAddressCountry")
                         for country in countries
                             option(value=country.countryId)= country.countryCode + "\t(" + country.countryName + ")"

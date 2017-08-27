@@ -1,5 +1,5 @@
 import { saveClientChange, deleteClient } from '../../plugins/api'
-import { getCookie } from '../../plugins/db'
+import { getCookie, ArchiveAccount } from '../../plugins/db'
 
 const lang = /^\/(.*?)\//.exec(location.pathname)[1]
 const userName = getCookie('userName')
@@ -11,10 +11,9 @@ const placeHolder = {
     '[name=firstName]': $('[name=firstName]').attr('placeholder'),
     '[name=lastName]': $('[name=lastName]').attr('placeholder'),
     '[name=businessName]': $('[name=businessName]').attr('placeholder'),
-    '[name=billingAddressStreet': $('[name=billingAddressStreet]').attr('placeholder'),
+    '[name=billingAddressStreet]': $('[name=billingAddressStreet]').attr('placeholder'),
     '[name=billingAddressCity]': $('[name=billingAddressCity]').attr('placeholder'),
     '[name=billingAddressStateProvince]': $('[name=billingAddressStateProvince]').attr('placeholder'),
-    '[name=billing-zip-code]': $('[name=billing-zip-code]').attr('placeholder'),
     '[name=billingAddressCountry]': $('[name=billingAddressCountry]').attr('placeholder'),
 }
 
@@ -66,8 +65,8 @@ function validateForm() {
             data.billingAddressStreet = data.mailingAddressStreet
             data.billingAddressCity = data.mailingAddressCity
             data.billingAddressStateProvince = data.mailingAddressStateProvince
-            data['billing-zip-code'] = data['mailing-zip-code']
             data.billingAddressCountry = data.mailingAddressCountry
+            data.billingAddressZipCode = data.mailingAddressZipCode
         }
 
         let value = ''
@@ -75,6 +74,7 @@ function validateForm() {
             value += element.checked ? 1 : 0
         })
 
+        data.customerAccountType = $('#account-type').attr('type')
         data.notificationPreference = value
         data.userName = userName
         data.mailingAddressRoomNumber = 'NA'
@@ -123,11 +123,11 @@ $('[name=customerAccountType]').change((e) => {
 
 $('#same').change((e) => {
     const billing = {
-        '[name=billingAddressStreet': $('[name=mailingAddressStreet]').val(),
+        '[name=billingAddressStreet]': $('[name=mailingAddressStreet]').val(),
         '[name=billingAddressCity]': $('[name=mailingAddressCity]').val(),
         '[name=billingAddressStateProvince]': $('[name=mailingAddressStateProvince]').val(),
-        '[name=billing-zip-code]': $('[name=mailing-zip-code]').val(),
         '[name=billingAddressCountry]': $('[name=mailingAddressCountry]').val(),
+        '[name=billingAddressZipCode]': $('[name=mailingAddressZipCode]').val(),
     }
     const [disabled, required] = e.target.checked ? [billing, null] : [null, billing]
     checkedEvent(disabled, required)
@@ -156,6 +156,15 @@ $input.blur((e) => {
     }
 })
 
+$(document).ready(() => {
+    const data = ArchiveAccount.get(clientId)
+    if (data) {
+        Object.keys(data).forEach((name) => {
+            $(`[name=${name}`).val(data[name])
+        })
+    }
+})
+
 $('#save').click(() => {
     validateForm().then((data) => {
         data.customerId = clientId
@@ -164,12 +173,11 @@ $('#save').click(() => {
             console.log(response)
             if (response === 'Modify client Successfully') {
                 alert('修改成功！')
-                location.assign('/accounts')
+                ArchiveAccount.remove(clientId)
+                location.assign(`/${lang}/accounts`)
             }
-        }).catch((xhr, status, error) => {
+        }).catch((error) => {
             alert('出现错误！请查看 Console ！')
-            console.log(xhr)
-            console.log(status)
             console.log(error)
         })
     }, (errorDOM) => {
@@ -180,16 +188,31 @@ $('#save').click(() => {
     return false
 })
 
+$('#archive').click(() => {
+    const data = {}
+    $('form').serializeArray().forEach((element) => {
+        data[element.name] = element.value
+    }, this)
+
+    ArchiveAccount.set(clientId, data)
+    alert('保存成功！数据会暂时保存在本地浏览器！')
+    location.assign(`/${lang}/accounts`)
+    return false
+})
+
 $('#delete').click(() => {
-    console.log('Click delete!!')
-    deleteClient(userName, clientId).then((response) => {
-        console.log(response)
-        if (response === 'delete client Successfully') {
-            alert('删除成功！')
-            location.assign(`/${lang}/accounts`)
-        }
-    }).catch((error) => {
-        alert('出现错误！请查看 Console ！')
-        console.log(error)
-    })
+    if (confirm('真的要删除该用户吗？')) {
+        deleteClient(userName, clientId).then(({ response }) => {
+            console.log(response)
+            if (response === 'delete client Successfully') {
+                alert('删除成功！')
+                location.assign(`/${lang}/accounts`)
+            }
+        }).catch((error) => {
+            alert('出现错误！请查看 Console ！')
+            console.log(error)
+        })
+    }
+
+    return false
 })

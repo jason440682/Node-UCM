@@ -1,15 +1,15 @@
 module.exports = {
-    title: 'Client Accounts',
+    title: 'Staff Users',
     search: 'Advanced Search',
     search_bar: 'Search account',
-    create_account: 'Create New Account',
+    create_account: 'Create New Staff User',
+    no_staff_users: 'There are no staff users!',
 
     thead: {
         number: 'Number',
-        client: 'Client',
-        assignstaff: 'Assign Staff',
-        accountstatus: 'Account Status',
-        contact: 'Contact',
+        staff_user_name: 'Staff User Name',
+        staff_name: 'Staff Name',
+        job_title: 'Job Title',
         email: 'Email',
         phone: 'Phone',
         manage: 'Manage',

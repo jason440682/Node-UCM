@@ -15,60 +15,31 @@ block content
                     span= userInfo.customerId
                 div.col-sm-4.col-sm-offset-1
                     span.label-text= lang.account_type
-                    span= userInfo.customerAccountType === 1 ? 'Personal' : 'Business'
+                    span#account-type(type=userInfo.customerAccountType)
+                        = userInfo.customerAccountType === 1 ? 'Personal' : 'Business'
 
         div.section
-            div.form-group
-                label.col-sm-3
-                    span.highlight *
-                    = lang.type
-
             if userInfo.customerAccountType === 1
                 div.form-group
-                    label.col-sm-2
-                        input(type="radio",name="customerAccountType",value="1" checked)
-                        =lang.personal.text
-                    div.col-sm-7
-                        span.col-sm-3=lang.personal.firstname
-                        div.col-sm-9
-                            input.form-control.required(name="firstName", value=userInfo.firstName, placeholder = lang.personal.placeholder)
+                    label.col-sm-4(for="first-name")
+                        span.highlight *
+                        = lang.personal.firstname
+                    div.col-sm-5
+                        input#first-name.form-control.required(name="firstName", value=userInfo.firstName, placeholder = lang.personal.placeholder)
                 div.form-group
-                    div.col-sm-7.col-sm-offset-2
-                        span.col-sm-3=lang.personal.lastname
-                        div.col-sm-9
-                            input.form-control.required(name="lastName", value=userInfo.lastName, placeholder= lang.personal.placeholder)
-
-                div.form-group
-                    label.col-sm-2
-                        input(type="radio", name="customerAccountType", value="2")
-                        =lang.business.text
-                    div.col-sm-7
-                        span.col-sm-3=lang.business.name
-                        div.col-sm-9
-                            input.form-control(name="businessName",placeholder= lang.business.placeholder, disabled)
+                    label.col-sm-4(for="last-name")
+                        span.highlight *
+                        = lang.personal.firstname
+                    div.col-sm-5
+                        input#last-name.form-control.required(name="lastName", value=userInfo.lastName, placeholder= lang.personal.placeholder)
             else
                 div.form-group
-                    label.col-sm-2
-                        input(type="radio", name="customerAccountType", value="1")
-                        =lang.personal.text
-                    div.col-sm-7
-                        span.col-sm-3=lang.personal.firstname
-                        div.col-sm-9
-                            input.form-control(name="firstName", placeholder = lang.personal.placeholder, disabled)
-                div.form-group
-                    div.col-sm-7.col-sm-offset-2
-                        span.col-sm-3=lang.personal.lastname
-                        div.col-sm-9
-                            input.form-control(name="lastName", placeholder= lang.personal.placeholder, disabled)
+                    label.col-sm-4(for="business-name")
+                        span.highlight *
+                        = lang.business.text
+                    div.col-sm-5
+                        input#business-name.form-control.required(name="businessName", value=userInfo.businessName, placeholder= lang.business.placeholder)
 
-                div.form-group
-                    label.col-sm-2
-                        input(type="radio", name="customerAccountType", value="2", checked)
-                        =lang.business.text
-                    div.col-sm-7
-                        span.col-sm-3=lang.business.name
-                        div.col-sm-9
-                            input.form-control.required(name="businessName", value=userInfo.businessName, placeholder= lang.business.placeholder)
 
         div.section
             div.form-group
@@ -131,7 +102,7 @@ block content
                     input.form-control.required#mailing-address(type="text", name="mailingAddressStreet", value=userInfo.mailingAddressStreet, placeholder= lang.mailing_address.placeholder.street)
                     input.form-control.required(type="text", name="mailingAddressCity", value=userInfo.mailingAddressCity, placeholder= lang.mailing_address.placeholder.city)
                     input.form-control.required(type="text", name="mailingAddressStateProvince", value=userInfo.mailingAddressStateProvince, placeholder= lang.mailing_address.placeholder.state)
-                    //- input.form-control.required(type="text", name="mailingZipCode", value=userInfo.mailingZipCode, placeholder= lang.mailing_address.placeholder.zip_code)
+                    input.form-control.required(type="text", name="mailingAddressZipCode", value=userInfo.mailingAddressStateProvince, placeholder= lang.mailing_address.placeholder.zip_code)
                     select.form-control(name="mailingAddressCountry", value=userInfo.mailingAddressCountry)
                         for country in countries
                             if country.countryId === userInfo.mailingAddressCountry
@@ -151,7 +122,7 @@ block content
                     input.form-control.required#billing_address(type="text", name="billingAddressStreet", value=userInfo.billingAddressStreet, placeholder= lang.billing_address.placeholder.street)
                     input.form-control.required(type="text", name="billingAddressCity", value=userInfo.billingAddressCity, placeholder= lang.billing_address.placeholder.city)
                     input.form-control.required(type="text", name="billingAddressStateProvince", value=userInfo.billingAddressStateProvince, placeholder= lang.billing_address.placeholder.state)
-                    //- input.form-control.required(type="text", name="billingZipCode", value=userInfo.billingZipCode, placeholder= lang.billing_address.placeholder.zip_code)
+                    input.form-control.required(type="text", name="billingAddressZipCode", value=userInfo.billingAddressZipCode, placeholder= lang.billing_address.placeholder.zip_code)
                     select.form-control(name="billingAddressCountry")
                         for country in countries
                             if country.countryId === userInfo.billingAddressCountry
@@ -162,7 +133,8 @@ block content
             div.form-group
                 label.col-sm-4(for="account-note")= lang.account_note.text
                 div.col-sm-5
-                    textarea.form-control#account-note(name="customerNote", value=userInfo.constomerNote, placeholder= lang.account_note.placeholder)
+                    textarea.form-control#account-note(name="customerNote", placeholder= lang.account_note.placeholder)
+                        = userInfo.customerNote
 
             div.form-group
                 label.col-sm-4(for="email-group")
@@ -182,7 +154,7 @@ block content
                 div.col-sm-6
                     label.col-sm-4
                         if String(userInfo.notificationPreference)[0] === '1'
-                            input#nemail(type="checkbox", name="notificationPreference", value="1", checked='checked')
+                            input#nemail(type="checkbox", name="notificationPreference", value="1", checked)
                         else
                             input#nemail(type="checkbox", name="notificationPreference", value="1")
                         =lang.notification.email

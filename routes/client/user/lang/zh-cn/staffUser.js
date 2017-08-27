@@ -1,15 +1,15 @@
 module.exports = {
-    title: '客户账户',
+    title: '员工管理',
     search: '高级搜索',
     search_bar: '搜索账户',
-    create_account: '创建新账户',
+    create_account: '创建新员工',
+    no_staff_users: '暂无员工信息',
 
     thead: {
         number: '标号',
-        client: '客户',
-        assignstaff: '代理员工',
-        accountstatus: '账户状态',
-        contact: '联系人',
+        staff_user_name: '员工用户名',
+        staff_name: '员工姓名',
+        job_title: '工作名',
         email: '邮箱',
         phone: '电话',
         manage: '管理',
