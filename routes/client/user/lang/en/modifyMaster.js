@@ -2,6 +2,7 @@ module.exports = {
     title: 'Modify Master User',
     user_id: 'Master ID: ',
     business_id: 'Business ID: ',
+    uploaded_logo: 'Uploaded Business Logo',
 
     username: {
         text: 'Username: ',

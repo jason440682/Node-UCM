@@ -78,7 +78,7 @@ function validateForm() {
         $('form').serializeArray().forEach((element) => {
             data[element.name] = element.value
         })
-        formdata.append('userName', $('#username').val())
+        formdata.append('userName', userName)
         formdata.append('formdata', $('#upload-logo')[0].files[0])
 
         data.userName = userName
@@ -94,7 +94,12 @@ $(document).ready(() => {
     const data = ArchiveAccount.get(clientId)
     if (data) {
         Object.keys(data).forEach((name) => {
-            $(`[name=${name}`).val(data[name])
+            if (name === 'enable2FactorAuthenticationLogin' || name === 'sendPasscodeToDeviceId') {
+                $(`[name=${name}]`).removeAttr('checked')
+                $(`[name=${name}][value=${data[name]}]`).attr('checked', true)
+            } else {
+                $(`[name=${name}`).val(data[name])
+            }
         })
     }
 })
@@ -104,6 +109,8 @@ $('#save').click(() => {
         console.log(data)
         Promise.all([uploadLogo(formdata), saveMasterChange(data)])
             .then(([upload, modifyMaster]) => {
+                console.log(upload)
+                console.log(modifyMaster)
                 if (!(upload.response === 'uploaded')) throw upload
                 if (!(modifyMaster.response === 'Modify master user Successfully')) throw modifyMaster
                 alert('修改成功！')
@@ -133,10 +140,10 @@ $('#archive').click(() => {
     const data = {}
     $('form').serializeArray().forEach((element) => {
         data[element.name] = element.value
-    }, this)
+    })
 
     ArchiveAccount.set(clientId, data)
-    alert('保存成功！数据会暂时保存在本地浏览器！')
+    alert('保存成功！注意：上传的图片不能被缓存，请您提交时重新上传 Logo！')
     location.assign(`/${lang}/accounts`)
     return false
 })

@@ -146,6 +146,7 @@ block content
                     input.form-control#addStreet(type="text", name="businessAddressStreet", value=userInfo.businessAddressStreet, placeholder= lang.business_address.placeholder.street)
                     input.form-control(type="text", name="businessAddressCity", value=userInfo.businessAddressCity, placeholder= lang.business_address.placeholder.city)
                     input.form-control(type="text", name="businessAddressStateProvince", value=userInfo.businessAddressStateProvince, placeholder= lang.business_address.placeholder.state)
+                    input.form-control(type="text", name="businessAddressZipCode", value=userInfo.businessAddressZipCode, placeholder= lang.business_address.placeholder.zip_code)
                     select.form-control(name="businessCountryId")
                         for country in countries
                             if country.countryId === userInfo.businessCountryId
@@ -156,7 +157,13 @@ block content
             div.form-group
                 label.col-sm-4(for="businessDescription")= lang.business_description.text
                 div.col-sm-5
-                    textarea.form-control#businessDescription(name="businessDescription", value=userInfo.businessDescription, placeholder= lang.business_description.placeholder)
+                    textarea.form-control#businessDescription(name="businessDescription", placeholder= lang.business_description.placeholder)
+                        = userInfo.businessDescription
+
+            div.form-group
+                label.col-sm-4= lang.uploaded_logo.text
+                div.col-sm-5
+                    img#uploaded-logo(src='http://54.169.159.192:8080/UCM/Logo/' + userInfo.userName, alt=userInfo.userName + "'s logo'")
 
             div.form-group
                 label.col-sm-4(for="logo")= lang.logo.text

@@ -2,6 +2,7 @@ module.exports = {
     title: '更改账户信息',
     user_id: '账户 ID: ',
     business_id: '公司 ID: ',
+    uploaded_logo: '已上传的公司 Logo',
 
     username: {
         text: '用户名: ',
