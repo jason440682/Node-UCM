@@ -1,5 +1,6 @@
 import gulp from 'gulp'
 import clean from 'gulp-clean'
+import concat from 'gulp-concat'
 import sequence from 'gulp-sequence'
 import imagemin from 'gulp-imagemin'
 import plumber from 'gulp-plumber'
@@ -35,6 +36,15 @@ import bs from 'browser-sync'
 const isDev = argv.env && argv.env === 'dev'
 const browserSync = bs.create() // 调试网页时浏览器能够自动刷新
 const reload = browserSync.reload
+const processors = [
+    autoprefixer({
+        browsers: ['last 3 version'],
+        cascade: false,
+        remove: false,
+    }), // 为CSS补全浏览器前缀
+    cssnext, // 用下一代CSS书写方式兼容现在浏览器
+    cssgrace, // 让CSS兼容旧版IE
+]
 
 function babelWeb(input, output = './dist') {
     const filename = input.replace('src/', '')
@@ -98,24 +108,13 @@ gulp.task('clean', () => gulp.src(['dist/', 'dist_node/'],
     { read: false }).pipe(clean()))
 
 // 编译 LESS 并压缩 CSS
-gulp.task('css', () => {
-    const processors = [
-        autoprefixer({
-            browsers: ['last 3 version'],
-            cascade: false,
-            remove: false,
-        }), // 为CSS补全浏览器前缀
-        cssnext, // 用下一代CSS书写方式兼容现在浏览器
-        cssgrace, // 让CSS兼容旧版IE
-    ]
-    return gulp.src('src/styles/**/*.less')
-        .pipe(plumber())
-        .pipe(less())
-        .pipe(postcss(processors))
-        .pipe(mincss())
-        .pipe(gulp.dest('dist/styles/'))
-        .pipe(reload({ stream: true }))
-})
+gulp.task('css', () => gulp.src('src/styles/!(public)/**/*.less')
+    .pipe(plumber())
+    .pipe(less())
+    .pipe(postcss(processors))
+    .pipe(mincss())
+    .pipe(gulp.dest('dist/styles/'))
+    .pipe(reload({ stream: true })))
 
 // 检查JS文件是否有语法错误
 gulp.task('lint', () =>
@@ -143,8 +142,14 @@ gulp.task('imagemin', () => gulp.src('src/images/**/*')
     .pipe(gulp.dest('dist/images/')))
 
 // 把前端库复制一份到 dist
-gulp.task('lib', () => gulp.src('src/scripts/lib/**/*.js')
-    .pipe(gulp.dest('dist/scripts/lib')))
+gulp.task('lib', () => gulp.src('src/styles/public/*.less')
+    .pipe(plumber())
+    .pipe(less())
+    .pipe(postcss(processors))
+    .pipe(concat('bundle.css'))
+    .pipe(mincss())
+    .pipe(gulp.dest('dist/styles/'))
+    .pipe(reload({ stream: true })))
 
 // 构建
 gulp.task('build', sequence('clean', ['css', 'lib', 'imagemin', 'babel-web', 'babel-node']))

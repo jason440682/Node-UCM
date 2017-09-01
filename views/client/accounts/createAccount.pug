@@ -1,8 +1,5 @@
 extends ../layout
 
-block ownStyles
-    link(rel='stylesheet' href='/styles/client/public/footnavbar.css')
-
 block navbar
     include ../public/navbar
 
@@ -161,7 +158,6 @@ block content
 
         div.section
             div.form-group
-                div.col-sm-3
                 button#submit.btn.btn-default.btn-info= lang.submit_btn
     include ../public/footnavbar
 
