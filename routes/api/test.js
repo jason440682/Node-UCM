@@ -1,35 +1,44 @@
 import { Router } from 'express'
-import { checkUser } from '../plugins/requests'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-    console.log('Test: ')
-    console.log(req.headers)
-    console.log(req.body)
-    res.send({
-        code: 200,
-        msg: 'test success!',
+function sendRequest(req, res, msg) {
+    return res.send({
+        msg,
+        data: {
+            query: req.query,
+            params: req.params,
+            body: req.body,
+        },
+        request: {
+            url: req.url,
+            method: req.method,
+            statusCode: req.statusCode,
+            headers: req.headers,
+            domain: req.domain,
+            cookies: req.cookies,
+        },
     })
+}
+
+router.get('/', (req, res) => {
+    console.log('Get Test /')
+    sendRequest(req, res, 'Get Test /')
+})
+
+router.get('/:id', (req, res) => {
+    console.log('Test: ')
+    sendRequest(req, res, 'Get Test /:id ')
 })
 
 router.post('/', (req, res) => {
-    console.log('Test: ')
-    console.log(req.headers)
-    console.log(req.body)
-    checkUser(req.body.userName, req.body.password).then((data) => {
-        res.send({
-            code: 200,
-            msg: 'success!',
-            data,
-        })
-    }, (error) => {
-        res.send({
-            code: 500,
-            msg: error,
-            data: null,
-        })
-    })
+    console.log('Post Test: ')
+    sendRequest(req, res, 'Post Test / ')
+})
+
+router.post('/:id', (req, res) => {
+    console.log('Post Test /:id ')
+    sendRequest(req, res, 'Post Test /:id')
 })
 
 module.exports = router
