@@ -7,12 +7,12 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var config = require('./config');
-var routes = require('./dist_node'); 
+var routes = require('./dist_node');
 
 var app = express();
 
 // 页面的路径
-app.set('views', path.join(__dirname, './src/views'));
+app.set('views', path.join(__dirname, './views'));
 // 渲染页面的语言
 app.set('view engine', 'pug');
 
