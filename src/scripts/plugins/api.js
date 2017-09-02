@@ -69,7 +69,6 @@ module.exports = {
     },
     deleteClient(userName, customerId) {
         const data = { userName, customerId }
-        console.log(data)
         return ajax({
             url: '/UCM/DeleteClient',
             type: 'POST',
