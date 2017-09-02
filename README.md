@@ -15,11 +15,11 @@ npm install
 // 该项目用到了 Gulp 工具来构建项目，如果之前没有用过 Gulp ，则需要执行下面的命令来安装 Gulp，如果安装了则可以跳过
 npm install -g gulp
 
+// 安装前端依赖的公共库
+bower install
+
 // 开发环境可以运行以下命令来运行项目
 npm run dev
-
-// 或者直接执行下面的语句也可以，其实是一样的
-gulp server -env=dev
 
 // 生产环境请运行以下命令来运行项目
 npm start
