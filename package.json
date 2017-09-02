@@ -28,9 +28,8 @@
     "type": "git",
     "url": "git+https://github.com/UCMProjectTeam/Node-UCM.git"
   },
-  "author": "GYMing, Kilims, Kaibin",
+  "author": "GYMing, Kilims",
   "dependencies": {
-    "Q": "0.0.1",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
@@ -77,7 +76,6 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.0.1",
     "http-proxy-middleware": "^0.17.4",
-    "jshint": "^2.9.4",
     "lodash": "^4.17.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
