@@ -1,5 +1,5 @@
 # 前言
-这个项目由于功能尚未开发完全，仅给开发人员同步进度用。
+由于功能尚未开发完全，仅给开发人员同步进度用。
 
 # 项目运行
 ```powershell
@@ -30,8 +30,8 @@ npm start
 .
 ├── app.js
 ├── build
-│   └── dev-server.js
-├── config                  # Node端的配置文件夹
+│   └── www.js
+├── config                  # Node 端的配置文件夹
 ├── dist                    # Gulp 编译后的前端文件目录
 ├── dist_node               # Gulp 编译后的 Node 文件目录
 ├── gulpfile.babel.js       # Gulp 构建脚本配置文件
@@ -39,8 +39,8 @@ npm start
 ├── package.json
 ├── README.md
 ├── routes                  # Node端开发的逻辑
-│   ├── client                  # 处理平台模块相关页面逻辑的Router
-│   └── users                   # 处理用户模块相关页面逻辑的Router
+│   ├── client                  # 处理平台模块相关页面逻辑的 Router
+│   └── users                   # 处理用户模块相关页面逻辑的 Router
 └── src                     # 前端页面开发的文件夹
     ├── images                  # 前端图片保存的文件目录
     ├── javascript              # 前端页面 JS 文件文件夹
