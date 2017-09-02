@@ -11,14 +11,14 @@ function ajax(options) {
 module.exports = {
     createClientAccounts(data) {
         return ajax({
-            url: 'http://54.169.159.192:8080/UCM/CreateCustomerAccount',
+            url: '/UCM/CreateCustomerAccount',
             type: 'POST',
             data,
         })
     },
     createStaffUser(data) {
         return ajax({
-            url: 'http://54.169.159.192:8080/UCM/CreateStaffUser',
+            url: '/UCM/CreateStaffUser',
             type: 'POST',
             data,
         })
@@ -46,14 +46,14 @@ module.exports = {
     },
     signUp(data) {
         return ajax({
-            url: 'http://54.169.159.192:8080/UCM/SignUp',
+            url: '/UCM/SignUp',
             type: 'POST',
             data,
         })
     },
     uploadLogo(data) {
         return ajax({
-            url: 'http://54.169.159.192:8080/UCM/uploadLogo',
+            url: '/UCM/uploadLogo',
             type: 'POST',
             data,
             processData: false,
@@ -62,7 +62,7 @@ module.exports = {
     },
     saveClientChange(data) {
         return ajax({
-            url: 'http://54.169.159.192:8080/UCM/ModifyCustomerAccount',
+            url: '/UCM/ModifyCustomerAccount',
             type: 'POST',
             data,
         })
@@ -71,14 +71,14 @@ module.exports = {
         const data = { userName, customerId }
         console.log(data)
         return ajax({
-            url: 'http://54.169.159.192:8080/UCM/DeleteClient',
+            url: '/UCM/DeleteClient',
             type: 'POST',
             data,
         })
     },
     saveMasterChange(data) {
         return ajax({
-            url: 'http://54.169.159.192:8080/UCM/ModifyMasterUser',
+            url: '/UCM/ModifyMasterUser',
             type: 'POST',
             data,
         })
