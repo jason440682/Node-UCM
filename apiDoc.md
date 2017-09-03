@@ -128,6 +128,34 @@ POST             http://54.169.159.192:8080/UCM/GetStaffUser (获取
      staffUserId:                         String,
 }
 ```
+## 修改员工用户（Modify Staff User）的接口：
+POST 的数据：
+```
+url: 'http://54.169.159.192:8080/UCM/ModifyStaffUser'
+{
+    userName:                                 String,（已登录的user)
+    staffUserId                               int,
+    enable2FactorAuthenticationLogin:         int,
+    sendPasscodeToDeviceId:                   int,
+    firstName:                                String,
+    lastName:                                 String,
+    eMailAddress:                             String,
+    phoneNumber:                              String,
+    otherPhone:                               String,
+    jobTitle:                                 String,
+    businessDepartmentId:                     int,
+    workTimeZone:                             int,
+    workEmail:                                String,
+    officePhone:                              String,
+    officeAddressStreet:                      String,
+    officeAddressRoomNumber:                  String,
+    officeAddressCity:                        String,
+    officeAddressStateProvince:               String,
+    officeAddressCountry:                     int,
+    officeAddressZipCode:                     String,
+    enableAccess:                             int,
+    userNote:                                 String
+}
 
 ## 获取create client account相关显示信息的接口：
 ```
