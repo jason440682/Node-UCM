@@ -118,7 +118,7 @@ block content
                 div.col-sm-5
                     select.form-control#department(name="businessDepartmentId")
                         for dep in lang.department.departments
-                            option(value="1")= dep
+                            option(value=dep.key)= dep.value
 
             div.form-group
                 label.col-sm-4(for="timeZone")= lang.time_zone.text

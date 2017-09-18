@@ -1,8 +1,11 @@
 module.exports = {
-    title: 'Create Staff User',
+    title: 'Modify Staff User',
+    user_id: 'Staff ID: ',
+    business_id: 'Business ID: ',
+    uploaded_logo: 'Uploaded Business Logo',
 
     username: {
-        text: 'Username',
+        text: 'Username: ',
         placeholder: 'Text',
     },
 
@@ -130,4 +133,19 @@ module.exports = {
     submit_btn: {
         text: 'Add Staff',
     },
+
+    buttons: {
+        save: 'Save changes',
+        archive: 'Archive this master',
+        delete: 'Delete master',
+    },
+
+    list_group: [
+        { text: 'Account Information', link: 'accounts' },
+        { text: 'Work Book', link: 'workBook' },
+        { text: 'Work Calendar', link: 'workCalendar' },
+        { text: 'Notification', link: 'notification' },
+        { text: 'Documents', link: 'docManager' },
+        { text: 'Invoice & Payment', link: 'billingPayment' },
+    ],
 }

@@ -1,5 +1,8 @@
 module.exports = {
-    title: ' 创建新用户',
+    title: '更改账户信息',
+    user_id: '账户 ID: ',
+    business_id: '公司 ID: ',
+    uploaded_logo: '已上传的公司 Logo',
 
     username: {
         text: '用户名',
@@ -130,4 +133,19 @@ module.exports = {
     submit_btn: {
         text: '新增员工',
     },
+
+    buttons: {
+        save: '保存更改',
+        archive: '临时保存该账户',
+        delete: '删除该账户',
+    },
+
+    list_group: [
+        { text: '账户信息', link: 'accounts' },
+        { text: '工作簿', link: 'workBook' },
+        { text: '工作日程', link: 'workCalendar' },
+        { text: '通知管理', link: 'notification' },
+        { text: '文件管理', link: 'docManager' },
+        { text: '发票与付款', link: 'billingPayment' },
+    ],
 }

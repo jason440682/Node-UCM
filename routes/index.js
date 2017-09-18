@@ -30,6 +30,7 @@ const clientTable = {
     modifyMaster: require('./client/user/modifyMaster'),
     staffUser: require('./client/user/staffUser'),
     createStaff: require('./client/user/createStaff'),
+    modifyStaff: require('./client/user/modifyStaff'),
 }
 
 const userTable = {

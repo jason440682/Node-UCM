@@ -82,4 +82,11 @@ module.exports = {
             data,
         })
     },
+    saveStaffChange(data) {
+        return ajax({
+            url: '/UCM/ModifyStaffUser',
+            type: 'POST',
+            data,
+        })
+    }
 }

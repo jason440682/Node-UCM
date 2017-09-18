@@ -1,10 +1,13 @@
-import { uploadLogo, createStaffUser } from '../../plugins/api'
-import { getCookie } from '../../plugins/db'
+import { uploadLogo, saveStaffChange } from '../../plugins/api'
+import { ArchiveAccount, getCookie } from '../../plugins/db'
 
 const lang = /^\/(.*?)\//.exec(location.pathname)[1]
+const userName = getCookie('userName')
+
 const $ = window.jQuery
 const $input = $('form :input')
 const $upload = $('#upload-logo')
+const clientId = $('#master-id').html()
 
 function showError($target, message) {
     const $parent = $target.parent()
@@ -48,7 +51,7 @@ $input.blur((e) => {
             } else {
                 removeError($this)
             }
-        } else if ($this.is('#email') || $this.is('#work-email')) {
+        } else if ($this.is('#email') || $this.is('#businessEmail')) {
             if (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(value)) {
                 showError($this, '输入的邮箱格式不正确！请重新输入')
             } else {
@@ -64,7 +67,6 @@ $input.blur((e) => {
     }
 })
 
-
 // 验证表单
 function validateForm() {
     $input.trigger('blur')
@@ -75,34 +77,72 @@ function validateForm() {
 
         $('form').serializeArray().forEach((element) => {
             data[element.name] = element.value
-        }, this)
-        formdata.append('userName', $('#username').val())
+        })
+        formdata.append('userName', userName)
         formdata.append('formdata', $('#upload-logo')[0].files[0])
+
+        data.userName = userName
+        data.staffUserId = $('#staff-id').html()
+        data.enableAccess = '0'
 
         resolve({ data, formdata })
     })
 }
 
-$('#submit').click(() => {
+$(document).ready(() => {
+    const data = ArchiveAccount.get(clientId)
+    if (data) {
+        Object.keys(data).forEach((name) => {
+            if (name === 'enable2FactorAuthenticationLogin' || name === 'sendPasscodeToDeviceId') {
+                $(`[name=${name}]`).removeAttr('checked')
+                $(`[name=${name}][value=${data[name]}]`).attr('checked', true)
+            } else {
+                $(`[name=${name}`).val(data[name])
+            }
+        })
+    }
+})
+
+$('#save').click(() => {
     validateForm().then(({ data, formdata }) => {
-        data.userName = getCookie('userName')
         console.log(data)
-        Promise.all([uploadLogo(formdata), createStaffUser(data)])
-            .then(([upload, register]) => {
-                console.log('datas')
+        Promise.all([uploadLogo(formdata), saveStaffChange(data)])
+            .then(([upload, modifyStaff]) => {
                 console.log(upload)
-                console.log(register)
-                if (upload.response === 'uploaded' && register.response === 'Create staff user Successfully') {
-                    alert('添加成功！')
-                    location.assign(`/${lang}/accounts`)
-                }
-            }, (error) => {
+                console.log(modifyStaff)
+                if (!(upload.response === 'uploaded')) throw upload
+                if (!(modifyStaff.response === 'Modify staff User Successfully')) throw modifyStaff
+                alert('修改成功！')
+                ArchiveAccount.remove(clientId)
+                location.assign(`/${lang}/accounts`)
+            }).catch((error) => {
                 console.log(error)
+                alert('出现错误！请查看 Console ！')
+                if (typeof error.message === 'string') {
+                    alert(error.message)
+                } else if (error.xhr.status === 503) {
+                    alert('该用户已存在！请重新输入')
+                    showError($('#username'), '该用户已存在！请重新输入')
+                } else if (error.status === 500) {
+                    alert('数据传送时出现问题！请检查格式！')
+                }
             })
     }, (errorDOM) => {
         console.log(errorDOM)
         errorDOM.focus()
     })
 
+    return false
+})
+
+$('#archive').click(() => {
+    const data = {}
+    $('form').serializeArray().forEach((element) => {
+        data[element.name] = element.value
+    })
+
+    ArchiveAccount.set(clientId, data)
+    alert('保存成功！注意：上传的图片不能被缓存，请您提交时重新上传 Logo！')
+    location.assign(`/${lang}/accounts`)
     return false
 })
