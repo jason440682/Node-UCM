@@ -309,3 +309,32 @@ POST           http://54.169.159.192:8080/UCM/DeleteClient (修改页面的
     customerId:                          String,
 }
 ```
+
+
+## 创建工作本（Create New Work）的接口：
+POST 的数据：   http://54.169.159.192:8080/UCM/CreateNewWork
+```
+{
+    customerId:                        Int,
+    workStatus:                        Int,
+    assignedStaffUser:                 Int,
+    scheduleStartDate:                 String,
+    scheduleEndDate:                   String，   
+    workRepeatInterval:                Int,
+    workTimeDuration:                  Int,
+    workLocationType:                  Int,
+    workDescription:                   Int,
+    workBillable:                      Int,
+    workBillingRate:                   Int,
+    billingCurrencyId:                 Int,
+    workReminderNotifyStaff:           Int,
+    workReminderNotifyStaffTime:       Int,
+    workReminderNotifyStaffMethod:     Int,
+    workReminderNotifyCustomer:        Int,
+    workReminderNotifyCustomerTime:    Int,
+    workReminderNotifyCustomerMethod:  Int,
+    workReminderMessage:               String,
+    actualCompleteDate:                String,
+    actualCompleteTime:                String,
+   
+}
