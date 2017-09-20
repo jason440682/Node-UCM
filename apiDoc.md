@@ -155,15 +155,14 @@ url: 'http://54.169.159.192:8080/UCM/ModifyStaffUser'
     enableAccess:                             int,
     userNote:                                 String
 }
-
-## 获取create client account相关显示信息的接口：
 ```
+## 获取create client account相关显示信息的接口：
+
 GET 
 获取assign to下拉框              http://54.169.159.192:8080/UCM/staffUsers/{userName}
 获取account status下拉框         http://54.169.159.192:8080/UCM/getCustomerAccountStatuss/{userName}
 获取Email Group下拉框            http://54.169.159.192:8080/UCM/getCustomerEmailGroups/{userName}
 
-```
 
 ## 创建客户账户（Create Client Account）的接口：
 POST 的数据：
@@ -247,7 +246,8 @@ GET 返回的数据：
 ]
 ```
 
-## 查看、修改客户账户（View/Modify Client Account）的接口：
+## 查看、修改客户账户（View/
+Client Account）的接口：
 
 GET 获取              http://54.169.159.192:8080/UCM/clients/{userName} (获取首页显示的client信息)
 ```
@@ -307,5 +307,35 @@ POST           http://54.169.159.192:8080/UCM/DeleteClient (修改页面的
 {
     userName:                            String,
     customerId:                          String,
+}
+```
+
+
+## 创建工作本（Create New Work）的接口：
+POST 的数据：   http://54.169.159.192:8080/UCM/CreateNewWork
+```
+{
+    customerId:                        Int,
+    workStatus:                        Int,
+    assignedStaffUser:                 Int,
+    scheduleStartDate:                 String,
+    scheduleEndDate:                   String，   
+    workRepeatInterval:                Int,
+    workTimeDuration:                  Int,
+    workLocationType:                  Int,
+    workDescription:                   Int,
+    workBillable:                      Int,
+    workBillingRate:                   Int,
+    billingCurrencyId:                 Int,
+    workReminderNotifyStaff:           Int,
+    workReminderNotifyStaffTime:       Int,
+    workReminderNotifyStaffMethod:     Int,
+    workReminderNotifyCustomer:        Int,
+    workReminderNotifyCustomerTime:    Int,
+    workReminderNotifyCustomerMethod:  Int,
+    workReminderMessage:               String,
+    actualCompleteDate:                String,
+    actualCompleteTime:                String,
+   
 }
 ```
