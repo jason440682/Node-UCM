@@ -316,6 +316,7 @@ POST 的数据：   http://54.169.159.192:8080/UCM/CreateNewWork
 ```
 {
     customerId:                        Int,
+    workName:                          String,
     workStatus:                        Int,
     assignedStaffUser:                 Int,
     scheduleStartDate:                 String,
@@ -339,3 +340,10 @@ POST 的数据：   http://54.169.159.192:8080/UCM/CreateNewWork
    
 }
 ```
+GET 
+获取work status   下拉框           http://54.169.159.192:8080/UCM/getAllCustomerWorkStatus/{userName}
+获取Repeate       下拉框           http://54.169.159.192:8080/UCM/getAllWorkRepeatInterval/{userName}
+获取Duration      下拉框           http://54.169.159.192:8080/UCM/getAllWorkTimeDuration/{userName}
+获取Billing Rate  下拉框           http://54.169.159.192:8080/UCM/getAllWorkBillingRate/{userName}
+获取Invoice Status下拉框           http://54.169.159.192:8080/UCM/getAllInvoiceStatus/{userName}
+获取Reminder      下拉框           http://54.169.159.192:8080/UCM/getAllWorkReminderNotifyTime/{userName}
